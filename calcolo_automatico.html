@@ -1,0 +1,38 @@
+
+<!-- saved from url=(0054)http://www.danieletabacco.com/esempi/esempio_js02.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><script language="JavaScript" type="text/javascript">
+    	//Funzione per arrotondamento a due cifre decimali e aggiunta di zeri
+		function cifre_decimali(x) {
+			var c = String(Math.round(x*100));
+			while (c.length < 3) c = '0' + c;
+			return c.replace(/([0-9][0-9])$/,".$1");
+		}
+		//Funzione per l'aggiornamento in tempo reale del costo totale degli articoli
+        function calcola () {
+            var prezzo = parseFloat(document.modulo.prezzo.value);
+            var articoli = parseFloat(document.modulo.articoli.value);
+			var calcola_somma = 0.00;
+			calcola_somma = Math.round(prezzo * articoli * 100)/100;
+			document.modulo.somma.value=cifre_decimali(calcola_somma);
+        }
+    //-->
+    </script>
+</head>
+<body>
+<!-- -->
+<form name="modulo" method="get" action="">
+<p>Prezzo Articolo = 
+   <input name="prezzo" type="TEXT" value="19.90" size="5" maxlength="5" readonly="" id="prezzo"><br>
+    Numero Articoli = 
+    <select name="articoli" id="articoli" onchange="calcola();">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select><br>
+    
+    Costo Totale = <input name="somma" type="TEXT" value="19.90" size="5" maxlength="5">
+</p>
+</form>
+</body></html>
