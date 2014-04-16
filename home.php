@@ -266,7 +266,9 @@ Laboratorio di Manipolazione Cellulare
          <li class='last'><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>CSE - Scheda Paziente </span></a></li>
          <li><a href="schede/inserisci.php?user=<?=$login?>" target="centro"><span>CSE - Inserisci Paziente </span></a></li>
          <li class='last'><a href="schede/piastrine.php?user=<?=$login?>" target="centro"><span>Piastrine - Lista</span></a></li>
-         <li class='last'><a href="schede/piastrine.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Piastrinico - Aggiungi Test </span></a></li>
+         <li ><a href="schede/piastrine.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Piastrine - Aggiungi Test </span></a></li>
+		 <li class='last'><a href="schede/linfociti.php?user=<?=$login?>" target="centro"><span>Linfociti - Scheda Paziente</span></a></li>
+         <li ><a href="schede/linfociti.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Linfociti - Aggiungi Test </span></a></li>
 
       </ul>
    </li>
