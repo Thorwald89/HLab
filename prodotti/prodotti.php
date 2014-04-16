@@ -41,6 +41,49 @@ if($send =="aggiungi"){
 	$s=mysql_query("insert into prodotti (prodotto, data_carico, operatore_carico, quota, codice, lotto, scadenza) values ('".$_POST['prodotto']."', NOW(), '".$_POST['operatore']."', '".$_POST['quota']."', '".$_POST['codice']."', '".$_POST['lotto']."', '".$_POST['scadenza']."') ") or die(mysql_error()); 
 	echo "inserimento effettuato";
 }
+
+
+if($send =="Esporta"){
+	
+	require('../setup/pdf/html2pdf.class.php');
+
+	
+	$s=mysql_query("select * from schede where id = '".$_POST['id']."'") or die(mysql_error()); 
+	$b=mysql_fetch_array($s);
+	
+	
+	// get the HTML
+    $content = " 
+    <page><table style=\"width: 100%; text-size: 18px;\">
+		
+		
+		
+		<tr><td colspan=\"10\" align=\"center\"><h2><center>Lista Prodotti	</h2></td></tr>
+		
+	<tr>	
+	<td><strong>Prodotto</strong></td>
+	<td><strong>Data Carico</strong></td>
+	<td><strong>Data Scarico</strong></td>
+	<td><strong>Codice</strong></td>
+	<td><strong>Lotto</strong></td>
+	<td><strong>Quanti</strong></td>
+	<td><strong>Scadenza</strong></td>
+	<td><strong>Operatore Carico</strong></td>
+	<td><strong>Operatore Scarico</strong></td>
+	</tr>
+	</table>    </page>
+   
+    ";
+     
+   
+		$titolo = 'Lista_Prodotti';
+        $html2pdf = new HTML2PDF('P','A4','it');
+        $html2pdf->WriteHTML($content, isset($_GET['vuehtml']));
+     //   $html2pdf->getHtmlFromPage($url);
+        $html2pdf->Output("".$titolo.".pdf", 'D'); //VISUALIZZO CON BROWSER
+
+}
+
 ?>
 
 
@@ -110,7 +153,9 @@ switch($pos){
 	}
 	?>
 	
-	
+	<form method="post" action="prodotti.php">
+	<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
+	</form>
 	</table>
 	<?
 	break;
