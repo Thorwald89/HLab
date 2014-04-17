@@ -133,6 +133,22 @@ if($send =="Esporta"){
 	<td>".$b['wbc-post']."&mu;L</td>
 	</tr>
 	
+	<tr  align=\"center\">
+			<td colspan=\"2\" align=\"center\"><center><h3>Prodotti</h3></center></td>
+		</tr>
+	
+	<tr><td><strong>Lotto Albumina</strong></td>				
+	<td>".$b['lotto_albumina']."</td></tr>
+	
+	<tr><td><strong>Lotto DMSO</strong></td>				
+	<td>".$b['lotto_DMSO']."</td></tr>
+	
+	<tr><td><strong>Lotto Siringhe</strong></td>				
+	<td>".$b['lotto_siringhe']."</td></tr>
+	
+	<tr><td><strong>Lotto Rubinetti</strong></td>				
+	<td>".$b['lotto_rubinetti']."</td></tr>
+	
 	</table>
     </page>
     
@@ -333,6 +349,22 @@ switch($pos){
 	<td>WBC post-Raccolta</td>					
 	<td><?=$b['wbc-post']?>&mu;L</td>
 	</tr>
+	
+	<tr  align="center">
+			<td colspan="2" align="center"><center><h3>Prodotti</h3></center></td>
+		</tr>
+	
+	<tr><td><strong>Lotto Albumina</strong></td>				
+	<td><input type="text" name="lotto_albumina"></td></tr>
+	
+	<tr><td><strong>Lotto DMSO</strong></td>				
+	<td><input type="text" name="lotto_DMSO"></td></tr>
+	
+	<tr><td><strong>Lotto Siringhe</strong></td>				
+	<td><input type="text" name="lotto_siringhe"></td></tr>	
+	
+	<tr><td><strong>Lotto Rubinetti</strong></td>				
+	<td><input type="text" name="lotto_rubinetti"></td></tr>	
 	
 	<input type="hidden" name ="id" value="<?=$b['id'];?>">
 	
