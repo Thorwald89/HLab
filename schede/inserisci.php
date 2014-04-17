@@ -33,8 +33,28 @@ $send = $_POST['send'];
 
 
 if($send =="Inserisci"){
-	$s=mysql_query("INSERT INTO schede (`nome_d`, `cognome_d`, `domicilio`, `comune`, `nascita_d`, `telefono`, `cellulare`, `nome_r`, `cognome_r`, `nascita_r`, `al1`, `al2`, `al3`, `al4`, `al5`, `al6`, `wbc-pre`, `wbc-post`, `scarto`, `finale`, `vol`, `siero`, `deplasmazione`) values ('".$_POST['nome_d']."', '".$_POST['cognome_d']."','".$_POST['domicilio']."','".$_POST['comune']."','".$_POST['nascita_d']."','".$_POST['telefono']."','".$_POST['cellulare']."','".$_POST['nome_r']."','".$_POST['cognome_r']."','".$_POST['nascita_r']."','".$_POST['al1']."','".$_POST['al2']."','".$_POST['al3']."','".$_POST['al4']."','".$_POST['al5']."','".$_POST['al6']."','".$_POST['wbc-pre']."','".$_POST['wbc-post']."','".$_POST['scarto']."','".$_POST['finale']."','".$_POST['vol']."','".$_POST['siero']."','".$_POST['deplasmazione']."') ") or die(mysql_error()); 
-	echo "inserimento effettuato";
+
+
+		// decurto i lotti dal db prodotti
+		
+		$var_alb = "2";
+		$var_DMSO = "1";
+		$var_siringhe = "3";
+		$var_rubinetti = "1";
+		
+		
+		$albumina = mysql_query("update prodotti set quota = quota - '".$var_alb."' where lotto = '".$_POST['lotto_albumina']."' ") or die (mysql_error());
+		$DMSO = mysql_query("update prodotti set quota = quota - '".$var_DMSO."' where lotto = '".$_POST['lotto_DMSO']."' ") or die (mysql_error());
+		$siringhe = mysql_query("update prodotti set quota = quota - '".$var_siringhe."' where lotto = '".$_POST['lotto_siringhe']."' ") or die (mysql_error());
+		$rubinetti = mysql_query("update prodotti set quota = quota - '".$var_rubinetti."' where lotto = '".$_POST['lotto_rubinetti']."' ") or die (mysql_error());
+
+
+		// inserisco i dati nel db schede
+		
+		$s=mysql_query("INSERT INTO schede (`nome_d`, `cognome_d`, `domicilio`, `comune`, `nascita_d`, `telefono`, `cellulare`, `nome_r`, `cognome_r`, `nascita_r`, `al1`, `al2`, `al3`, `al4`, `al5`, `al6`, `wbc-pre`, `wbc-post`, `scarto`, `finale`, `vol`, `siero`, `deplasmazione`, `lotto_albumina`, `lotto_DMSO`, `lotto_siringhe`, `lotto_rubinetti`) values ('".$_POST['nome_d']."', '".$_POST['cognome_d']."','".$_POST['domicilio']."','".$_POST['comune']."','".$_POST['nascita_d']."','".$_POST['telefono']."','".$_POST['cellulare']."','".$_POST['nome_r']."','".$_POST['cognome_r']."','".$_POST['nascita_r']."','".$_POST['al1']."','".$_POST['al2']."','".$_POST['al3']."','".$_POST['al4']."','".$_POST['al5']."','".$_POST['al6']."','".$_POST['wbc-pre']."','".$_POST['wbc-post']."','".$_POST['scarto']."','".$_POST['finale']."','".$_POST['vol']."','".$_POST['siero']."','".$_POST['deplasmazione']."','".$_POST['lotto_albumina']."', '".$_POST['lotto_DMSO']."', '".$_POST['lotto_siringhe']."', '".$_POST['lotto_rubinetti']."') ") or die(mysql_error()); 
+		echo "inserimento effettuato";
+
+		
 }
 
 
@@ -147,7 +167,21 @@ background-color: white;
 	<td><input name="wbc-post" type="number">&mu;L</td>
 	</tr>
 	
+	<tr  align="center">
+			<td colspan="2" align="center"><center><h3>Prodotti</h3></center></td>
+		</tr>
 	
+	<tr><td><strong>Lotto Albumina</strong></td>				
+	<td><input type="text" name="lotto_albumina"></td></tr>
+	
+	<tr><td><strong>Lotto DMSO</strong></td>				
+	<td><input type="text" name="lotto_DMSO"></td></tr>
+	
+	<tr><td><strong>Lotto Siringhe</strong></td>				
+	<td><input type="text" name="lotto_siringhe"></td></tr>	
+	
+	<tr><td><strong>Lotto Rubinetti</strong></td>				
+	<td><input type="text" name="lotto_rubinetti"></td></tr>	
 	
 	<tr><td colspan="8"><input type="submit" name="send" value="Inserisci"></td></tr>
 	</form>
