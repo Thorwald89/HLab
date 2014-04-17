@@ -84,6 +84,20 @@ if($send =="Esporta"){
 
 }
 
+
+
+
+
+		// controllo prodotti esauriti
+		
+		$gg= mysql_query("select * from prodotti where quota <= '0' and data_scarico = '0000-00-00'") or die(mysql_error());
+		while($r=mysql_fetch_array($gg))
+		{
+			?>
+			<div><br></div>
+			<div style="font-size: 1.2rem; border: 1px solid; background-color: #DF4141; align: center;"><center><strong>Attenzione!</strong> il prodotto	<?=ucfirst($r['prodotto'])?> - Lotto: <?=$r['lotto']?> &eacute; esaurito.</center></div>
+			<?
+		}
 ?>
 
 
