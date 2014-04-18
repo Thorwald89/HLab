@@ -144,7 +144,7 @@ switch($pos){
 	</tr>
 	
 	<?
-	$s= mysql_query("select * from prodotti order by id") or die(mysql_error());
+	$s= mysql_query("select * from prodotti order by prodotto ASC") or die(mysql_error());
 	while($r =mysql_fetch_array($s)){
 		
 		$caric = date_create($r['data_carico']);
@@ -215,6 +215,7 @@ switch($pos){
 		$caric = date_create($r['data_carico']);
 		$scaric= date_create($r['data_scarico']);
 		$scad= date_create($r['scadenza']);
+		$lotto= $r['lotto'];
 	
 		?>
 	<form method="post" action="prodotti.php?user=<?=$login?>">
@@ -232,6 +233,28 @@ switch($pos){
 </form>
 	
 	
+	<tr  align="center">
+			<td colspan="2" align="center"><center><h3>Storico</h3></center></td>
+		</tr>
+		<tr>
+		<tr><td>Data:</td><td>Quantit&aacute;:</td><td>Operazione:</td>
+		</tr>
+	
+	<?
+	$ss= mysql_query("select * from log_prodotti where lotto ='$lotto'") or die(mysql_error());
+	while($rr =mysql_fetch_array($ss))
+	{
+				$data = date_create($rr['data']);
+
+		?>
+	<tr><td><?=date_format($data, 'd/m/Y');?></td>
+	<td><?=ucfirst($rr['quota'])?></td>
+	<td><?=ucfirst($rr['valore'])?></td></tr>	
+		
+		<?
+	}
+	
+	?>
 	</table>
 	<?
 	break;
