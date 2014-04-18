@@ -102,7 +102,7 @@ if($send =="Esporta"){
 	<td>".$b['al1']."mL</td>
 	</tr><tr>
 	<td style=\"font-weight:bold\">iero</td>					
-	<td>".$b['siero']."</td>
+	<td>".$b['procedura']."</td>
 	<td style=\"font-weight:bold\">Aliquota 2</td>	
 	<td>".$b['al2']."mL</td>
 	</tr><tr>
@@ -183,6 +183,7 @@ background-color: white;
     }
 -->
 </style>
+
 </head>
 
 
@@ -204,6 +205,11 @@ switch($pos){
 	<td><input type="text" name="nome_d"></td>
 	<td>Cognome Donatore</td>					
 	<td><input type="text" name="cognome_d"></td>
+	</tr>
+	<tr><td>Nome Ricevente</td>					
+	<td><input type="text" name="nome_r"></td>
+	<td>Cognome Ricevente</td>					
+	<td><input type="text" name="cognome_r"></td>
 	</tr><tr>
 	<td colspan="2">Inserisci Nome/Cognome del Paziente da trovare.<br> N.B.:<i> puoi cercare una scheda scrivendo %nome% nel caso si conosca parte del nome </i></td></tr>
 	<tr><td style="text-align: center;" colspan="8">	
@@ -233,17 +239,16 @@ switch($pos){
 	</tr>
 	
 	<?
-	$s=mysql_query("select * from schede where nome_d like '".$_POST['nome_d']."' or cognome_d like '".$_POST['cognome_d']."' order by cognome_d") or die(mysql_error()); 
-	echo $_POST['nome_d'];
+	$s=mysql_query("select * from schede where nome_d like '".$_POST['nome_d']."' or cognome_d like '".$_POST['cognome_d']."' or nome_r like '".$_POST['nome_r']."' or cognome_r like '".$_POST['cognome_r']."' order by cognome_d") or die(mysql_error()); 
 	while($b=mysql_fetch_array($s)){
 		
 	?>	
 		
 	<tr>	
 	
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['nome_d'];?></a></td>
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['cognome_d'];?></a></td>
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['nascita_d'];?></a></td>
+	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['nome_r'];?></a></td>
+	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['cognome_r'];?></a></td>
+	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['nascita_r'];?></a></td>
 		
 	</tr>
 	
@@ -318,8 +323,8 @@ switch($pos){
 	<td>Aliquota 1</td>	
 	<td><?=$b['al1']?>mL</td>
 	</tr><tr>
-	<td>Siero</td>					
-	<td><?=$b['siero']?></td>
+	<td>procedura</td>					
+	<td><?=$b['procedura']?></td>
 	<td>Aliquota 2</td>	
 	<td><?=$b['al2']?>mL</td>
 	</tr><tr>
@@ -350,21 +355,18 @@ switch($pos){
 	<td><?=$b['wbc-post']?>&mu;L</td>
 	</tr>
 	
-	<tr  align="center">
-			<td colspan="2" align="center"><center><h3>Prodotti</h3></center></td>
-		</tr>
 	
 	<tr><td><strong>Lotto Albumina</strong></td>				
-	<td><input type="text" name="lotto_albumina"></td></tr>
+	<td><?=$b['lotto_albumina']?></td></tr>
 	
 	<tr><td><strong>Lotto DMSO</strong></td>				
-	<td><input type="text" name="lotto_DMSO"></td></tr>
+	<td><?=$b['lotto_DMSO']?></td></tr>
 	
 	<tr><td><strong>Lotto Siringhe</strong></td>				
-	<td><input type="text" name="lotto_siringhe"></td></tr>	
+	<td><?=$b['lotto_siringhe']?></td></tr>
 	
 	<tr><td><strong>Lotto Rubinetti</strong></td>				
-	<td><input type="text" name="lotto_rubinetti"></td></tr>	
+	<td><?=$b['lotto_rubinetti']?></td></tr>
 	
 	<input type="hidden" name ="id" value="<?=$b['id'];?>">
 	
