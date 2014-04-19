@@ -33,14 +33,33 @@ $send = $_POST['send'];
 if($send =="Scarica"){
 	
 	$s=mysql_query("update prodotti set data_scarico=NOW(), operatore_scarico='".$_POST['operatore']."' where id='".$_POST['id']."'") or die(mysql_error()); 
-	echo "inserimento effettuato";
+?>
+<script language="javascript">
+alert("Scarico Eseguito.");
+</script>
+<?}
+
+if($send =="Modifica"){
+	
+	$s=mysql_query("update prodotti set quota= quota ".$_POST['op']." '".$_POST['quota']."'  where id='".$_POST['id']."'") or die(mysql_error()); 
+	
+	$mod= mysql_query("insert INTO log_prodotti (lotto, quota, data, valore) VALUES ('".$_POST['lotto']."','".$_POST['quota']."',NOW(),'".$_POST['motivazione']."')") or die(mysql_error());
+?>
+<script language="javascript">
+alert("Operazione Eseguita.");
+</script>
+<?
 }
+
 
 if($send =="aggiungi"){
 	
 	$s=mysql_query("insert into prodotti (prodotto, data_carico, operatore_carico, quota, codice, lotto, scadenza) values ('".$_POST['prodotto']."', NOW(), '".$_POST['operatore']."', '".$_POST['quota']."', '".$_POST['codice']."', '".$_POST['lotto']."', '".$_POST['scadenza']."') ") or die(mysql_error()); 
-	echo "inserimento effettuato";
-}
+?>
+<script language="javascript">
+alert("Inserimento Eseguito.");
+</script>
+<?}
 
 
 if($send =="Esporta"){
@@ -222,19 +241,30 @@ switch($pos){
 		<input type="hidden" name="id" value="<?=$id?>">
 		<input type="hidden" name="operatore" value="<?=$login?>">
 
-	<tr><td colspan="8" align="center"><h2><center>Prodotto: <?=ucfirst($r['prodotto'])?>	</h2></td></tr>
-	<tr><td>Prodotto:</td><td><?=ucfirst($r['prodotto'])?></td></tr>
+	<tr><td colspan="8" align="center"><h2><center>Scheda Prodotto: <?=ucfirst($r['prodotto'])?>	</h2></td></tr>
+	<tr><td>Nome:</td><td><?=ucfirst($r['prodotto'])?></td></tr>
 	<tr><td>Data Carico:</td><td><?=date_format($caric, 'd/m/Y');?></td></tr>
 	<tr><td>Codice:</td><td><?=ucfirst($r['codice'])?></td></tr>
 	<tr><td>Quantit&aacute;:</td><td><?=ucfirst($r['quota'])?></td></tr>
 	<tr><td>Scadenza:</td><td><?=date_format($scad, 'd/m/Y');?></td></tr>
 	<tr><td>Operatore Carico:</td>	<td><?=ucfirst($r['operatore_carico'])?></td></tr>
-	<tr><td>Scaricare?</td>	<td><input type="submit" name="send" class="submit" value="Scarica"></td></tr>
+	<tr><td>Scarica tutto?</td>	<td><input type="submit" name="send" class="submit" value="Scarica" ></td></tr>
+</form>
+<form method="post" action="prodotti.php?user=<?=$login?>">
+		<input type="hidden" name="id" value="<?=$id?>">
+		<input type="hidden" name="operatore" value="<?=$login?>">
+
+	<tr><td colspan="8" align="center"><h2><center>Modifica Prodotto</h2></td></tr>
+	<tr><td>Quantit&agrave;:</td><td><input type="number" name="quota"></td></tr>
+	<tr><td>Operazione:</td><td><select name="op"><option value="+">Aggiungi</option><option value="-" selected>Rimuovi</option></select></td></tr>
+	<tr><td>Motivazione:</td><td><input type="text" name="motivazione"></td></tr>
+	<tr><td></td>	<td><input type="submit" name="send" class="submit" value="Modifica" ></td></tr>
+<input type="hidden" name="lotto" value="<?=ucfirst($r['lotto'])?>">
 </form>
 	
 	
 	<tr  align="center">
-			<td colspan="2" align="center"><center><h3>Storico</h3></center></td>
+			<td colspan="4" align="center"><center><h3>Storico</h3></center></td>
 		</tr>
 		<tr>
 		<tr><td>Data:</td><td>Quantit&aacute;:</td><td>Operazione:</td>
