@@ -232,9 +232,9 @@ switch($pos){
 	?>
 		<table>
 	<tr>	
-	<td>Nome</td>
-	<td>Cognome</td>
-	<td>Data di Nascita</td>
+	<td>Nome Ricevente</td>
+	<td>Cognome Ricevente</td>
+	<td>Data di Nascita Ricevente</td>
 
 	</tr>
 	
@@ -263,6 +263,9 @@ switch($pos){
 	if($_GET['id'] !=0){
 	$s=mysql_query("select * from schede where id = '".$_GET['id']."'") or die(mysql_error()); 
 	$b=mysql_fetch_array($s);
+	
+	$n_d = date_create($b['nascita_d']);
+	$n_r = date_create($b['nascita_r']);
 		?>
 	
 	
@@ -293,22 +296,16 @@ switch($pos){
 		</tr>
 	
 	<tr><td>Nascita Donatore</td>		
-	<td><?=$b['nascita_d'];?></td>
+	<td><?=date_format($n_d, 'd/m/Y')?></td>
 	<td>Nascita Ricevente</td>		
-	<td><?=$b['nascita_r'];?></td>
+	<td><?=date_format($n_r, 'd/m/Y')?></td>
 	</tr>
 	
-	<tr><td>Residenza</td>		
-	<td><?=$b['comune']?></td></tr>
-	
-	<tr><td>Domicilio</td>				
-	<td><?=$b['domicilio'];?></td></tr>
 	
 	<tr><td>Telefono</td>				
-	<td><?=$b['telefono'];?></td></tr>
-	
-	<tr><td>Cellulare</td>				
-	<td><?=$b['cellulare'];?></td></tr>	
+	<td><?=$b['telefono'];?></td>
+	<td>Peso</td>				
+	<td><?=$b['peso'];?> Kg</td></tr>	
 	
 	
 	<tr  style="text-align: center;">
@@ -323,50 +320,142 @@ switch($pos){
 	<td>Aliquota 1</td>	
 	<td><?=$b['al1']?>mL</td>
 	</tr><tr>
-	<td>procedura</td>					
+	<td>Procedura</td>					
 	<td><?=$b['procedura']?></td>
 	<td>Aliquota 2</td>	
 	<td><?=$b['al2']?>mL</td>
 	</tr><tr>
-	<td>Volume mL</td>					
+	<td>Vol. Raccolta</td>					
 	<td><?=$b['vol']?>mL</td>
 	<td>Aliquota 3</td>	
 	<td><?=$b['al3']?>mL</td>
 	</tr><tr>
-	<td>Scarto mL</td>					
+	<td>Vol. Scarto</td>					
 	<td><?=$b['scarto']?>mL</td>
 	<td>Aliquota 4</td>	
 	<td><?=$b['al4']?>mL</td>
 	</tr><tr>
-	<td>Finale mL</td>					
+	<td>Vol. Finale</td>					
 	<td><?=$b['finale']?>mL</td>
 	<td>Aliquota 5</td>	
 	<td><?=$b['al5']?>mL</td>
 	</tr><tr>
-	<td>jj</td>					
-	<td><input name="jj" type="number">mL</td>
+	<td>Data Congelamento</td>					
+	<td><?=$b['data_congelamento']?></td>
 	<td>Aliquota 6</td>	
 	<td><?=$b['al6']?>mL</td>
 	</tr><tr>
-	<td>WBC pre-Raccolta</td>					
-	<td><?=$b['wbc-pre']?>&mu;L</td>
-	</tr><tr>
-	<td>WBC post-Raccolta</td>					
-	<td><?=$b['wbc-post']?>&mu;L</td>
+	<td>Data Raccolta</td>					
+	<td><?=$b['data_raccolta']?></td>
 	</tr>
 	
 	
-	<tr><td><strong>Lotto Albumina</strong></td>				
-	<td><?=$b['lotto_albumina']?></td></tr>
 	
-	<tr><td><strong>Lotto DMSO</strong></td>				
-	<td><?=$b['lotto_DMSO']?></td></tr>
+	<tr  align="center">
+			<td colspan="4" align="center"><center><h3>Dati Pre-Raccolta</h3></center></td>
+		</tr>
+	<tr>
+	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-pre']?>&mu;L</td>
+	<td><strong>CD34 %</strong>  <?=$b['cd34-pre-perc']?>%</td>
+	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34-pre-micro']?>&mu;L</td>
+
+</tr>
+	<tr  align="center">
+			<td colspan="4" align="center"><center><h3>Dati Raccolta</h3></center></td>
+		</tr>
+	<tr>
+	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-racc']?>&mu;L</td>
+	<td><strong>CD34 %</strong>  <?=$b['cd34-racc-perc']?>%</td>
+	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34-racc-micro']?>&mu;L</td>
+
+</tr>
 	
-	<tr><td><strong>Lotto Siringhe</strong></td>				
-	<td><?=$b['lotto_siringhe']?></td></tr>
+	<tr  align="center">
+			<td colspan="4" align="center"><center><h3>Dati Post-Raccolta</h3></center></td>
+		</tr>
+	<tr>
+	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-post']?>&mu;L</td>
+	<td><strong>CD34 %</strong>  <?=$b['cd34-post-perc']?>%</td>
+	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34-post-micro']?>&mu;L</td>
+
+</tr>
 	
-	<tr><td><strong>Lotto Rubinetti</strong></td>				
-	<td><?=$b['lotto_rubinetti']?></td></tr>
+	<tr  align="center">
+			<td colspan="4" align="center"><center><h3>Dati Deplasmazione</h3></center></td>
+		</tr>
+	<tr>
+	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-depl']?>&mu;L</td>
+	<td><strong>CD34 %</strong>  <?=$b['cd34-depl-perc']?>%</td>
+	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34-depl-micro']?>&mu;L</td>
+
+</tr>
+
+<tr  align="center">
+			<td colspan="4" align="center"><center><h3>Monitoraggio CD34</h3></center></td>
+		</tr>
+	
+	<tr>
+				<td><b></b></td>
+
+		<td><strong>Data</strong></td>
+		<td><strong>WBC</strong></td>	
+		<td><strong>CD34 %</strong></td>	
+		<td><strong>CD34/&mu;L</strong></td>	
+	
+		</tr>		
+<tr>
+	<?
+	$m1 =date_create($b['data_monitoraggio1']);
+	$m2 =date_create($b['data_monitoraggio2']);
+	$m3 =date_create($b['data_monitoraggio3']);
+	$m4 =date_create($b['data_monitoraggio4']);
+	
+	
+	?>
+	<td><b>1</b></td>		
+	<td><?=date_format($m1, 'd/m/Y')?></td>
+	<td><?=$b['wbc_monitoraggio1']?></td>
+	<td><?=$b['cd34_perc_monitoraggio1']?></td>
+	<td><?=$b['cd34_micro_monitoraggio1']?></td>
+
+	</tr>
+<tr>
+	<td><b>2</b></td>		
+	<td><?=date_format($m2, 'd/m/Y')?></td>
+	<td><?=$b['wbc_monitoraggio2']?></td>
+	<td><?=$b['cd34_perc_monitoraggio2']?></td>
+	<td><?=$b['cd34_micro_monitoraggio2']?></td>
+
+	</tr>
+<tr>
+	<td><b>3</b></td>		
+	<td><?=date_format($m3, 'd/m/Y')?></td>
+	<td><?=$b['wbc_monitoraggio3']?></td>
+	<td><?=$b['cd34_perc_monitoraggio3']?></td>
+	<td><?=$b['cd34_micro_monitoraggio3']?></td>
+
+	</tr>
+<tr>
+	<td><b>4</b></td>		
+	<td><?=date_format($m4, 'd/m/Y')?></td>
+	<td><?=$b['wbc_monitoraggio4']?></td>
+	<td><?=$b['cd34_perc_monitoraggio4']?></td>
+	<td><?=$b['cd34_micro_monitoraggio4']?></td>
+
+	</tr>
+<tr  align="center">
+			<td colspan="4" align="center"><center><h3>Prodotti</h3></center></td>
+		</tr>
+	<tr><td></td><td colspan="4" style="align: center;"><strong>Lotto Sacche</strong>: <?=$b['lotto_sacche']?></td></tr>
+
+	<tr><td></td><td><strong>Lotto Albumina</strong>: <?=$b['lotto_albumina']?></td>
+	<td><strong>Lotto DMSO</strong>: <?=$b['lotto_DMSO']?></td></tr>
+	
+	<tr><td></td><td><strong>Lotto Siringhe</strong>: <?=$b['lotto_siringhe']?></td>
+	<td><strong>Lotto Rubinetti</strong>: <?=$b['lotto_rubinetti']?></td></tr>
+	
+	<tr><td></td><td><strong>Lotto Anti &gamma;&gamma;</strong>: <?=$b['lotto_antigamma']?></td>
+	<td><strong>Lotto Anti CD34</strong>: <?=$b['lotto_cd34']?></td></tr>	
 	
 	<input type="hidden" name ="id" value="<?=$b['id'];?>">
 	
