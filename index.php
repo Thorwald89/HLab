@@ -22,11 +22,12 @@
 
 
 
-include('setup/setup.php');
-
-
-	
+if (file_exists('setup/setup.php')) {
 	header('Location: login.php');
+} else {
+	header('Location: install.php');
+}
+	
 	
 
 ?>

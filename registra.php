@@ -21,9 +21,15 @@
  */
 include('setup/setup.php');
 
-if(isset($_POST['send'])){
-	$send = $_POST['send'];
-}
+session_start();
+
+$login = $_SESSION['login']; 
+
+$id = $_GET['id'];
+
+$pos=$_GET['pos'];
+
+$send = $_POST['send'];
 
 if($send =='registra')
 {

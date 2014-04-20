@@ -50,7 +50,8 @@ background-color: white;
 
 <body>
 	
-	Versione: 0.1 Beta
+Introduzione a LabMan
+
 </body>
 
 </html>
