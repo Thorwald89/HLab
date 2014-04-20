@@ -271,13 +271,20 @@ Laboratorio di Manipolazione Cellulare
          <li ><a href="schede/linfociti.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Linfociti - Aggiungi Test </span></a></li>
 
       </ul>
+    
+   </li>
+   <li class="has-sub"><a href="#"><span>Amministrazione</span></a>
+	<ul>
+         <li class='last'><a href="registra.php?user=<?=$login?>" target="centro"><span>Registra Operatore</span></a></li>
+         <li class='last'><a href="version.php" target="centro"><span>Versione Software</span></a></li>
+    </ul>
    </li>
    <li class='last'><a href="logout.php" ><span>Esci</span></a></li>
 </ul>
 </div>
 
 <div class="centro" >
-<iframe allowtransparency="true" width="700" height="400" src="indice.php" id="centro" name="centro">
+<iframe allowtransparency="true" width="700" height="400" src="version.php" id="centro" name="centro">
 </iframe>
 </div>
 
