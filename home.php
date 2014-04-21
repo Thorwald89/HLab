@@ -36,16 +36,21 @@ if($send == 'login'){
 		$s= mysql_query("select * from user where user='".$_POST['user']."' and pass='".md5($_POST['pass'])."'") or die(mysql_error());
 		$controllo = mysql_num_rows($s);
 		
-		if(isset($controllo) == 1){
+		if($controllo == 1){
 			$login = $_POST['user'];
 			$_SESSION['login'] = $login;
-
-				echo 'LogIn OK!<br>';
+			
+			$rr = mysql_fetch_array($s);
+			$admin= $rr['other'];
+			$_SESSION['admin'] = $admin;
+			
+			echo 'LogIn OK!<br>';
 				echo $login;
 
 			
 		}else{
-header("Location: login.php?result=errore");		}
+header("Location: login.php?result=errore");
+		}
 	}
 ?>
 
@@ -273,12 +278,16 @@ Laboratorio di Manipolazione Cellulare
       </ul>
     
    </li>
+   <?
+   if($admin =='admin'){
+   ?>
    <li class="has-sub"><a href="#"><span>Amministrazione</span></a>
 	<ul>
          <li class='last'><a href="registra.php?user=<?=$login?>" target="centro"><span>Registra Operatore</span></a></li>
          <li class='last'><a href="version.php" target="centro"><span>Versione Software</span></a></li>
     </ul>
    </li>
+   <?}?>
    <li class='last'><a href="logout.php" ><span>Esci</span></a></li>
 </ul>
 </div>

@@ -19,7 +19,7 @@
  * 
  * 
  */
-include('setup/setup.php');
+include('../setup/setup.php');
 
 session_start();
 
@@ -31,37 +31,51 @@ $pos=$_GET['pos'];
 
 $send = $_POST['send'];
 
-if($send =='registra')
+if($send =='Registra')
 {
-$s = mysql_query("insert into user(user, pass) values ('".$_POST['user']."','".md5($_POST['pass'])."')") or die (mysql_error());
+$s = mysql_query("insert into user(user, pass, other) values ('".$_POST['user']."','".md5($_POST['pass'])."', 'admin')") or die (mysql_error());
 }	
 ?>
 
 
 <html>
 <head>
-<title>Laboratorio di Manipolazione Cellulare - Registra</title>
-<link rel="stylesheet" href="stile.css" />
+<title>Laboratorio di Manipolazione Cellulare - Registra Admin</title>
 
-<style type="text/css">
-	<!--
-body {
-background-color: white;
+<link rel="stylesheet" href="../stile.css" />
 
-    }
+<style>
+<!--
+body{
+
+background-image: url('../img/sfondo.png');
+
+
+}
+.contenitore{
+position: absolute;
+left: 300px;
+top: 200px;
+align: center;
+border: 1px;
+width: 600px;
+-webkit-box-shadow: 6px 6px 50px 3px #030303;
+box-shadow: 6px 6px 50px 3px #030303;
+}
+
+
 -->
 </style>
 </head>
 
 
-
 <body>
-Laboratorio di Manipolazione Cellulare - Registra
+Laboratorio di Manipolazione Cellulare - Registra Admin
 
-<form method="post" action="registra.php">
+<form method="post" action="reg_admin.php">
 user:<input type="text" name="user" >
 pass:<input type= "password" name="pass">
-<input type="submit" name="send" value="registra">
+<input type="submit" name="send" value="Registra">
 </form>
 </body>
 

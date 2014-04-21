@@ -1,9 +1,6 @@
-<?php 
- 
- /*
- * setup.php
- * 
- * Copyright 2014 Thorwald <thorwald@thorwald-AO532h>
+<?php
+/*
+ * Copyright 2014 Thorwald Donato Madalese
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,20 +19,14 @@
  * 
  * 
  */
-
-$dbhost = "localhost";
-
-$dbuname = "root";
-
-$dbpass = "";
-
-$dbname = "labman";
-
-
-$link = mysql_connect($dbhost,$dbuname,$dbpass);
-mysql_select_db($dbname, $link);
+ 
+ 
+ 
+$link = mysql_connect('localhost','root','');
+mysql_select_db('labman', $link);
 
 
 //rimuove i Notice: Error Index 
 error_reporting(E_ERROR | E_PARSE);
+
 ?>

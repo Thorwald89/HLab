@@ -25,7 +25,7 @@
 if (file_exists('setup/setup.php')) {
 	header('Location: login.php');
 } else {
-	header('Location: install.php');
+	header('Location: install/install.php');
 }
 	
 	

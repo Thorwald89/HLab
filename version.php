@@ -58,6 +58,16 @@ Laboratorio di Manipolazione Cellulare - Version
 <br><br>
 
 <hr>
+<h4>0.8 Beta</h4>
+<ul>
+<li>Migliorato il sistema di Installazione</li>
+<li>Aggiunti i privilegi di Amministratore</li>
+<li>aggiunti errori e redirect prima assenti.</li>
+<li>Migliorata l'organizzazione dei file</li>
+<li>Aggiunto al Setup il file SQL (solo Struttura) che genererà il DB e l'utente Admin</li>
+
+</ul>
+<hr>
 <h4>0.7 Beta</h4>
 <ul>
 <li>Aggiunto file indicante Versione</li>

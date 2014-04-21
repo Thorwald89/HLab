@@ -25,13 +25,6 @@ session_start();
 
 
 
-
-$login = $_SESSION['login']; 
-
-
-if($login != ''){
-	header("Location: home.php");
-}
 	$result= "";
 
 if(isset($_GET['result'])){
@@ -41,7 +34,12 @@ if(isset($_GET['result'])){
 	if($result =='errore'){
 		
 		
-			echo 'Username o Password errate!';
+			?>
+			<script language="javascript">
+			alert("Username o Password Errati!");
+			</script>
+			
+			<?
 
 	}
 
