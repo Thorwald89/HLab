@@ -187,8 +187,8 @@ switch($pos){
 	?>
 	
 	<form method="post" action="prodotti.php">
-	<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
-	</form>
+	<!--<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
+	--></form>
 	</table>
 	<?
 	break;
