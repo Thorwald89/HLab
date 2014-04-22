@@ -49,6 +49,7 @@ if(isset($_GET['result'])){
 
 <html>
 <head>
+<link rel="shortcut icon" href="img/favicon.ico" >
 <title>Laboratorio di Manipolazione Cellulare - Login</title>
 <link rel="stylesheet" href="stile.css" />
 
@@ -61,6 +62,12 @@ background-image: url('img/sfondo.png');
 
 }
 .contenitore{
+
+position:absolute;
+top:60%;
+left:65%;
+margin-top:-250px;
+margin-left:-450px;
 align: center;
 border: 1px;
 width: 600px;

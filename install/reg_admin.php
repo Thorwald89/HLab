@@ -34,6 +34,9 @@ $send = $_POST['send'];
 if($send =='Registra')
 {
 $s = mysql_query("insert into user(user, pass, other) values ('".$_POST['user']."','".md5($_POST['pass'])."', 'admin')") or die (mysql_error());
+
+
+header("Location: ../login.php");
 }	
 ?>
 

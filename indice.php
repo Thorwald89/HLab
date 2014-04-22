@@ -49,9 +49,8 @@ background-color: white;
 </style></head>
 
 <body>
-	
-Introduzione a LabMan
-
+<center>	
+<img src="img/labman.png"></center>
 </body>
 
 </html>
