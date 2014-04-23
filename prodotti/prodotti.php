@@ -37,7 +37,7 @@ if($send =="Scarica"){
 <script language="javascript">
 alert("Scarico Eseguito.");
 </script>
-<?}
+<?php}
 
 if($send =="Modifica"){
 	
@@ -48,7 +48,7 @@ if($send =="Modifica"){
 <script language="javascript">
 alert("Operazione Eseguita.");
 </script>
-<?
+<?php
 }
 
 
@@ -59,7 +59,7 @@ if($send =="aggiungi"){
 <script language="javascript">
 alert("Inserimento Eseguito.");
 </script>
-<?}
+<?php}
 
 
 if($send =="Esporta"){
@@ -115,7 +115,7 @@ if($send =="Esporta"){
 			?>
 			<div><br></div>
 			<div style="font-size: 1.2rem; border: 1px solid; background-color: #DF4141; align: center;"><center><strong>Attenzione!</strong> il prodotto	<?=ucfirst($r['prodotto'])?> - Lotto: <?=$r['lotto']?> &eacute; esaurito.</center></div>
-			<?
+			<?php
 		}
 ?>
 
@@ -140,7 +140,7 @@ background-color: white;
 <body>
 
 
-<?
+<?php
 switch($pos){
 	
 	default:
@@ -162,7 +162,7 @@ switch($pos){
 	<td><strong>Operatore Scarico</strong></td>
 	</tr>
 	
-	<?
+	<?php
 	$s= mysql_query("select * from prodotti order by prodotto ASC") or die(mysql_error());
 	while($r =mysql_fetch_array($s)){
 		
@@ -174,7 +174,7 @@ switch($pos){
 		<tr>	
 	<td><a href="prodotti.php?pos=scarico&user=<?=$login?>&id=<?=$r['id']?>"><?=ucfirst($r['prodotto'])?></a></td>
 	<td><?=date_format($caric, 'd/m/Y');?></td>
-	<td><? if($r['data_scarico'] == '0000-00-00'){echo '-';}else{ echo date_format($scaric, 'd/m/Y');} ?></td>
+	<td><?php if($r['data_scarico'] == '0000-00-00'){echo '-';}else{ echo date_format($scaric, 'd/m/Y');} ?></td>
 	<td><?=ucfirst($r['codice'])?></td>
 	<td><?=ucfirst($r['lotto'])?></td>
 	<td><?=ucfirst($r['quota'])?></td>
@@ -182,7 +182,7 @@ switch($pos){
 	<td><?=ucfirst($r['operatore_carico'])?></td>
 	<td><?=ucfirst($r['operatore_scarico'])?></td>
 	</tr>
-		<?
+		<?php
 	}
 	?>
 	
@@ -190,7 +190,7 @@ switch($pos){
 	<!--<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
 	--></form>
 	</table>
-	<?
+	<?php
 	break;
 	
 	
@@ -220,14 +220,14 @@ switch($pos){
 	
 	
 	</table>
-	<?
+	<?php
 	break;
 	
 	case 'scarico':
 	?>
 	<table>
 		
-		<?
+		<?php
 	$s= mysql_query("select * from prodotti where id ='$id'") or die(mysql_error());
 	$r =mysql_fetch_array($s);
 		
@@ -270,7 +270,7 @@ switch($pos){
 		<tr><td>Data:</td><td>Quantit&aacute;:</td><td>Operazione:</td>
 		</tr>
 	
-	<?
+	<?php
 	$ss= mysql_query("select * from log_prodotti where lotto ='$lotto'") or die(mysql_error());
 	while($rr =mysql_fetch_array($ss))
 	{
@@ -281,12 +281,12 @@ switch($pos){
 	<td><?=ucfirst($rr['quota'])?></td>
 	<td><?=ucfirst($rr['valore'])?></td></tr>	
 		
-		<?
+		<?php
 	}
 	
 	?>
 	</table>
-	<?
+	<?php
 	break;
 	
 	

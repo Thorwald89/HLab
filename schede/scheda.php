@@ -191,7 +191,7 @@ background-color: white;
 <body>
 
 
-<?
+<?php
 switch($pos){
 	
 	default:
@@ -220,7 +220,7 @@ switch($pos){
 	
 	
 	</table>
-	<?
+	<?php
 	break;
 	
 	
@@ -238,7 +238,7 @@ switch($pos){
 
 	</tr>
 	
-	<?
+	<?php
 	$s=mysql_query("select * from schede where nome_d like '".$_POST['nome_d']."' or cognome_d like '".$_POST['cognome_d']."' or nome_r like '".$_POST['nome_r']."' or cognome_r like '".$_POST['cognome_r']."' order by cognome_d") or die(mysql_error()); 
 	while($b=mysql_fetch_array($s)){
 		
@@ -252,14 +252,14 @@ switch($pos){
 		
 	</tr>
 	
-	<?	
+	<?php	
 	}
 	
 }
 
 	?></table>
 	
-	<? 
+	<?php 
 	if($_GET['id'] !=0){
 	$s=mysql_query("select * from schede where id = '".$_GET['id']."'") or die(mysql_error()); 
 	$b=mysql_fetch_array($s);
@@ -404,7 +404,7 @@ switch($pos){
 	
 		</tr>		
 <tr>
-	<?
+	<?php
 	$m1 =date_create($b['data_monitoraggio1']);
 	$m2 =date_create($b['data_monitoraggio2']);
 	$m3 =date_create($b['data_monitoraggio3']);
@@ -462,7 +462,7 @@ switch($pos){
 	<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
 	</form>
 	</table>
-	<?
+	<?php
 		}
 	break;
 	

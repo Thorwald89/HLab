@@ -87,7 +87,7 @@ fclose($a);
 <script language="javascript">
 alert("Setup creato con successo!");
 </script>
-<?
+<?php
 
 header ("Location: install2.php");
 }

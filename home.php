@@ -293,7 +293,7 @@ Laboratorio di Manipolazione Cellulare
       </ul>
     
    </li>
-   <?
+   <?php
    if($admin =='admin'){
    ?>
    <li class="has-sub"><a href="#"><span>Amministrazione</span></a>
@@ -303,7 +303,7 @@ Laboratorio di Manipolazione Cellulare
          <li class='last'><a href="update.php" target="centro"><span>UpDate</span></a></li>
     </ul>
    </li>
-   <?}?>
+   <?php}?>
    <li class='last'><a href="logout.php" ><span>Esci</span></a></li>
 </ul>
 </div>

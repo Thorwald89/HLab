@@ -83,7 +83,7 @@ if($send =="Inserisci"){
 <script language="javascript">
 alert("Inserimento <?=$tipo?> effettuato.");
 </script>
-<?
+<?php
 }
 
 

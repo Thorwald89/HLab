@@ -56,7 +56,7 @@ if (substr(trim($line), -1, 1) == ';')
 <script language="javascript">
 alert("Creazione Database conclusa con successo!");
 </script>
-<?
+<?php
 
 header ("Location: registra.php");
 

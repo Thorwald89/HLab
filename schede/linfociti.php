@@ -127,7 +127,7 @@ background-color: white;
 <body>
 
 
-<?
+<?php
 switch($pos){
 	
 	default:
@@ -151,7 +151,7 @@ switch($pos){
 	
 	
 	</table>
-	<?
+	<?php
 	break;
 	
 	case 'inserisci':
@@ -184,7 +184,7 @@ switch($pos){
 	
 	
 	</table>
-	<?
+	<?php
 	break;
 	
 	case 'scheda':
@@ -200,7 +200,7 @@ switch($pos){
 
 	</tr>
 	
-	<?
+	<?php
 	$s=mysql_query("select * from linfociti where nome like '".$_POST['nome']."' or cognome like '".$_POST['cognome']."' order by cognome") or die(mysql_error()); 
 	echo $_POST['nome'];
 	while($b=mysql_fetch_array($s)){
@@ -215,14 +215,14 @@ switch($pos){
 		
 	</tr>
 	
-	<?	
+	<?php	
 	}
 	
 }
 
 	?></table>
 	
-	<? 
+	<?php 
 	if($_GET['id'] !=0){
 	$s=mysql_query("select * from linfociti where id = '".$_GET['id']."'") or die(mysql_error()); 
 	$b=mysql_fetch_array($s);
@@ -273,7 +273,7 @@ switch($pos){
 	<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
 	</form>
 	</table>
-	<?
+	<?php
 		}
 	break;
 	

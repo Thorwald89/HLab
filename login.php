@@ -39,7 +39,7 @@ if(isset($_GET['result'])){
 			alert("Username o Password Errati!");
 			</script>
 			
-			<?
+			<?php
 
 	}
 

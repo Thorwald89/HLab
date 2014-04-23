@@ -60,7 +60,7 @@ background-color: white;
 <body>
 
 
-<?
+<?php
 switch($pos){
 	
 	default:
@@ -80,7 +80,7 @@ switch($pos){
 	<td><strong>Operatore</strong></td>
 	</tr>
 	
-	<?
+	<?php
 	$s= mysql_query("select * from piastrine order by data_test") or die(mysql_error());
 	while($r =mysql_fetch_array($s)){
 		
@@ -97,13 +97,13 @@ switch($pos){
 	<td><?=date_format($data, 'd/m/Y');?></td>
 	<td><?=ucfirst($r['operatore'])?></td>
 	</tr>
-		<?
+		<?php
 	}
 	?>
 	
 	
 	</table>
-	<?
+	<?php
 	break;
 	
 	
@@ -140,7 +140,7 @@ switch($pos){
 	
 	
 	</table>
-	<?
+	<?php
 	break;
 		
 	
