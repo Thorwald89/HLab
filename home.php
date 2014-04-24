@@ -1,23 +1,23 @@
 <?php
 /*
  * Copyright 2014 Thorwald Donato Madalese
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
- * 
+ *
+ *
  */
 include('setup/setup.php');
 session_start();
@@ -32,22 +32,22 @@ if(isset($_POST['send'])){
 
 
 if($send == 'login'){
-		
+
 		$s= mysql_query("select * from user where user='".$_POST['user']."' and pass='".md5($_POST['pass'])."'") or die(mysql_error());
 		$controllo = mysql_num_rows($s);
-		
+
 		if($controllo == 1){
 			$login = $_POST['user'];
 			$_SESSION['login'] = $login;
-			
+
 			$rr = mysql_fetch_array($s);
 			$admin= $rr['other'];
 			$_SESSION['admin'] = $admin;
-			
+
 			echo 'LogIn OK!<br>';
 				echo $login;
 
-			
+
 		}else{
 header("Location: login.php?result=errore");
 		}
@@ -291,7 +291,7 @@ Laboratorio di Manipolazione Cellulare
          <li ><a href="schede/linfociti.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Linfociti - Aggiungi Test </span></a></li>
 
       </ul>
-    
+
    </li>
    <?php
    if($admin =='admin'){
@@ -303,7 +303,9 @@ Laboratorio di Manipolazione Cellulare
          <li class='last'><a href="update.php" target="centro"><span>UpDate</span></a></li>
     </ul>
    </li>
-   <?php}?>
+   <?php
+   }
+   ?>
    <li class='last'><a href="logout.php" ><span>Esci</span></a></li>
 </ul>
 </div>

@@ -1,28 +1,28 @@
 <?php
 /*
  * Copyright 2014 Thorwald Donato Madalese
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
- * 
+ *e
+ *
  */
 include('../setup/setup.php');
 session_start();
 
-$login = $_SESSION['login']; 
+$login = $_SESSION['login'];
 
 $id = $_GET['id'];
 
@@ -31,18 +31,19 @@ $pos=$_GET['pos'];
 $send = $_POST['send'];
 
 if($send =="Scarica"){
-	
-	$s=mysql_query("update prodotti set data_scarico=NOW(), operatore_scarico='".$_POST['operatore']."' where id='".$_POST['id']."'") or die(mysql_error()); 
+
+	$s=mysql_query("update prodotti set data_scarico=NOW(), operatore_scarico='".$_POST['operatore']."' where id='".$_POST['id']."'") or die(mysql_error());
 ?>
 <script language="javascript">
 alert("Scarico Eseguito.");
 </script>
-<?php}
+<?php
+}
 
 if($send =="Modifica"){
-	
-	$s=mysql_query("update prodotti set quota= quota ".$_POST['op']." '".$_POST['quota']."'  where id='".$_POST['id']."'") or die(mysql_error()); 
-	
+
+	$s=mysql_query("update prodotti set quota= quota ".$_POST['op']." '".$_POST['quota']."'  where id='".$_POST['id']."'") or die(mysql_error());
+
 	$mod= mysql_query("insert INTO log_prodotti (lotto, quota, data, valore) VALUES ('".$_POST['lotto']."','".$_POST['quota']."',NOW(),'".$_POST['motivazione']."')") or die(mysql_error());
 ?>
 <script language="javascript">
@@ -53,33 +54,33 @@ alert("Operazione Eseguita.");
 
 
 if($send =="aggiungi"){
-	
-	$s=mysql_query("insert into prodotti (prodotto, data_carico, operatore_carico, quota, codice, lotto, scadenza) values ('".$_POST['prodotto']."', NOW(), '".$_POST['operatore']."', '".$_POST['quota']."', '".$_POST['codice']."', '".$_POST['lotto']."', '".$_POST['scadenza']."') ") or die(mysql_error()); 
+
+	$s=mysql_query("insert into prodotti (prodotto, data_carico, operatore_carico, quota, codice, lotto, scadenza) values ('".$_POST['prodotto']."', NOW(), '".$_POST['operatore']."', '".$_POST['quota']."', '".$_POST['codice']."', '".$_POST['lotto']."', '".$_POST['scadenza']."') ") or die(mysql_error());
 ?>
 <script language="javascript">
 alert("Inserimento Eseguito.");
 </script>
-<?php}
+<?php
+}
 
-
+/*
 if($send =="Esporta"){
-	
-	require('../setup/pdf/html2pdf.class.php');
 
-	
-	$s=mysql_query("select * from schede where id = '".$_POST['id']."'") or die(mysql_error()); 
+
+
+	$s=mysql_query("select * from schede where id = '".$_POST['id']."'") or die(mysql_error());
 	$b=mysql_fetch_array($s);
-	
-	
+
+
 	// get the HTML
-    $content = " 
+    $content = "
     <page><table style=\"width: 100%; text-size: 18px;\">
-		
-		
-		
+
+
+
 		<tr><td colspan=\"10\" align=\"center\"><h2><center>Lista Prodotti	</h2></td></tr>
-		
-	<tr>	
+
+	<tr>
 	<td><strong>Prodotto</strong></td>
 	<td><strong>Data Carico</strong></td>
 	<td><strong>Data Scarico</strong></td>
@@ -91,10 +92,10 @@ if($send =="Esporta"){
 	<td><strong>Operatore Scarico</strong></td>
 	</tr>
 	</table>    </page>
-   
+
     ";
-     
-   
+
+
 		$titolo = 'Lista_Prodotti';
         $html2pdf = new HTML2PDF('P','A4','it');
         $html2pdf->WriteHTML($content, isset($_GET['vuehtml']));
@@ -103,12 +104,12 @@ if($send =="Esporta"){
 
 }
 
-
+*/
 
 
 
 		// controllo prodotti esauriti
-		
+
 		$gg= mysql_query("select * from prodotti where quota <= '0' and data_scarico = '0000-00-00'") or die(mysql_error());
 		while($r=mysql_fetch_array($gg))
 		{
@@ -133,6 +134,9 @@ background-color: white;
     }
 -->
 </style>
+
+
+
 </head>
 
 
@@ -142,15 +146,15 @@ background-color: white;
 
 <?php
 switch($pos){
-	
+
 	default:
 	?>
 	<table>
-		
-		
+
+
 		<tr><td colspan="10" align="center"><h2><center>Lista Prodotti	</h2></td></tr>
-		
-	<tr>	
+
+	<tr>
 	<td><strong>Prodotto</strong></td>
 	<td><strong>Data Carico</strong></td>
 	<td><strong>Data Scarico</strong></td>
@@ -161,17 +165,17 @@ switch($pos){
 	<td><strong>Operatore Carico</strong></td>
 	<td><strong>Operatore Scarico</strong></td>
 	</tr>
-	
+
 	<?php
 	$s= mysql_query("select * from prodotti order by prodotto ASC") or die(mysql_error());
 	while($r =mysql_fetch_array($s)){
-		
+
 		$caric = date_create($r['data_carico']);
 		$scaric= date_create($r['data_scarico']);
 		$scad= date_create($r['scadenza']);
 
 		?>
-		<tr>	
+		<tr>
 	<td><a href="prodotti.php?pos=scarico&user=<?=$login?>&id=<?=$r['id']?>"><?=ucfirst($r['prodotto'])?></a></td>
 	<td><?=date_format($caric, 'd/m/Y');?></td>
 	<td><?php if($r['data_scarico'] == '0000-00-00'){echo '-';}else{ echo date_format($scaric, 'd/m/Y');} ?></td>
@@ -185,15 +189,15 @@ switch($pos){
 		<?php
 	}
 	?>
-	
-	<form method="post" action="prodotti.php">
-	<!--<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
-	--></form>
+
+	<form method="post" action="../setup/pdf2/create_result_prodotti.php">
+	<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
+	</form>
 	</table>
 	<?php
 	break;
-	
-	
+
+
 	case 'carico':
 	?>
 	<table>
@@ -217,25 +221,25 @@ switch($pos){
 	<input type="hidden" name="operatore" value="<?=$login?>">
 		</td></tr>
 	</form>
-	
-	
+
+
 	</table>
 	<?php
 	break;
-	
+
 	case 'scarico':
 	?>
 	<table>
-		
+
 		<?php
 	$s= mysql_query("select * from prodotti where id ='$id'") or die(mysql_error());
 	$r =mysql_fetch_array($s);
-		
+
 		$caric = date_create($r['data_carico']);
 		$scaric= date_create($r['data_scarico']);
 		$scad= date_create($r['scadenza']);
 		$lotto= $r['lotto'];
-	
+
 		?>
 	<form method="post" action="prodotti.php?user=<?=$login?>">
 		<input type="hidden" name="id" value="<?=$id?>">
@@ -261,15 +265,15 @@ switch($pos){
 	<tr><td></td>	<td><input type="submit" name="send" class="submit" value="Modifica" ></td></tr>
 <input type="hidden" name="lotto" value="<?=ucfirst($r['lotto'])?>">
 </form>
-	
-	
+
+
 	<tr  align="center">
 			<td colspan="4" align="center"><center><h3>Storico</h3></center></td>
 		</tr>
 		<tr>
 		<tr><td>Data:</td><td>Quantit&aacute;:</td><td>Operazione:</td>
 		</tr>
-	
+
 	<?php
 	$ss= mysql_query("select * from log_prodotti where lotto ='$lotto'") or die(mysql_error());
 	while($rr =mysql_fetch_array($ss))
@@ -279,20 +283,20 @@ switch($pos){
 		?>
 	<tr><td><?=date_format($data, 'd/m/Y');?></td>
 	<td><?=ucfirst($rr['quota'])?></td>
-	<td><?=ucfirst($rr['valore'])?></td></tr>	
-		
+	<td><?=ucfirst($rr['valore'])?></td></tr>
+
 		<?php
 	}
-	
+
 	?>
 	</table>
 	<?php
 	break;
-	
-	
-	
-	
-	
+
+
+
+
+
 }
 
 
