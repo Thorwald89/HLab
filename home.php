@@ -300,6 +300,7 @@ Laboratorio di Manipolazione Cellulare
 	<ul>
          <li class='last'><a href="registra.php?user=<?=$login?>" target="centro"><span>Registra Operatore</span></a></li>
          <li class='last'><a href="version.php" target="centro"><span>Versione Software</span></a></li>
+         <li class='last'><a href="https://github.com/Thorwald89/LabMan/wiki" target="_blank"><span>Documentazione</span></a></li>
          <li class='last'><a href="update.php" target="centro"><span>UpDate</span></a></li>
     </ul>
    </li>

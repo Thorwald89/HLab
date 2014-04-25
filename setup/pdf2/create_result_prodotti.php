@@ -18,7 +18,7 @@ class PDF_result extends FPDF {
 	}
 
 	function Header () {
-	     $this->Image('youhack.png',100,15,250);
+	     $this->Image('logo.png',100,15,250);
 
 	//	$this->SetFont('Arial', 'B', 20);
 	//	$this->SetFillColor(36, 96, 84);
@@ -33,7 +33,7 @@ class PDF_result extends FPDF {
     //Arial italic 8
     $this->SetFont('Arial','I',8);
     //Page number
-    $this->Cell(0,10,'Generated at YouHack.me',0,0,'C');
+    $this->Cell(0,10,'Testo - Testo',0,0,'C');
 }
 
 
@@ -89,9 +89,9 @@ $pdf->Cell(250, 13, $b['prodotto']);
 
 // head DX
 $pdf->SetFont('Arial', 'B');
-$pdf->Cell(50, 13, "Date:");
+$pdf->Cell(50, 13, "Data:");
 $pdf->SetFont('Arial', '');
-$pdf->Cell(100, 13, date('F j, Y'), 0, 1);
+$pdf->Cell(100, 13, date('j-m-Y'), 0, 1);
 
 
 // head SX
@@ -138,6 +138,49 @@ $pdf->Write(13, "prova@prova.com", "mailto:example@example.com");
 
 $pdf->Output('esporta.pdf', 'F');
 
+$now = date("d-m-Y");
+$origine = "esporta.pdf";
+$sposta = "../../download/esporta.pdf";
+copy($origine, $sposta);
+chmod('esporta.pdf', 0777);
+$ren= "../../download/".$now.".pdf";
+chmod($ren, 0777);
+
+rename($sposta, $ren);
 
 
 
+?>
+
+<script language="javascript">
+alert("Export eseguito correttamente");
+</script>
+
+
+<html>
+<head>
+<title>Laboratorio di Manipolazione Cellulare - Prodotti</title>
+<link rel="stylesheet" href="../../stile.css" />
+
+<style type="text/css">
+	<!--
+body {
+background-color: white;
+
+    }
+-->
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+ <center>Troverai il file pdf nella cartella "download".</center>
+</body>
+
+</html>
