@@ -279,6 +279,7 @@ Laboratorio di Manipolazione Cellulare
     <ul>
          <li><a href="prodotti/prodotti.php?user=<?=$login?>" target="centro"><span>Lista</span></a></li>
          <li class='last'><a href="prodotti/prodotti.php?pos=carico&user=<?=$login?>" target="centro"><span>Carica Prodotto</span></a></li>
+         <li class='last'><a href="prodotti/archivio.php?user=<?=$login?>" target="centro"><span>Archivio</span></a></li>
       </ul>
    </li>
    <li class="has-sub"><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>Esami</span></a>

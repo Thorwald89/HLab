@@ -167,7 +167,7 @@ switch($pos){
 	</tr>
 
 	<?php
-	$s= mysql_query("select * from prodotti order by prodotto ASC") or die(mysql_error());
+	$s= mysql_query("select * from prodotti where view ='1' order by prodotto ASC") or die(mysql_error());
 	while($r =mysql_fetch_array($s)){
 
 		$caric = date_create($r['data_carico']);
@@ -175,6 +175,7 @@ switch($pos){
 		$scad= date_create($r['scadenza']);
 
 		?>
+		<form method="post" action="archivio.php">
 		<tr>
 	<td><a href="prodotti.php?pos=scarico&user=<?=$login?>&id=<?=$r['id']?>"><?=ucfirst($r['prodotto'])?></a></td>
 	<td><?=date_format($caric, 'd/m/Y');?></td>
@@ -186,13 +187,21 @@ switch($pos){
 	<td><?=ucfirst($r['operatore_carico'])?></td>
 	<td><?=ucfirst($r['operatore_scarico'])?></td>
 	</tr>
+
+	<input type="hidden" name="lotto" value="<?=$r['lotto']?>">
+
 		<?php
 	}
 	?>
+	<tr><td colspan="8" style="text-align: center;">
+	<input type="submit" name="send" value="Archivia">
+	</form>
 
 	<form method="post" action="../setup/pdf2/create_result_prodotti.php">
-	<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
+	<input type="submit" name="send" value="Esporta"></td></tr>
 	</form>
+
+
 	</table>
 	<?php
 	break;

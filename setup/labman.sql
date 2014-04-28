@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 21, 2014 alle 18:53
+-- Generation Time: Apr 28, 2014 alle 22:25
 -- Versione del server: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -27,6 +27,8 @@ USE `labman`;
 --
 -- Struttura della tabella `linfociti`
 --
+-- Creazione: Apr 21, 2014 alle 17:16
+--
 
 DROP TABLE IF EXISTS `linfociti`;
 CREATE TABLE IF NOT EXISTS `linfociti` (
@@ -48,6 +50,8 @@ CREATE TABLE IF NOT EXISTS `linfociti` (
 --
 -- Struttura della tabella `log_prodotti`
 --
+-- Creazione: Apr 21, 2014 alle 17:16
+--
 
 DROP TABLE IF EXISTS `log_prodotti`;
 CREATE TABLE IF NOT EXISTS `log_prodotti` (
@@ -57,12 +61,14 @@ CREATE TABLE IF NOT EXISTS `log_prodotti` (
   `data` date NOT NULL,
   `valore` varchar(90) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92 ;
 
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `piastrine`
+--
+-- Creazione: Apr 21, 2014 alle 17:16
 --
 
 DROP TABLE IF EXISTS `piastrine`;
@@ -83,6 +89,8 @@ CREATE TABLE IF NOT EXISTS `piastrine` (
 --
 -- Struttura della tabella `prodotti`
 --
+-- Creazione: Apr 28, 2014 alle 19:51
+--
 
 DROP TABLE IF EXISTS `prodotti`;
 CREATE TABLE IF NOT EXISTS `prodotti` (
@@ -96,13 +104,16 @@ CREATE TABLE IF NOT EXISTS `prodotti` (
   `operatore_scarico` text NOT NULL,
   `lotto` text NOT NULL,
   `scadenza` date NOT NULL DEFAULT '0000-00-00',
+  `view` int(3) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `schede`
+--
+-- Creazione: Apr 25, 2014 alle 17:59
 --
 
 DROP TABLE IF EXISTS `schede`;
@@ -142,40 +153,43 @@ CREATE TABLE IF NOT EXISTS `schede` (
   `data_monitoraggio2` date NOT NULL,
   `data_monitoraggio3` date NOT NULL,
   `data_monitoraggio4` date NOT NULL,
-  `cd34_micro_monitoraggio4` int(11) NOT NULL,
-  `cd34_micro_monitoraggio3` int(11) NOT NULL,
-  `cd34_micro_monitoraggio2` int(11) NOT NULL,
-  `cd34_micro_monitoraggio1` int(11) NOT NULL,
-  `cd34_perc_monitoraggio4` int(11) NOT NULL,
-  `cd34_perc_monitoraggio3` int(11) NOT NULL,
-  `cd34_perc_monitoraggio2` int(11) NOT NULL,
-  `cd34_perc_monitoraggio1` int(11) NOT NULL,
-  `wbc_monitoraggio4` int(11) NOT NULL,
-  `wbc_monitoraggio3` int(11) NOT NULL,
-  `wbc_monitoraggio2` int(11) NOT NULL,
-  `wbc_monitoraggio1` int(11) NOT NULL,
-  `cd34-depl-micro` int(11) NOT NULL,
-  `cd34-post-micro` int(11) NOT NULL,
-  `cd34-racc-micro` int(11) NOT NULL,
-  `cd34-pre-micro` int(11) NOT NULL,
-  `cd34-depl-perc` int(11) NOT NULL,
-  `cd34-post-perc` int(11) NOT NULL,
-  `cd34-racc-perc` int(11) NOT NULL,
-  `cd34-micro-perc` int(11) NOT NULL,
-  `wbc-depl` int(11) NOT NULL,
-  `wbc-racc` int(11) NOT NULL,
+  `cd34_micro_monitoraggio4` varchar(90) NOT NULL,
+  `cd34_micro_monitoraggio3` varchar(90) NOT NULL,
+  `cd34_micro_monitoraggio2` varchar(90) NOT NULL,
+  `cd34_micro_monitoraggio1` varchar(11) NOT NULL,
+  `cd34_perc_monitoraggio4` varchar(11) NOT NULL,
+  `cd34_perc_monitoraggio3` varchar(11) NOT NULL,
+  `cd34_perc_monitoraggio2` varchar(11) NOT NULL,
+  `cd34_perc_monitoraggio1` varchar(11) NOT NULL,
+  `wbc_monitoraggio4` varchar(11) NOT NULL,
+  `wbc_monitoraggio3` varchar(11) NOT NULL,
+  `wbc_monitoraggio2` varchar(11) NOT NULL,
+  `wbc_monitoraggio1` varchar(11) NOT NULL,
+  `cd34_depl_micro` varchar(11) NOT NULL,
+  `cd34_racc_micro` varchar(11) NOT NULL,
+  `cd34_pre_micro` varchar(11) NOT NULL,
+  `cd34_depl_perc` varchar(11) NOT NULL,
+  `cd34_post_perc` varchar(11) NOT NULL,
+  `cd34_racc_perc` varchar(11) NOT NULL,
+  `cd34_micro_perc` varchar(11) NOT NULL,
+  `wbc-depl` varchar(11) NOT NULL,
+  `wbc-racc` varchar(11) NOT NULL,
   `lotto_cd34` int(11) NOT NULL,
   `lotto_sacche` int(11) NOT NULL,
   `lotto_antigamma` int(11) NOT NULL,
   `donazione` varchar(90) NOT NULL,
   `peso` int(11) NOT NULL,
+  `cd34_pre_perc` varchar(11) NOT NULL,
+  `cd34_post_micro` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `user`
+--
+-- Creazione: Apr 21, 2014 alle 17:16
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -185,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pass` text NOT NULL,
   `other` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
