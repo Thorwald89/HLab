@@ -34,139 +34,6 @@ $send = $_POST['send'];
 
 
 
-if($send =="Esporta"){
-
-	require('../setup/pdf/html2pdf.class.php');
-
-
-	$s=mysql_query("select * from schede where id = '".$_POST['id']."'") or die(mysql_error());
-	$b=mysql_fetch_array($s);
-
-
-	// get the HTML
-    $content = "
-    <page><table style=\"width: 100%; text-size: 18px;\">
-
-
-
-		<tr><td colspan=\"8\" style=\"width: 100%; text-align: center;\"><h2>Scheda Paziente</h2></td></tr>
-
-		<tr  style=\"text-align: center;\">
-			<td colspan=\"2\" style=\"text-align: center;\"><h3>Donatore</h3></td>
-			<td colspan=\"2\" style=\"text-align: center;\"><h3>Ricevente</h3></td>
-
-		</tr>
-
-	<tr><td style=\"font-weight:bold\">Nome Donatore</td>
-	<td>".$b['nome_d']."</td>
-	<td style=\"font-weight:bold\">Nome Ricevente</td>
-	<td>".$b['nome_r']."</td>
-	</tr>
-
-	<tr><td style=\"font-weight:bold\">Cognome Donatore</td>
-	<td>".$b['cognome_d']."</td>
-	<td style=\"font-weight:bold\">Cognome Ricevente</td>
-	<td>".$b['cognome_r']."</td>
-
-		</tr>
-
-	<tr><td style=\"font-weight:bold\">Nascita Donatore</td>
-	<td>".$b['nascita_d']."</td>
-	<td style=\"font-weight:bold\">Nascita Ricevente</td>
-	<td>".$b['nascita_r']."</td>
-	</tr>
-
-	<tr><td style=\"font-weight:bold\">Residenza</td>
-	<td>".$b['comune']."</td></tr>
-
-	<tr><td style=\"font-weight:bold\">Domicilio</td>
-	<td>".$b['domicilio']."</td></tr>
-
-	<tr><td style=\"font-weight:bold\">Telefono</td>
-	<td>".$b['telefono']."</td></tr>
-
-	<tr><td style=\"font-weight:bold\">Cellulare</td>
-	<td>".$b['cellulare']."</td></tr>
-
-
-	<tr  style=\"text-align: center;\">
-			<td colspan=\"2\" style=\"text-align: center;\"><h3>Parametri</h3></td>
-			<td colspan=\"2\" style=\"text-align: center;\"><h3>Aliquote</h3></td>
-
-		</tr>
-
-	<tr>
-	<td style=\"font-weight:bold\">Deplasmazione</td>
-	<td>".$b['deplasmazione']."</td>
-	<td style=\"font-weight:bold\">Aliquota 1</td>
-	<td>".$b['al1']."mL</td>
-	</tr><tr>
-	<td style=\"font-weight:bold\">iero</td>
-	<td>".$b['procedura']."</td>
-	<td style=\"font-weight:bold\">Aliquota 2</td>
-	<td>".$b['al2']."mL</td>
-	</tr><tr>
-	<td style=\"font-weight:bold\">Volume mL</td>
-	<td>".$b['vol']."mL</td>
-	<td style=\"font-weight:bold\">Aliquota 3</td>
-	<td><".$b['al3']."mL</td>
-	</tr><tr>
-	<td style=\"font-weight:bold\">Scarto mL</td>
-	<td>".$b['scarto']."mL</td>
-	<td style=\"font-weight:bold\">Aliquota 4</td>
-	<td>".$b['al4']."mL</td>
-	</tr><tr>
-	<td style=\"font-weight:bold\">Finale mL</td>
-	<td>".$b['finale']."mL</td>
-	<td style=\"font-weight:bold\">Aliquota 5</td>
-	<td>".$b['al5']."mL</td>
-	</tr><tr>
-	<td style=\"font-weight:bold\">jj</td>
-	<td>mL</td>
-	<td style=\"font-weight:bold\">Aliquota 6</td>
-	<td>".$b['al6']."mL</td>
-	</tr><tr>
-	<td style=\"font-weight:bold\">WBC pre-Raccolta</td>
-	<td>".$b['wbc-pre']."&mu;L</td>
-	</tr><tr>
-	<td style=\"font-weight:bold\">WBC post-Raccolta</td>
-	<td>".$b['wbc-post']."&mu;L</td>
-	</tr>
-
-	<tr  align=\"center\">
-			<td colspan=\"2\" align=\"center\"><center><h3>Prodotti</h3></center></td>
-		</tr>
-
-	<tr><td><strong>Lotto Albumina</strong></td>
-	<td>".$b['lotto_albumina']."</td></tr>
-
-	<tr><td><strong>Lotto DMSO</strong></td>
-	<td>".$b['lotto_DMSO']."</td></tr>
-
-	<tr><td><strong>Lotto Siringhe</strong></td>
-	<td>".$b['lotto_siringhe']."</td></tr>
-
-	<tr><td><strong>Lotto Rubinetti</strong></td>
-	<td>".$b['lotto_rubinetti']."</td></tr>
-
-	</table>
-    </page>
-
-    ";
-
-
-	//  $url="scheda.php?pos=scheda&id=".$_POST['id']."";
-
-
-
-		$titolo = $b['cognome_d'].' '.$b['nome_d'].' '.$b['nascita_d'];
-        $html2pdf = new HTML2PDF('P','A4','it');
-        $html2pdf->WriteHTML($content, isset($_GET['vuehtml']));
-     //   $html2pdf->getHtmlFromPage($url);
-        $html2pdf->Output("".$titolo.".pdf", 'D'); //VISUALIZZO CON BROWSER
-
-}
-
 ?>
 
 
@@ -272,7 +139,7 @@ switch($pos){
 	<table>
 
 
-		<form method="POST" action="scheda.php">
+		<form method="POST" action="../setup/pdf2/create_result_CSE.php">
 
 		<tr><td colspan="8" style="text-align: center;"><h2>Scheda Paziente</h2></td></tr>
 
