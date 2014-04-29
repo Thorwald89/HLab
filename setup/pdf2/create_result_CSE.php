@@ -39,6 +39,11 @@ class PDF_result extends FPDF {
 
 function Generate_Table($nome_d, $cognome_d, $nascita_d,$nome_r, $cognome_r,$nascita_r,$peso) {
 
+$nascita_d = date_create($nascita_d);
+$nascita_r = date_create($nascita_r);
+$nascita_d = date_format($nascita_d, 'd/m/Y');
+$nascita_r = date_format($nascita_r, 'd/m/Y');
+
 	$this->SetFont('Arial', '');
 	$this->SetFillColor(0);
 	$this->SetLineWidth(0.2);
@@ -71,7 +76,10 @@ function Generate_Table($nome_d, $cognome_d, $nascita_d,$nome_r, $cognome_r,$nas
 }
 function Generate_Table2($al1, $al2, $al3, $al4, $al5, $al6, $deplasmazione, $procedura, $vol, $scarto, $finale, $data_congelamento, $data_raccolta)
  {
-
+$data_congelamento = date_create($data_congelamento);
+$data_raccolta = date_create($data_raccolta);
+$data_congelamento = date_format($data_congelamento, 'd/m/Y');
+$data_raccolta = date_format($data_raccolta, 'd/m/Y');
 	$this->SetFont('Arial', '');
 	$this->SetFillColor(0);
 	$this->SetLineWidth(0.2);
@@ -99,11 +107,11 @@ $this->Cell(100, 20, 'Vol. Finale:', 'L', 0, 'L', $fill);
 		$this->Cell(100, 20, $finale, 'R', 0, '', $fill);
 		$this->Cell(100, 20, 'Aliquota 5:', 'L', 0, '', $fill);
 		$this->Cell(100, 20, $al5, 'R', 1, 'R', $fill);
-$this->Cell(100, 20, 'Data Congelamento:', 'L', 0, 'L', $fill);
+$this->Cell(100, 20, 'Congelamento:', 'L', 0, 'L', $fill);
 		$this->Cell(100, 20, $data_congelamento, 'R', 0, '', $fill);
 		$this->Cell(100, 20, 'Aliquota 6:', 'LB', 0, '', $fill);
 		$this->Cell(100, 20, $al6, 'BR', 1, 'R', $fill);
-$this->Cell(100, 20, 'Data Raccolta:', 'BL', 0, 'L', $fill);
+$this->Cell(100, 20, 'Raccolta:', 'BL', 0, 'L', $fill);
 		$this->Cell(100, 20, $data_raccolta, 'BR', 0, '', $fill);
 
 
@@ -117,7 +125,7 @@ $this->Cell(100, 20, 'Data Raccolta:', 'BL', 0, 'L', $fill);
 
 
 
-function Generate_Table_pre($wbc_pre, $cd34_pre_perc, $cd34_pre_micro)
+function Generate_Table_pre($wbc_pre, $cd34_pre_perc, $cd34_pre_micro, $wbc_2, $cd34_2_perc, $cd34_2_micro)
 {
 	$this->SetFont('Arial', '');
 	$this->SetFillColor(0);
@@ -126,17 +134,39 @@ function Generate_Table_pre($wbc_pre, $cd34_pre_perc, $cd34_pre_micro)
 
 //	for ($i = 0; $i < count($subjects); $i++) {
 
-		$this->Cell(100, 20, 'WBC/microL:', 'LB', 0, 'L', $fill);
-		$this->Cell(100, 20, $wbc_pre, 'RB', 0, '', $fill);
-		$this->Cell(100, 20, 'CD34%:', 'BL', 0, '', $fill);
-		$this->Cell(100, 20, $cd34_pre_perc, 'BTR', 0, 'R', $fill);
-		$this->Cell(100, 20, 'CD34/microL:', 'LBT', 0, 'L', $fill);
-		$this->Cell(100, 20, $cd34_pre_micro, 'RBT', 0, 'R', $fill);
+		$this->Cell(100, 20, 'WBC/microL: '.$wbc_pre, 'LB', 0, 'L', $fill);
+		$this->Cell(100, 20, 'CD34%: '.$cd34_pre_perc, 'B', 0, '', $fill);
+		$this->Cell(100, 20, 'CD34/microL: '.$cd34_pre_micro, 'BR', 0, 'L', $fill);
+		$this->Cell(100, 20, 'WBC/microL: '.$wbc_2, 'LB', 0, 'L', $fill);
+		$this->Cell(100, 20, 'CD34%: '.$cd34_2_perc, 'B', 0, '', $fill);
+		$this->Cell(100, 20, 'CD34/microL: '.$cd34_2_micro, 'BR', 0, 'L', $fill);
 
 		$fill = !$fill;
 
 }
 
+
+
+function Generate_Table_monitoraggio($data, $wbc_mon, $cd34_perc, $cd34_micro)
+{
+
+	$data = date_create($data);
+	$data = date_format($data, 'd/m/Y');
+	$this->SetFont('Arial', '');
+	$this->SetFillColor(0);
+	$this->SetLineWidth(0.2);
+	$fill = false;
+
+//	for ($i = 0; $i < count($subjects); $i++) {
+
+		$this->Cell(100, 20, $data, 'LB', 0, 'L', $fill);
+		$this->Cell(100, 20, $wbc_mon, 'B', 0, 'L', $fill);
+		$this->Cell(100, 20, $cd34_perc, 'B', 0, '', $fill);
+		$this->Cell(100, 20, $cd34_micro, 'BR', 1, 'L', $fill);
+
+		$fill = !$fill;
+
+}
 }
 
 
@@ -172,7 +202,7 @@ $pdf->Cell(200, 15, $b['quota'], 0, 2);
 $pdf->Cell(200, 15, $b['data_carico'] . ',' . $_POST['City'] , 0, 2);
 $pdf->Cell(200, 15, $b['operatore_carico'], 0, 2);
 
-$pdf->Ln(30);
+$pdf->Ln(10);
 
 	$pdf->SetFont('Arial', 'B', 12);
 	$pdf->SetTextColor(0);
@@ -220,31 +250,18 @@ $pdf->Ln(20);
 //	$pdf->SetFillColor(94, 188, z);
 	$pdf->SetFillColor(94, 188, 225);
 	$pdf->SetLineWidth(1);
-	$pdf->Cell(100, 25, "Pre-Raccolta", 'LT', 0, 'C', true);
-	$pdf->Cell(100, 25, "", 'RT', 0, 'C', true);
-	$pdf->Cell(100, 25, "", 'LTR', 1, 'C', true);
+	$pdf->Cell(100, 25, "", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "Pre-Raccolta", 'T', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'TR', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "Raccolta", 'T', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'TR', 1, 'C', true);
+
 $sa=mysql_query("select * from schede where id='".$_POST['id']."' ") or die(mysql_error());
 
 	while($b=mysql_fetch_array($sa)){
 
-$pdf->Generate_Table_pre($b['wbc-pre'], $b['cd34_pre_perc'], $b['cd34_pre_micro']);
-}
-
-$pdf->Ln(20);
-
-	$pdf->SetFont('Arial', 'B', 12);
-	$pdf->SetTextColor(0);
-//	$pdf->SetFillColor(94, 188, z);
-	$pdf->SetFillColor(94, 188, 225);
-	$pdf->SetLineWidth(1);
-	$pdf->Cell(100, 25, "Raccolta", 'LT', 0, 'C', true);
-	$pdf->Cell(100, 25, "", 'RT', 0, 'C', true);
-	$pdf->Cell(100, 25, "", 'LTR', 1, 'C', true);
-$sa=mysql_query("select * from schede where id='".$_POST['id']."' ") or die(mysql_error());
-
-	while($b=mysql_fetch_array($sa)){
-
-$pdf->Generate_Table_pre($b['wbc-racc'], $b['cd34_racc_perc'], $b['cd34_racc_micro']);
+$pdf->Generate_Table_pre($b['wbc-pre'], $b['cd34_pre_perc'], $b['cd34_pre_micro'],$b['wbc-racc'], $b['cd34_racc_perc'], $b['cd34_racc_micro']);
 }
 
 
@@ -255,15 +272,21 @@ $pdf->Ln(20);
 //	$pdf->SetFillColor(94, 188, z);
 	$pdf->SetFillColor(94, 188, 225);
 	$pdf->SetLineWidth(1);
-	$pdf->Cell(100, 25, "Post-Raccolta", 'LT', 0, 'C', true);
-	$pdf->Cell(100, 25, "", 'RT', 0, 'C', true);
-	$pdf->Cell(100, 25, "", 'LTR', 1, 'C', true);
+	$pdf->Cell(100, 25, "", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "Post-Raccolta", 'T', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'TR', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "Deplasmazione", 'T', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'TR', 1, 'C', true);
 $sa=mysql_query("select * from schede where id='".$_POST['id']."' ") or die(mysql_error());
 
 	while($b=mysql_fetch_array($sa)){
 
-$pdf->Generate_Table_pre($b['wbc-post'], $b['cd34_post_perc'], $b['cd34_post_micro']);
+$pdf->Generate_Table_pre($b['wbc-post'], $b['cd34_post_perc'], $b['cd34_post_micro'],$b['wbc-depl'], $b['cd34_depl_perc'], $b['cd34_depl_micro']);
 }
+
+
+
 
 $pdf->Ln(20);
 
@@ -272,15 +295,22 @@ $pdf->Ln(20);
 //	$pdf->SetFillColor(94, 188, z);
 	$pdf->SetFillColor(94, 188, 225);
 	$pdf->SetLineWidth(1);
-	$pdf->Cell(100, 25, "Deplasmazione", 'LT', 0, 'C', true);
-	$pdf->Cell(100, 25, "", 'RT', 0, 'C', true);
-	$pdf->Cell(100, 25, "", 'LTR', 1, 'C', true);
+	$pdf->Cell(400, 25, "Monitoraggio", 'LTR', 1, 'C', true);
+
+	$pdf->Cell(100, 25, "Data", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "WBC", 'T', 0, 'C', true);
+	$pdf->Cell(100, 25, "CD34%", 'T', 0, 'C', true);
+	$pdf->Cell(100, 25, "CD34/microL", 'RT', 1, 'C', true);
+
 $sa=mysql_query("select * from schede where id='".$_POST['id']."' ") or die(mysql_error());
 
-	while($b=mysql_fetch_array($sa)){
+	$b=mysql_fetch_array($sa);
 
-$pdf->Generate_Table_pre($b['wbc-depl'], $b['cd34_depl_perc'], $b['cd34_depl_micro']);
-}
+$pdf->Generate_Table_monitoraggio($b['data_monitoraggio1'], $b['wbc_monitoraggio1'], $b['cd34_perc_monitoraggio1'], $b['cd34_micro_monitoraggio1']);
+$pdf->Generate_Table_monitoraggio($b['data_monitoraggio2'], $b['wbc_monitoraggio2'], $b['cd34_perc_monitoraggio2'], $b['cd34_micro_monitoraggio2']);
+$pdf->Generate_Table_monitoraggio($b['data_monitoraggio3'], $b['wbc_monitoraggio3'], $b['cd34_perc_monitoraggio3'], $b['cd34_micro_monitoraggio3']);
+$pdf->Generate_Table_monitoraggio($b['data_monitoraggio4'], $b['wbc_monitoraggio4'], $b['cd34_perc_monitoraggio4'], $b['cd34_micro_monitoraggio4']);
+
 
 
 
