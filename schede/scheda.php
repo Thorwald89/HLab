@@ -223,7 +223,7 @@ switch($pos){
 		</tr>
 	<tr>
 	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-pre']?>&mu;L</td>
-	<td><strong>CD34 %</strong>  <?=$b['cd34-pre-perc']?>%</td>
+	<td><strong>CD34 %</strong>  <?=$b['cd34_pre_perc']?>%</td>
 	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34_pre_micro']?>&mu;L</td>
 
 </tr>

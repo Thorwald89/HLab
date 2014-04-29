@@ -101,10 +101,10 @@ $this->Cell(100, 20, 'Vol. Finale:', 'L', 0, 'L', $fill);
 		$this->Cell(100, 20, $al5, 'R', 1, 'R', $fill);
 $this->Cell(100, 20, 'Data Congelamento:', 'L', 0, 'L', $fill);
 		$this->Cell(100, 20, $data_congelamento, 'R', 0, '', $fill);
-		$this->Cell(100, 20, 'Aliquota 6:', 'L', 0, '', $fill);
-		$this->Cell(100, 20, $al6, 'R', 1, 'R', $fill);
-$this->Cell(100, 20, 'Data Raccolta:', 'L', 0, 'L', $fill);
-		$this->Cell(100, 20, $data_raccolta, 'LBR', 0, '', $fill);
+		$this->Cell(100, 20, 'Aliquota 6:', 'LB', 0, '', $fill);
+		$this->Cell(100, 20, $al6, 'BR', 1, 'R', $fill);
+$this->Cell(100, 20, 'Data Raccolta:', 'BL', 0, 'L', $fill);
+		$this->Cell(100, 20, $data_raccolta, 'BR', 0, '', $fill);
 
 
 		$fill = !$fill;
@@ -117,7 +117,25 @@ $this->Cell(100, 20, 'Data Raccolta:', 'L', 0, 'L', $fill);
 
 
 
+function Generate_Table_pre($wbc_pre, $cd34_pre_perc, $cd34_pre_micro)
+{
+	$this->SetFont('Arial', '');
+	$this->SetFillColor(0);
+	$this->SetLineWidth(0.2);
+	$fill = false;
 
+//	for ($i = 0; $i < count($subjects); $i++) {
+
+		$this->Cell(100, 20, 'WBC/microL:', 'LB', 0, 'L', $fill);
+		$this->Cell(100, 20, $wbc_pre, 'RB', 0, '', $fill);
+		$this->Cell(100, 20, 'CD34%:', 'BL', 0, '', $fill);
+		$this->Cell(100, 20, $cd34_pre_perc, 'BTR', 0, 'R', $fill);
+		$this->Cell(100, 20, 'CD34/microL:', 'LBT', 0, 'L', $fill);
+		$this->Cell(100, 20, $cd34_pre_micro, 'RBT', 0, 'R', $fill);
+
+		$fill = !$fill;
+
+}
 
 }
 
@@ -154,7 +172,7 @@ $pdf->Cell(200, 15, $b['quota'], 0, 2);
 $pdf->Cell(200, 15, $b['data_carico'] . ',' . $_POST['City'] , 0, 2);
 $pdf->Cell(200, 15, $b['operatore_carico'], 0, 2);
 
-$pdf->Ln(50);
+$pdf->Ln(30);
 
 	$pdf->SetFont('Arial', 'B', 12);
 	$pdf->SetTextColor(0);
@@ -176,7 +194,7 @@ $pdf->Generate_Table($b['nome_d'], $b['cognome_d'], $b['nascita_d'], $b['nome_r'
 }
 
 
-$pdf->Ln(10);
+$pdf->Ln(20);
 
 	$pdf->SetFont('Arial', 'B', 12);
 	$pdf->SetTextColor(0);
@@ -195,6 +213,74 @@ $pdf->Generate_Table2($b['al1'], $b['al2'], $b['al3'], $b['al4'], $b['al5'], $b[
 }
 
 
+$pdf->Ln(20);
+
+	$pdf->SetFont('Arial', 'B', 12);
+	$pdf->SetTextColor(0);
+//	$pdf->SetFillColor(94, 188, z);
+	$pdf->SetFillColor(94, 188, 225);
+	$pdf->SetLineWidth(1);
+	$pdf->Cell(100, 25, "Pre-Raccolta", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'RT', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'LTR', 1, 'C', true);
+$sa=mysql_query("select * from schede where id='".$_POST['id']."' ") or die(mysql_error());
+
+	while($b=mysql_fetch_array($sa)){
+
+$pdf->Generate_Table_pre($b['wbc-pre'], $b['cd34_pre_perc'], $b['cd34_pre_micro']);
+}
+
+$pdf->Ln(20);
+
+	$pdf->SetFont('Arial', 'B', 12);
+	$pdf->SetTextColor(0);
+//	$pdf->SetFillColor(94, 188, z);
+	$pdf->SetFillColor(94, 188, 225);
+	$pdf->SetLineWidth(1);
+	$pdf->Cell(100, 25, "Raccolta", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'RT', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'LTR', 1, 'C', true);
+$sa=mysql_query("select * from schede where id='".$_POST['id']."' ") or die(mysql_error());
+
+	while($b=mysql_fetch_array($sa)){
+
+$pdf->Generate_Table_pre($b['wbc-racc'], $b['cd34_racc_perc'], $b['cd34_racc_micro']);
+}
+
+
+$pdf->Ln(20);
+
+	$pdf->SetFont('Arial', 'B', 12);
+	$pdf->SetTextColor(0);
+//	$pdf->SetFillColor(94, 188, z);
+	$pdf->SetFillColor(94, 188, 225);
+	$pdf->SetLineWidth(1);
+	$pdf->Cell(100, 25, "Post-Raccolta", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'RT', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'LTR', 1, 'C', true);
+$sa=mysql_query("select * from schede where id='".$_POST['id']."' ") or die(mysql_error());
+
+	while($b=mysql_fetch_array($sa)){
+
+$pdf->Generate_Table_pre($b['wbc-post'], $b['cd34_post_perc'], $b['cd34_post_micro']);
+}
+
+$pdf->Ln(20);
+
+	$pdf->SetFont('Arial', 'B', 12);
+	$pdf->SetTextColor(0);
+//	$pdf->SetFillColor(94, 188, z);
+	$pdf->SetFillColor(94, 188, 225);
+	$pdf->SetLineWidth(1);
+	$pdf->Cell(100, 25, "Deplasmazione", 'LT', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'RT', 0, 'C', true);
+	$pdf->Cell(100, 25, "", 'LTR', 1, 'C', true);
+$sa=mysql_query("select * from schede where id='".$_POST['id']."' ") or die(mysql_error());
+
+	while($b=mysql_fetch_array($sa)){
+
+$pdf->Generate_Table_pre($b['wbc-depl'], $b['cd34_depl_perc'], $b['cd34_depl_micro']);
+}
 
 
 
