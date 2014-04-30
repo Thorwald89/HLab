@@ -18,12 +18,9 @@ class PDF_result extends FPDF {
 	}
 
 	function Header () {
-	     $this->Image('logo.png',100,15,250);
+		$this->SetX(540);
+	    $this->Image('unina_logo.jpg',100,15,250);
 
-	//	$this->SetFont('Arial', 'B', 20);
-	//	$this->SetFillColor(36, 96, 84);
-	//	$this->SetTextColor(225);
-	//	$this->Cell(0, 30, "YouHack MCQ Results", 0, 1, 'C', true);
 	}
 
  function Footer()
@@ -81,27 +78,22 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->SetY(100);
 
-$pdf->Cell(100, 13, "Dettagli Prodotti");
-$pdf->SetFont('Arial', '');
-
-$pdf->Cell(250, 13, $b['prodotto']);
-
 
 // head DX
-$pdf->SetFont('Arial', 'B');
+$pdf->SetX(440);
+$pdf->SetFont('Arial', 'B', 14);
+$pdf->Cell(200, 15, 'DAI Medicina Trasfusionale', 0, 2, 'C');
+$pdf->Cell(200, 15, 'UOS Manipolazione e Criopreservazione Cellulare', 0, 2, 'C');
+
+$pdf->Ln(10);
+$pdf->SetX(440);
+
+$pdf->SetFont('Arial', 'I');
 $pdf->Cell(50, 13, "Data:");
 $pdf->SetFont('Arial', '');
 $pdf->Cell(100, 13, date('j-m-Y'), 0, 1);
 
-
-// head SX
-$pdf->SetFont('Arial', 'I');
-$pdf->SetX(140);
-$pdf->Cell(200, 15, $b['quota'], 0, 2);
-$pdf->Cell(200, 15, $b['data_carico'] . ',' . $_POST['City'] , 0, 2);
-$pdf->Cell(200, 15, $b['operatore_carico'], 0, 2);
-
-$pdf->Ln(100);
+$pdf->Ln(90);
 
 	$pdf->SetFont('Arial', 'B', 12);
 	$pdf->SetTextColor(0);
