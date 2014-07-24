@@ -71,14 +71,31 @@ if($send =="Inserisci"){
 
 		if($_POST['donazione'] == 'allogenico')
 		{
-		$s=mysql_query("INSERT INTO schede (`nome_d`, `cognome_d`, `domicilio`, `comune`, `nascita_d`, `telefono`, `cellulare`, `nome_r`, `cognome_r`, `nascita_r`, `al1`, `al2`, `al3`, `al4`, `al5`, `al6`, `wbc-pre`, `wbc-racc`, `wbc-post`, `wbc-depl`, `scarto`, `finale`, `vol`, `procedura`, `deplasmazione`, `lotto_albumina`, `lotto_DMSO`, `lotto_siringhe`, `lotto_rubinetti`, `data_congelamento`, `data_raccolta`, `donazione`, `peso`, `data_monitoraggio1`, `wbc_monitoraggio1`, `cd34_perc_monitoraggio1`, `cd34_micro_monitoraggio1`, `data_monitoraggio2`, `wbc_monitoraggio2`, `cd34_perc_monitoraggio2`, `cd34_micro_monitoraggio2`, `data_monitoraggio3`, `wbc_monitoraggio3`, `cd34_perc_monitoraggio3`, `cd34_micro_monitoraggio3`, `data_monitoraggio4`, `wbc_monitoraggio4`, `cd34_perc_monitoraggio4`, `cd34_micro_monitoraggio4`, `cd34_pre_perc`, `cd34_pre_micro`,  `cd34_racc_perc`, `cd34_racc_micro`,  `cd34_post_perc`, `cd34_post_micro`,  `cd34_depl_perc`, `cd34_depl_micro`) values ('".$_POST['nome_d']."', '".$_POST['cognome_d']."','".$_POST['domicilio']."','".$_POST['comune']."','".$_POST['nascita_d']."','".$_POST['telefono']."','".$_POST['cellulare']."','".$_POST['nome_r']."','".$_POST['cognome_r']."','".$_POST['nascita_r']."','".$_POST['al1']."','".$_POST['al2']."','".$_POST['al3']."','".$_POST['al4']."','".$_POST['al5']."','".$_POST['al6']."','".$_POST['wbc-pre']."', '".$_POST['wbc-racc']."','".$_POST['wbc-post']."', '".$_POST['wbc-depl']."','".$_POST['scarto']."','".$_POST['finale']."','".$_POST['vol']."','".$_POST['procedura']."','".$_POST['deplasmazione']."','".$_POST['lotto_albumina']."', '".$_POST['lotto_DMSO']."', '".$_POST['lotto_siringhe']."', '".$_POST['lotto_rubinetti']."', '".$_POST['data_congelamento']."', '".$_POST['data_raccolta']."', '".$_POST['donazione']."', '".$_POST['peso']."', '".	$_POST['data_monitoraggio1']."', '".$_POST['wbc_monitoraggio1']."', '".	$_POST['cd34_perc_monitoraggio1']."', '".$_POST['cd34_micro_monitoraggio1']."', '".	$_POST['data_monitoraggio2']."', '".$_POST['wbc_monitoraggio2']."', '".	$_POST['cd34_perc_monitoraggio2']."', '".$_POST['cd34_micro_monitoraggio2']."', '".	$_POST['data_monitoraggio3']."', '".$_POST['wbc_monitoraggio3']."', '".	$_POST['cd34_perc_monitoraggio3']."', '".$_POST['cd34_micro_monitoraggio3']."', '".	$_POST['data_monitoraggio4']."', '".$_POST['wbc_monitoraggio4']."', '".	$_POST['cd34_perc_monitoraggio4']."', '".$_POST['cd34_micro_monitoraggio4']."', '".$_POST['cd34_pre_perc']."', '".$_POST['cd34_pre_micro']."', '".$_POST['cd34_racc_perc']."', '".$_POST['cd34_racc_micro']."', '".$_POST['cd34_post_perc']."', '".$_POST['cd34_post_micro']."', '".$_POST['cd34_depl_perc']."', '".$_POST['cd34_depl_micro']."') ") or die(mysql_error());
+		$s=mysql_query("INSERT INTO schede (`nome_d`, `cognome_d`, `domicilio`, `comune`, `nascita_d`, `telefono`, `cellulare`, `nome_r`, `cognome_r`, `nascita_r`, `wbc-pre`, `wbc-racc`, `wbc-post`, `wbc-depl`, `scarto`, `finale`, `vol`, `procedura`, `deplasmazione`, `lotto_albumina`, `lotto_DMSO`, `lotto_siringhe`, `lotto_rubinetti`, `data_congelamento`, `data_raccolta`, `donazione`, `peso`, `data_monitoraggio1`, `wbc_monitoraggio1`, `cd34_perc_monitoraggio1`, `cd34_micro_monitoraggio1`, `data_monitoraggio2`, `wbc_monitoraggio2`, `cd34_perc_monitoraggio2`, `cd34_micro_monitoraggio2`, `data_monitoraggio3`, `wbc_monitoraggio3`, `cd34_perc_monitoraggio3`, `cd34_micro_monitoraggio3`, `data_monitoraggio4`, `wbc_monitoraggio4`, `cd34_perc_monitoraggio4`, `cd34_micro_monitoraggio4`, `cd34_pre_perc`, `cd34_pre_micro`,  `cd34_racc_perc`, `cd34_racc_micro`,  `cd34_post_perc`, `cd34_post_micro`,  `cd34_depl_perc`, `cd34_depl_micro`) values ('".$_POST['nome_d']."', '".$_POST['cognome_d']."','".$_POST['domicilio']."','".$_POST['comune']."','".$_POST['nascita_d']."','".$_POST['telefono']."','".$_POST['cellulare']."','".$_POST['nome_r']."','".$_POST['cognome_r']."','".$_POST['nascita_r']."','".$_POST['wbc-pre']."', '".$_POST['wbc-racc']."','".$_POST['wbc-post']."', '".$_POST['wbc-depl']."','".$_POST['scarto']."','".$_POST['finale']."','".$_POST['vol']."','".$_POST['procedura']."','".$_POST['deplasmazione']."','".$_POST['lotto_albumina']."', '".$_POST['lotto_DMSO']."', '".$_POST['lotto_siringhe']."', '".$_POST['lotto_rubinetti']."', '".$_POST['data_congelamento']."', '".$_POST['data_raccolta']."', '".$_POST['donazione']."', '".$_POST['peso']."', '".	$_POST['data_monitoraggio1']."', '".$_POST['wbc_monitoraggio1']."', '".	$_POST['cd34_perc_monitoraggio1']."', '".$_POST['cd34_micro_monitoraggio1']."', '".	$_POST['data_monitoraggio2']."', '".$_POST['wbc_monitoraggio2']."', '".	$_POST['cd34_perc_monitoraggio2']."', '".$_POST['cd34_micro_monitoraggio2']."', '".	$_POST['data_monitoraggio3']."', '".$_POST['wbc_monitoraggio3']."', '".	$_POST['cd34_perc_monitoraggio3']."', '".$_POST['cd34_micro_monitoraggio3']."', '".	$_POST['data_monitoraggio4']."', '".$_POST['wbc_monitoraggio4']."', '".	$_POST['cd34_perc_monitoraggio4']."', '".$_POST['cd34_micro_monitoraggio4']."', '".$_POST['cd34_pre_perc']."', '".$_POST['cd34_pre_micro']."', '".$_POST['cd34_racc_perc']."', '".$_POST['cd34_racc_micro']."', '".$_POST['cd34_post_perc']."', '".$_POST['cd34_post_micro']."', '".$_POST['cd34_depl_perc']."', '".$_POST['cd34_depl_micro']."') ") or die(mysql_error());
 		$tipo= "Allogenico";
 		}
 		if($_POST['donazione'] == 'autologo')
 		{
-		$s=mysql_query("INSERT INTO schede (`nome_d`, `cognome_d`, `domicilio`, `comune`, `nascita_d`, `telefono`, `cellulare`, `nome_r`, `cognome_r`, `nascita_r`, `al1`, `al2`, `al3`, `al4`, `al5`, `al6`, `wbc-pre`, `wbc-racc`, `wbc-post`, `wbc-depl`, `scarto`, `finale`, `vol`, `procedura`, `deplasmazione`, `lotto_albumina`, `lotto_DMSO`, `lotto_siringhe`, `lotto_rubinetti`, `data_congelamento`, `data_raccolta`, `donazione`, `peso`, `data_monitoraggio1`, `wbc_monitoraggio1`, `cd34_perc_monitoraggio1`, `cd34_micro_monitoraggio1`, `data_monitoraggio2`, `wbc_monitoraggio2`, `cd34_perc_monitoraggio2`, `cd34_micro_monitoraggio2`, `data_monitoraggio3`, `wbc_monitoraggio3`, `cd34_perc_monitoraggio3`, `cd34_micro_monitoraggio3`, `data_monitoraggio4`, `wbc_monitoraggio4`, `cd34_perc_monitoraggio4`, `cd34_micro_monitoraggio4`, `cd34_pre_perc`, `cd34_pre_micro`,  `cd34_racc_perc`, `cd34_racc_micro`,  `cd34_post_perc`, `cd34_post_micro`,  `cd34_depl_perc`, `cd34_depl_micro`) values ('".$_POST['nome_d']."', '".$_POST['cognome_d']."','".$_POST['domicilio']."','".$_POST['comune']."','".$_POST['nascita_d']."','".$_POST['telefono']."','".$_POST['cellulare']."','".$_POST['nome_d']."','".$_POST['cognome_d']."','".$_POST['nascita_d']."','".$_POST['al1']."','".$_POST['al2']."','".$_POST['al3']."','".$_POST['al4']."','".$_POST['al5']."','".$_POST['al6']."','".$_POST['wbc-pre']."', '".$_POST['wbc-racc']."','".$_POST['wbc-post']."', '".$_POST['wbc-depl']."','".$_POST['scarto']."','".$_POST['finale']."','".$_POST['vol']."','".$_POST['procedura']."','".$_POST['deplasmazione']."','".$_POST['lotto_albumina']."', '".$_POST['lotto_DMSO']."', '".$_POST['lotto_siringhe']."', '".$_POST['lotto_rubinetti']."', '".$_POST['data_congelamento']."', '".$_POST['data_raccolta']."', '".$_POST['donazione']."', '".$_POST['peso']."', '".	$_POST['data_monitoraggio1']."', '".$_POST['wbc_monitoraggio1']."', '".	$_POST['cd34_perc_monitoraggio1']."', '".$_POST['cd34_micro_monitoraggio1']."', '".	$_POST['data_monitoraggio2']."', '".$_POST['wbc_monitoraggio2']."', '".	$_POST['cd34_perc_monitoraggio2']."', '".$_POST['cd34_micro_monitoraggio2']."', '".	$_POST['data_monitoraggio3']."', '".$_POST['wbc_monitoraggio3']."', '".	$_POST['cd34_perc_monitoraggio3']."', '".$_POST['cd34_micro_monitoraggio3']."', '".	$_POST['data_monitoraggio4']."', '".$_POST['wbc_monitoraggio4']."', '".	$_POST['cd34_perc_monitoraggio4']."', '".$_POST['cd34_micro_monitoraggio4']."', '".$_POST['cd34_pre_perc']."', '".$_POST['cd34_pre_micro']."', '".$_POST['cd34_racc_perc']."', '".$_POST['cd34_racc_micro']."', '".$_POST['cd34_post_perc']."', '".$_POST['cd34_post_micro']."', '".$_POST['cd34_depl_perc']."', '".$_POST['cd34_depl_micro']."') ") or die(mysql_error());
+		$s=mysql_query("INSERT INTO schede (`nome_d`, `cognome_d`, `domicilio`, `comune`, `nascita_d`, `telefono`, `cellulare`, `nome_r`, `cognome_r`, `nascita_r`, `wbc-pre`, `wbc-racc`, `wbc-post`, `wbc-depl`, `scarto`, `finale`, `vol`, `procedura`, `deplasmazione`, `lotto_albumina`, `lotto_DMSO`, `lotto_siringhe`, `lotto_rubinetti`, `data_congelamento`, `data_raccolta`, `donazione`, `peso`, `data_monitoraggio1`, `wbc_monitoraggio1`, `cd34_perc_monitoraggio1`, `cd34_micro_monitoraggio1`, `data_monitoraggio2`, `wbc_monitoraggio2`, `cd34_perc_monitoraggio2`, `cd34_micro_monitoraggio2`, `data_monitoraggio3`, `wbc_monitoraggio3`, `cd34_perc_monitoraggio3`, `cd34_micro_monitoraggio3`, `data_monitoraggio4`, `wbc_monitoraggio4`, `cd34_perc_monitoraggio4`, `cd34_micro_monitoraggio4`, `cd34_pre_perc`, `cd34_pre_micro`,  `cd34_racc_perc`, `cd34_racc_micro`,  `cd34_post_perc`, `cd34_post_micro`,  `cd34_depl_perc`, `cd34_depl_micro`) values ('".$_POST['nome_d']."', '".$_POST['cognome_d']."','".$_POST['domicilio']."','".$_POST['comune']."','".$_POST['nascita_d']."','".$_POST['telefono']."','".$_POST['cellulare']."','".$_POST['nome_d']."','".$_POST['cognome_d']."','".$_POST['nascita_d']."','".$_POST['wbc-pre']."', '".$_POST['wbc-racc']."','".$_POST['wbc-post']."', '".$_POST['wbc-depl']."','".$_POST['scarto']."','".$_POST['finale']."','".$_POST['vol']."','".$_POST['procedura']."','".$_POST['deplasmazione']."','".$_POST['lotto_albumina']."', '".$_POST['lotto_DMSO']."', '".$_POST['lotto_siringhe']."', '".$_POST['lotto_rubinetti']."', '".$_POST['data_congelamento']."', '".$_POST['data_raccolta']."', '".$_POST['donazione']."', '".$_POST['peso']."', '".	$_POST['data_monitoraggio1']."', '".$_POST['wbc_monitoraggio1']."', '".	$_POST['cd34_perc_monitoraggio1']."', '".$_POST['cd34_micro_monitoraggio1']."', '".	$_POST['data_monitoraggio2']."', '".$_POST['wbc_monitoraggio2']."', '".	$_POST['cd34_perc_monitoraggio2']."', '".$_POST['cd34_micro_monitoraggio2']."', '".	$_POST['data_monitoraggio3']."', '".$_POST['wbc_monitoraggio3']."', '".	$_POST['cd34_perc_monitoraggio3']."', '".$_POST['cd34_micro_monitoraggio3']."', '".	$_POST['data_monitoraggio4']."', '".$_POST['wbc_monitoraggio4']."', '".	$_POST['cd34_perc_monitoraggio4']."', '".$_POST['cd34_micro_monitoraggio4']."', '".$_POST['cd34_pre_perc']."', '".$_POST['cd34_pre_micro']."', '".$_POST['cd34_racc_perc']."', '".$_POST['cd34_racc_micro']."', '".$_POST['cd34_post_perc']."', '".$_POST['cd34_post_micro']."', '".$_POST['cd34_depl_perc']."', '".$_POST['cd34_depl_micro']."') ") or die(mysql_error());
 		$tipo= "Autologo";
 		}
+
+		$gg = mysql_query("select * from schede where nome_d ='".$_POST['nome_d']."' and cognome_d = '".$_POST['cognome_d']."'") or die(mysql_error());
+		$gigi = mysql_fetch_array($gg);
+
+
+		//Inserisco i dati nel criotank
+		mysql_query("insert into criotank_sacche (id_pz, id_tank, aliquota, mL) VALUES ('".$gigi['id']."','".$_POST['tank1']."', '1', '".$_POST['al1']."')") or die(mysql_error());
+		mysql_query("insert into criotank_sacche (id_pz, id_tank, aliquota, mL) VALUES ('".$gigi['id']."','".$_POST['tank2']."', '2', '".$_POST['al2']."')") or die(mysql_error());
+		mysql_query("insert into criotank_sacche (id_pz, id_tank, aliquota, mL) VALUES ('".$gigi['id']."','".$_POST['tank3']."', '3', '".$_POST['al3']."')") or die(mysql_error());
+		mysql_query("insert into criotank_sacche (id_pz, id_tank, aliquota, mL) VALUES ('".$gigi['id']."','".$_POST['tank4']."', '4', '".$_POST['al4']."')") or die(mysql_error());
+		mysql_query("insert into criotank_sacche (id_pz, id_tank, aliquota, mL) VALUES ('".$gigi['id']."','".$_POST['tank5']."', '5', '".$_POST['al5']."')") or die(mysql_error());
+		mysql_query("insert into criotank_sacche (id_pz, id_tank, aliquota, mL) VALUES ('".$gigi['id']."','".$_POST['tank6']."', '6', '".$_POST['al6']."')") or die(mysql_error());
+
+		//Pulizia Sacche vuote
+
+		$gga = mysql_query("delete from criotank_sacche where mL = 0") or die(mysql_error());
+
 ?>
 <script language="javascript">
 alert("Inserimento <?=$tipo?> effettuato.");
@@ -201,39 +218,106 @@ background-color: white;
 	<tr  align="center">
 			<td colspan="2" align="center"><center><h3>Parametri</h3></center></td>
 			<td colspan="2" align="center"><center><h3>Aliquote</h3></center></td>
+			<td colspan="1" align="center"><center><h3>Tank</h3></center></td>
 
 		</tr>
 
 	<tr>
 	<td><strong>Deplasmazione </strong></td>
 	<td>SI<input type="radio" name="deplasmazione" value="SI" checked="checked"> NO<input type="radio" name="deplasmazione" value="NO"></td>
-	<td><strong>Aliquota 1</strong></td>
+	<td><strong>Ali 1</strong></td>
 	<td><input name="al1" type="number" step="any">mL</td>
+	<td><select name="tank1">
+	<?php
+	$ss = mysql_query("select * from criotank");
+	while($zz=mysql_fetch_array($ss))
+	{
+	?>
+	<option value="<?=$zz['id']?>"><?=$zz['id']?>-<?=$zz['modello']?></option>
+	<?php
+	}
+	?>
+	</select></td>
 	</tr><tr>
 	<td><strong>Procedura</strong></td>
 	<td>PBSC<input type="radio" name="procedura" value="pbsc" checked="checked"> BM<input type="radio" name="procedura" value="bm"></td>
-	<td><strong>Aliquota 2</strong></td>
+	<td><strong>Ali 2</strong></td>
 	<td><input name="al2" type="number" step="any">mL</td>
+	<td><select name="tank2">
+	<?php
+	$ss = mysql_query("select * from criotank");
+	while($zz=mysql_fetch_array($ss))
+	{
+	?>
+	<option value="<?=$zz['id']?>"><?=$zz['id']?>-<?=$zz['modello']?></option>
+	<?php
+	}
+	?>
+	</select></td>
 	</tr><tr>
 	<td><strong>Vol. Raccolta</strong></td>
 	<td><input name="vol" type="number" step="any">mL</td>
-	<td><strong>Aliquota 3</strong></td>
+	<td><strong>Ali 3</strong></td>
 	<td><input name="al3" type="number" step="any">mL</td>
+	<td><select name="tank3">
+	<?php
+	$ss = mysql_query("select * from criotank");
+	while($zz=mysql_fetch_array($ss))
+	{
+	?>
+	<option value="<?=$zz['id']?>"><?=$zz['id']?>-<?=$zz['modello']?></option>
+	<?php
+	}
+	?>
+	</select></td>
 	</tr><tr>
 	<td><strong>Vol. Scarto</strong></td>
 	<td><input name="scarto" type="number" step="any">mL</td>
-	<td><strong>Aliquota 4</strong></td>
+	<td><strong>Ali 4</strong></td>
 	<td><input name="al4" type="number" step="any">mL</td>
+	<td><select name="tank4">
+	<?php
+	$ss = mysql_query("select * from criotank");
+	while($zz=mysql_fetch_array($ss))
+	{
+	?>
+	<option value="<?=$zz['id']?>"><?=$zz['id']?>-<?=$zz['modello']?></option>
+	<?php
+	}
+	?>
+	</select></td>
 	</tr><tr>
 	<td><strong>Data Congelamento</strong></td>
 	<td><input name="data_congelamento" type="date"></td>
-	<td><strong>Aliquota 5</strong></td>
+	<td><strong>Ali 5</strong></td>
 	<td><input name="al5" type="number" step="any">mL</td>
+	<td><select name="tank5">
+	<?php
+	$ss = mysql_query("select * from criotank");
+	while($zz=mysql_fetch_array($ss))
+	{
+	?>
+	<option value="<?=$zz['id']?>"><?=$zz['id']?>-<?=$zz['modello']?></option>
+	<?php
+	}
+	?>
+	</select></td>
 	</tr><tr>
 	<td><strong>Vol. Finale</strong></td>
 	<td><input name="finale" type="number" step="any">mL</td>
-	<td><strong>Aliquota 6</strong></td>
+	<td><strong>Ali 6</strong></td>
 	<td><input name="al6" type="number" step="any">mL</td>
+	<td><select name="tank6">
+	<?php
+	$ss = mysql_query("select * from criotank");
+	while($zz=mysql_fetch_array($ss))
+	{
+	?>
+	<option value="<?=$zz['id']?>"><?=$zz['id']?>-<?=$zz['modello']?></option>
+	<?php
+	}
+	?>
+	</select></td>
 	</tr><tr>
 	<td><strong>Data raccolta</strong></td>
 	<td><input name="data_raccolta" type="date"></td>

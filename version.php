@@ -58,6 +58,17 @@ Laboratorio di Manipolazione Cellulare - Version
 <br><br>
 
 <hr>
+<h4>0.9.1 Beta</h4>
+<ul>
+<li>Migliorata la nomenclatura</li>
+<li>Aggiunto gestore CrioTank</li>
+<li>Modificati gli Esami</li>
+<li>Collegato il criotank agli esami</li>
+<li>aggiornato il file sql</li>
+<li>ATTENZIONE: da fixare l'area criotank.</li>
+
+</ul>
+<hr>
 <h4>0.9 Beta</h4>
 <ul>
 <li>Migliorata la schermata principale.</li>

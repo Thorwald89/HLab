@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 28, 2014 alle 22:25
+-- Generation Time: Lug 24, 2014 alle 16:24
 -- Versione del server: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -19,15 +19,41 @@ SET time_zone = "+00:00";
 --
 -- Database: `labman`
 --
-CREATE DATABASE IF NOT EXISTS `labman` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `labman`;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `criotank`
+--
+
+DROP TABLE IF EXISTS `criotank`;
+CREATE TABLE IF NOT EXISTS `criotank` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `modello` varchar(89) NOT NULL,
+  `stato` varchar(89) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `criotank_sacche`
+--
+
+DROP TABLE IF EXISTS `criotank_sacche`;
+CREATE TABLE IF NOT EXISTS `criotank_sacche` (
+  `id_sacca` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tank` int(11) NOT NULL,
+  `aliquota` int(11) NOT NULL,
+  `mL` int(11) NOT NULL,
+  `id_pz` int(11) NOT NULL,
+  PRIMARY KEY (`id_sacca`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `linfociti`
---
--- Creazione: Apr 21, 2014 alle 17:16
 --
 
 DROP TABLE IF EXISTS `linfociti`;
@@ -50,8 +76,6 @@ CREATE TABLE IF NOT EXISTS `linfociti` (
 --
 -- Struttura della tabella `log_prodotti`
 --
--- Creazione: Apr 21, 2014 alle 17:16
---
 
 DROP TABLE IF EXISTS `log_prodotti`;
 CREATE TABLE IF NOT EXISTS `log_prodotti` (
@@ -61,14 +85,12 @@ CREATE TABLE IF NOT EXISTS `log_prodotti` (
   `data` date NOT NULL,
   `valore` varchar(90) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=121 ;
 
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `piastrine`
---
--- Creazione: Apr 21, 2014 alle 17:16
 --
 
 DROP TABLE IF EXISTS `piastrine`;
@@ -89,8 +111,6 @@ CREATE TABLE IF NOT EXISTS `piastrine` (
 --
 -- Struttura della tabella `prodotti`
 --
--- Creazione: Apr 28, 2014 alle 19:51
---
 
 DROP TABLE IF EXISTS `prodotti`;
 CREATE TABLE IF NOT EXISTS `prodotti` (
@@ -106,14 +126,12 @@ CREATE TABLE IF NOT EXISTS `prodotti` (
   `scadenza` date NOT NULL DEFAULT '0000-00-00',
   `view` int(3) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `schede`
---
--- Creazione: Apr 25, 2014 alle 17:59
 --
 
 DROP TABLE IF EXISTS `schede`;
@@ -182,14 +200,12 @@ CREATE TABLE IF NOT EXISTS `schede` (
   `cd34_pre_perc` varchar(11) NOT NULL,
   `cd34_post_micro` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `user`
---
--- Creazione: Apr 21, 2014 alle 17:16
 --
 
 DROP TABLE IF EXISTS `user`;

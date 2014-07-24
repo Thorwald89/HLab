@@ -275,20 +275,28 @@ Laboratorio di Manipolazione Cellulare
 <div id='cssmenu'>
 <ul>
    <li class='active'><a href="indice.php" target="centro"><span>Home</span></a></li>
-   <li class="has-sub"><a href="prodotti/prodotti.php" target="centro"><span>Prodotti</span></a>
+   <li class="has-sub"><a href="prodotti/prodotti.php" target="centro"><span>Farmacia Interna</span></a>
     <ul>
          <li><a href="prodotti/prodotti.php?user=<?=$login?>" target="centro"><span>Lista</span></a></li>
          <li class='last'><a href="prodotti/prodotti.php?pos=carico&user=<?=$login?>" target="centro"><span>Carica Prodotto</span></a></li>
          <li class='last'><a href="prodotti/archivio.php?user=<?=$login?>" target="centro"><span>Archivio</span></a></li>
       </ul>
    </li>
+	<li class="has-sub"><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>Crio-Tank</span></a>
+   <ul>
+         <li class='last'><a href="tank/scheda.php?user=<?=$login?>" target="centro"><span>Stato </span></a></li>
+         <li><a href="tank/edit.php?pos=Tank&user=<?=$login?>"" target="centro"><span>Aggiungi/Modifica Tank</span></a></li>
+         <li><a href="tank/edit.php?pos=Sacche&user=<?=$login?>"" target="centro"><span>Aggiungi/Modifica Sacche</span></a></li>
+     </ul>
+
+   </li>
    <li class="has-sub"><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>Esami</span></a>
    <ul>
          <li class='last'><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>CSE - Scheda Paziente </span></a></li>
          <li><a href="schede/inserisci.php?user=<?=$login?>" target="centro"><span>CSE - Inserisci Paziente </span></a></li>
-         <li class='last'><a href="schede/piastrine.php?user=<?=$login?>" target="centro"><span>Piastrine - Lista</span></a></li>
+         <li ><a href="schede/piastrine.php?user=<?=$login?>" target="centro"><span>Piastrine - Lista</span></a></li>
          <li ><a href="schede/piastrine.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Piastrine - Aggiungi Test </span></a></li>
-		 <li class='last'><a href="schede/linfociti.php?user=<?=$login?>" target="centro"><span>Linfociti - Scheda Paziente</span></a></li>
+		 <li ><a href="schede/linfociti.php?user=<?=$login?>" target="centro"><span>Linfociti - Scheda Paziente</span></a></li>
          <li ><a href="schede/linfociti.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Linfociti - Aggiungi Test </span></a></li>
 
       </ul>
