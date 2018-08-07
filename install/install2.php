@@ -44,7 +44,7 @@ $templine .= $line;
 if (substr(trim($line), -1, 1) == ';')
 {
     // Perform the query
-    mysql_query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+    mysqli_query($templine) or print('Error performing query <br />');
     // Reset temp variable to empty
     $templine = '';
 }

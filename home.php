@@ -33,14 +33,14 @@ if(isset($_POST['send'])){
 
 if($send == 'login'){
 
-		$s= mysql_query("select * from user where user='".$_POST['user']."' and pass='".md5($_POST['pass'])."'") or die(mysql_error());
-		$controllo = mysql_num_rows($s);
+		$s= mysqli_query($link, "select * from user where user='".$_POST['user']."' and pass='".($_POST['pass'])."'") or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error(), E_USER_ERROR);
+		$controllo = mysqli_num_rows($s);
 
 		if($controllo == 1){
 			$login = $_POST['user'];
 			$_SESSION['login'] = $login;
 
-			$rr = mysql_fetch_array($s);
+			$rr = mysqli_fetch_array($s);
 			$admin= $rr['other'];
 			$_SESSION['admin'] = $admin;
 
