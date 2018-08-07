@@ -58,7 +58,7 @@ header("Location: login.php?result=errore");
 <html>
 <head>
 <link rel="shortcut icon" href="img/favicon.ico" >
-<title>Laboratorio di Manipolazione Cellulare</title>
+<title><?= $titolo?></title>
 <script src='setup/jquery.min.js'></script>
 <script type='text/javascript' src='setup/menu_jquery.js'></script>
 <link rel="stylesheet" href="stile.css" />
@@ -270,11 +270,23 @@ opacity: 0.8;
 
 
 <body>
-Laboratorio di Manipolazione Cellulare
-
+<?= $titolo?>
 <div id='cssmenu'>
 <ul>
    <li class='active'><a href="indice.php" target="centro"><span>Home</span></a></li>
+   <li class='active'><a href="pazienti/inserisci.php" target="centro"><span>Accettazione</span></a></li>
+ <li class="has-sub"><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>Esami</span></a>
+   <ul>
+         <li class='last'><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>Scheda Paziente </span></a></li>
+         <li><a href="schede/inserisci.php?user=<?=$login?>" target="centro"><span>CSE - Inserisci Paziente </span></a></li>
+         <li ><a href="schede/piastrine.php?user=<?=$login?>" target="centro"><span>Piastrine - Lista</span></a></li>
+         <li ><a href="schede/piastrine.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Piastrine - Aggiungi Test </span></a></li>
+		 <li ><a href="schede/linfociti.php?user=<?=$login?>" target="centro"><span>Linfociti - Scheda Paziente</span></a></li>
+         <li ><a href="schede/linfociti.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Linfociti - Aggiungi Test </span></a></li>
+
+      </ul>
+
+   </li>
    <li class="has-sub"><a href="prodotti/prodotti.php" target="centro"><span>Farmacia Interna</span></a>
     <ul>
          <li><a href="prodotti/prodotti.php?user=<?=$login?>" target="centro"><span>Lista</span></a></li>
@@ -290,18 +302,7 @@ Laboratorio di Manipolazione Cellulare
      </ul>
 
    </li>
-   <li class="has-sub"><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>Esami</span></a>
-   <ul>
-         <li class='last'><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>CSE - Scheda Paziente </span></a></li>
-         <li><a href="schede/inserisci.php?user=<?=$login?>" target="centro"><span>CSE - Inserisci Paziente </span></a></li>
-         <li ><a href="schede/piastrine.php?user=<?=$login?>" target="centro"><span>Piastrine - Lista</span></a></li>
-         <li ><a href="schede/piastrine.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Piastrine - Aggiungi Test </span></a></li>
-		 <li ><a href="schede/linfociti.php?user=<?=$login?>" target="centro"><span>Linfociti - Scheda Paziente</span></a></li>
-         <li ><a href="schede/linfociti.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Linfociti - Aggiungi Test </span></a></li>
-
-      </ul>
-
-   </li>
+  
    <?php
    if($admin =='admin'){
    ?>
