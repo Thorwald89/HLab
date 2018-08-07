@@ -278,12 +278,9 @@ opacity: 0.8;
  <li class="has-sub"><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>Esami</span></a>
    <ul>
          <li class='last'><a href="schede/scheda.php?user=<?=$login?>" target="centro"><span>Scheda Paziente </span></a></li>
-         <li><a href="schede/inserisci.php?user=<?=$login?>" target="centro"><span>CSE - Inserisci Paziente </span></a></li>
-         <li ><a href="schede/piastrine.php?user=<?=$login?>" target="centro"><span>Piastrine - Lista</span></a></li>
-         <li ><a href="schede/piastrine.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Piastrine - Aggiungi Test </span></a></li>
-		 <li ><a href="schede/linfociti.php?user=<?=$login?>" target="centro"><span>Linfociti - Scheda Paziente</span></a></li>
-         <li ><a href="schede/linfociti.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Linfociti - Aggiungi Test </span></a></li>
-
+         <li><a href="schede/hla_risultati.php?pos=inserisci&user=<?=$login?>" target="centro"><span>Inserisci Esami</span></a></li>
+         <li class='last'><a href="schede/hla_risultati.php?user=<?=$login?>" target="centro"><span>Refertazione</span></a></li>
+      
       </ul>
 
    </li>

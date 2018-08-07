@@ -41,13 +41,28 @@ $send = $_POST['send'];
 <head>
 <title>Laboratorio di Manipolazione Cellulare - Scheda</title>
 <link rel="stylesheet" href="../stile.css" />
-
-<style type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript">
+	jQuery( function($) {
+		$('tbody tr[data-href]').addClass('clickable').click( function() {
+			window.location = $(this).attr('data-href');
+		}).find('a').hover( function() {
+			$(this).parents('tr').unbind('click');
+		}, function() {
+			$(this).parents('tr').click( function() {
+				window.location = $(this).attr('data-href');
+			});
+		});
+	});
+</script><style type="text/css">
 	<!--
 body {
 background-color: white;
 
     }
+    tbody tr.clickable:hover td {
+ cursor: pointer;
+}
 -->
 </style>
 
@@ -96,10 +111,9 @@ switch($pos){
 
 
 	?>
-	<script language="javascript">
-	alert("<?=$_POST['id_famiglia']?>");
-	</script>
+
 		<table>
+			<tbody>
 	<tr>
 	<td>Nome </td>
 	<td>Cognome </td>
@@ -109,15 +123,15 @@ switch($pos){
 
 	<?php
 	$s= mysqli_query($link,"select * from schede where nome_d like '".$_POST['nome_d']."' or cognome_d like '".$_POST['cognome_d']."' or id_famiglia like '".$_POST['id_famiglia']."' order by cognome_d") or die('1');
-	while($b= mysqli_fetch_array($link, $s)){
+	while($b= mysqli_fetch_array($s)){
 
 	?>
 
-	<tr>
+    <tr data-href="scheda.php?pos=scheda&id=<?=$b['id'];?>">
 
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['nome_d'];?></a></td>
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['cognome_d'];?></a></td>
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['nascita_d'];?></a></td>
+	<td><?=$b['nome_d'];?></td>
+	<td><?=$b['cognome_d'];?></td>
+	<td><?=$b['nascita_d'];?></td>
 
 	</tr>
 
@@ -126,12 +140,12 @@ switch($pos){
 
 }
 
-	?></table>
+	?></tbody></table>
 
 	<?php
 	if($_GET['id'] !=0){
 	$s=$link->query("select * from schede where id = '".$_GET['id']."'") or die('2');
-	$b=mysqli_fetch_array($link, $s);
+	$b=mysqli_fetch_array($s);
 
 	$n_d = date_create($b['nascita_d']);
 		?>
@@ -142,30 +156,27 @@ switch($pos){
 
 		<form method="POST" action="../setup/pdf2/create_result_CSE.php">
 
-		<tr><td colspan="8" style="text-align: center;"><h2>Scheda Paziente</h2></td></tr>
+		<tr><td colspan="8" style="text-align: center;"><h2>Probando</h2></td></tr>
 
 		<tr  style="text-align: center;">
-			<td colspan="2" style="text-align: center;"><center><h3>Probando</h3></center></td>
 
 		</tr>
 
-	<tr><td>Nome </td>
-	<td><?=$b['nome_d'];?></td>
+	<tr><td>Nome: <?=$b['nome_d'];?></td>
 
-	<td>Cognome </td>
-	<td><?=$b['cognome_d'];?></td>
+	<td>Cognome: <?=$b['cognome_d'];?></td>
 
 
 		</tr>
 
-	<tr><td>Nascita </td>
-	<td><?=date_format($n_d, 'd/m/Y')?></td>
+	<tr><td>Codice Famiglia: <?=$b['id_famiglia'];?></td>
+	<td>Nascita: <?=date_format($n_d, 'd/m/Y')?></td>
 	
 	</tr>
 
 
-	<tr><td>Telefono</td>
-	<td><?=$b['telefono'];?></td>
+	<tr><td>Telefono: <?=$b['telefono'];?></td>
+		<td>Patologia: <?=$b['patologia'];?></td>
 	</tr>
 
 
