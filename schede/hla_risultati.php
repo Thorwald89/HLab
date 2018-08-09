@@ -109,7 +109,7 @@ switch($pos){
 
 
 		?>
-		<tr data-href="scheda.php?pos=scheda&id=<?=$r['id_campione'];?>">	
+		<tr data-href="referto.php?id=<?=$r['id_campione'];?>">	
 	<td><?=ucfirst($r['id_campione'])?></td>
 	<td><?=ucfirst($r['cognome'])?></td>
 	<td><?=ucfirst($r['nome'])?></td>
