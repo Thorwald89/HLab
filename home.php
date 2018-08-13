@@ -77,7 +77,7 @@ header("Location: login.php?result=errore");
 </div>
 
 
-
+ 
 <?php
 	
 	include("foot.php");

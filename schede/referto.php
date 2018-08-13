@@ -90,4 +90,4 @@ $send = $_POST['send'];
 <?php
 	
 	include("foot.php");
-	?>
+	?> 
