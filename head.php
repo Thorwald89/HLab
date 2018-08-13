@@ -21,7 +21,11 @@
  */
 
 
+<<<<<<< HEAD
 include($navigazione_http."setup/setup.php");
+=======
+include('setup/setup.php');
+>>>>>>> HLab
 	 
 
 	$admin=$_SESSION['admin'];

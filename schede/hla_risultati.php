@@ -43,7 +43,7 @@ if($send =="inserisci"){
 
 
 
-	include($navigazione_http."head.php");
+	include($navigazione_http." head.php");
 
 switch($pos){
 	
