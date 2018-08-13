@@ -19,44 +19,15 @@
  *
  *
  */
-include('setup/setup.php');
+ 
+$navigazione_http="";
+
+		include("setup/setup.php");
 session_start();
 
-
-
-$send ="";
-
-if(isset($_POST['send'])){
-	$send = $_POST['send'];
-}
-
-
-if($send == 'login'){
-
-		$s= mysqli_query($link, "select * from user where user='".$_POST['user']."' and pass='".($_POST['pass'])."'") or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error(), E_USER_ERROR);
-		$controllo = mysqli_num_rows($s);
-
-		if($controllo == 1){
-			$login = $_POST['user'];
-			$_SESSION['login'] = $login;
-
-			$rr = mysqli_fetch_array($s);
-			$admin= $rr['other'];
-			$_SESSION['admin'] = $admin;
-
-		
-
-
-		}else{
-header("Location: login.php?result=errore");
-		}
-	}
-	
-	
-	
-	
 	include("head.php");
-	
+		$admin=$_SESSION['admin'];
+	$login=$_SESSION['login'];
 	?>
 
 
@@ -77,7 +48,7 @@ header("Location: login.php?result=errore");
 </div>
 
 
-
+ 
 <?php
 	
 	include("foot.php");

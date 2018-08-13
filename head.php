@@ -21,9 +21,11 @@
  */
 
 
-include('setup/setup.php');
-	
+include($navigazione_http."setup/setup.php");
+	 
 
+	$admin=$_SESSION['admin'];
+	$login=$_SESSION['login'];
 ?>
 
 <!DOCTYPE html> 
@@ -36,6 +38,15 @@ include('setup/setup.php');
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Latest compiled and minified CSS table-bootstrap-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+<!-- Latest compiled and minified JavaScript table-bootstrap-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+<!-- Latest compiled and minified Locales table-bootstrap-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
 
 <style>
 <!--

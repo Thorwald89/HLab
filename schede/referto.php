@@ -20,12 +20,12 @@
  *
  */
 include('../setup/setup.php');
-
 session_start();
 
-
-$login = $_SESSION['login'];
-
+	include("head.php");
+		$admin=$_SESSION['admin'];
+	$login=$_SESSION['login'];
+	
 $barcode = $_GET['id'];
 
 $pos=$_GET['pos'];
@@ -39,9 +39,6 @@ $send = $_POST['send'];
 
 		
 
-
-	
-	include("head.php");
 	
 
 
@@ -90,4 +87,4 @@ $send = $_POST['send'];
 <?php
 	
 	include("foot.php");
-	?>
+	?> 

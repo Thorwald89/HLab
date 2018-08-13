@@ -22,8 +22,10 @@
 include('../setup/setup.php');
 session_start();
 
-$login = $_SESSION['login']; 
 
+	$admin=$_SESSION['admin'];
+	$login=$_SESSION['login'];
+	
 $id = $_GET['id'];
 
 $pos=$_GET['pos'];
@@ -47,26 +49,30 @@ switch($pos){
 	
 	default:
 	?>
-	<table>
+<div class="container-fluid">
+  <div class="row"> 
+    <div class="col">
+	<table class="table table-sm table-hover" data-pagination="true" data-search="true" data-toggle="table" data-url="data1.json">
 		
-		
+		<thead>
 		<tr><td colspan="10" align="center"><h2><center>Lista Esami Effettuati	</h2></td></tr>
 		
 	<tr>	
-	<td><strong>ID Campione</strong></td>
-	<td><strong>Cognome</strong></td>
-	<td><strong>Nome</strong></td>
-	<td><strong>Locus A</strong></td>
-	<td><strong>Locus B</strong></td>
-	<td><strong>Locus C</strong></td>
-	<td><strong>Locus DRB</strong></td>
-	<td><strong>Locus DQA1</strong></td>
-	<td><strong>Locus DQB</strong></td>
-	<td><strong>Locus DPB1</strong></td>
-	<td><strong>Data Esecuzione Test</strong></td>
-	<td><strong>Operatore</strong></td>
+	<th scope="col"><strong>ID Campione</strong></th>
+	<th scope="col"><strong>Cognome</strong></th>
+	<th scope="col"><strong>Nome</strong></th>
+	<th scope="col"><strong>Locus A</strong></th>
+	<th scope="col"><strong>Locus B</strong></th>
+	<th scope="col"><strong>Locus C</strong></th>
+	<th scope="col"><strong>Locus DRB</strong></th>
+	<th scope="col"><strong>Locus DQA1</strong></th>
+	<th scope="col"><strong>Locus DQB</strong></th>
+	<th scope="col"><strong>Locus DPB1</strong></th>
+	<th scope="col"><strong>Data Esecuzione Test</strong></th>
+	<th scope="col"><strong>Operatore</strong></th>
 	</tr>
-	
+	</thead>
+	<tbody>
 	<?php
 	$s= $link->query("select * from esami order by data_test") or die('1');
 	while($r =mysqli_fetch_array($s)){
@@ -92,9 +98,13 @@ switch($pos){
 		<?php
 	}
 	?>
-	
+	</tbody>
 	
 	</table>
+	
+		</div>
+	</div>
+</div>
 	<?php
 	break;
 	
