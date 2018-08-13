@@ -21,8 +21,8 @@
  */
 include('../setup/setup.php');
 session_start();
-
-	include("head.php");
+$navigazione_http="../";
+	include($navigazione_http."head.php");
 		$admin=$_SESSION['admin'];
 	$login=$_SESSION['login'];
 	
@@ -86,5 +86,5 @@ $send = $_POST['send'];
 
 <?php
 	
-	include("foot.php");
+	include($navigazione_http."foot.php");
 	?> 

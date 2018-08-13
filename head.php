@@ -22,7 +22,7 @@
 
 
 include($navigazione_http."setup/setup.php");
-	 
+	 session_start();
 
 	$admin=$_SESSION['admin'];
 	$login=$_SESSION['login'];
@@ -42,18 +42,50 @@ include($navigazione_http."setup/setup.php");
 <!-- Latest compiled and minified CSS table-bootstrap-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
 
-<!-- Latest compiled and minified JavaScript table-bootstrap-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
 
-<!-- Latest compiled and minified Locales table-bootstrap-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
 
+<script>
+$(document).ready(function() {
+
+    $('#tabella').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});
+</script>
 <style>
 <!--
 body{
 
 background-image: url('<?=$navigazione_http?>img/sfondo.png');
-
+}
+table#tabella {
+    border-collapse: collapse;   
+}
+#tabella tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#tabella tbody tr:hover {
+    background-color: #ccc;
+}
+#tabella th {
+    background-color: #fff;
+}
+#tabella th, #tabella td {
+    padding: 3px 5px;
+}
+#tabella td:hover {
+    cursor: pointer;
+}
+#tabella a {
+    style: none;
+}
+#probando .container{
+    background-color: #fff;
 
 }
 
@@ -77,17 +109,31 @@ background-image: url('<?=$navigazione_http?>img/sfondo.png');
         <a class="nav-link" href="<?=$navigazione_http?>home.php" target="centro">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?=$navigazione_http?>pazienti/inserisci.php" target="centro">Accettazione</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accettazione</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		<a class="dropdown-item" href="<?=$navigazione_http?>pazienti/inserisci.php?pos=probando" >Inserisci Probando</a>
+		<a class="dropdown-item" href="<?=$navigazione_http?>pazienti/inserisci.php?pos=familiare" >Inserisci Familiare</a>
+		</div>
       </li>
       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pazienti
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<?=$navigazione_http?>schede/scheda.php?user=<?=$login?>" target="centro">Scheda Paziente</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?pos=inserisci&user=<?=$login?>" target="centro">Inserisci Risultati</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?user=<?=$login?>" >Refertazione</a>
+        </div>
+      </li>
+            <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Esami
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?=$navigazione_http?>schede/scheda.php?user=<?=$login?>" target="centro">Scheda Paziente</a>
-          <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?pos=inserisci&user=<?=$login?>" target="centro">Inserisci Esami</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?user=<?=$login?>" >Refertazione</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/scheda.php?user=<?=$login?>" target="centro">Scheda Paziente</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?pos=inserisci&user=<?=$login?>" target="centro">Inserisci Risultati</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?user=<?=$login?>" >Refertazione</a>
         </div>
       </li>
       <?php

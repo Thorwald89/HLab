@@ -22,6 +22,13 @@
 include('../setup/setup.php');
 session_start();
 
+	$admin=$_SESSION['admin'];
+	$login=$_SESSION['login'];
+	
+$navigazione_http="../";
+
+	include($navigazione_http."head.php");
+
 $login = $_SESSION['login'];
 
 $id = $_GET['id'];
@@ -94,37 +101,119 @@ alert("Inserimento <?=$tipo?> effettuato.");
 ?>
 
 
-<html>
-<head>
-<title><?=$titolo?></title>
-<link rel="stylesheet" href="../stile.css" />
-
-<style type="text/css">
-	<!--
-body {
-background-color: white;
-
-    }
--->
-</style>
-<script src='../setup/jquery.min.js'></script>
-
-<script>
-  function sel1() {
-			$("div#ricevente").hide("slow");
-		}
-
-	function sel2() {
-			$("div#ricevente").show("slow");
-		}
-</script>
-</head>
-
-
-
 <body>
 		<form method="POST" action="inserisci.php">
-			<div id="principale">
+		<?php
+switch($pos){
+	
+	case 'probando':
+	?>	
+	
+		
+
+<div id="anamnesi">
+<table>
+<tr>
+	<td><strong>Patologia</strong><input type="text" name="patologia"></td>
+	<td><strong>Sede Prelievo</strong><input type="text" name="prelievo"></td>
+</tr>
+
+<tr>
+	<td><strong>Data Arrivo</strong><input type="date" name="arrivo"></td>
+	<td><strong>Impegnativa</strong><input type="radio" name="impegnativa" value="SI" id="impegnativa">SI - <input type="radio" name="impegnativa" value="NO" id="impegnativa">NO</td>
+
+</tr>
+</table>
+
+
+
+
+
+
+</div>		
+
+
+
+		
+<div id="probando">
+	<div class="container">
+		<div class="form-row">
+			<div class="form-group col-lg">
+						<center><label for="id_famiglia"><h3>Codice Famiglia</h3></label>
+						<input type="text" class="form-control" name="id_famiglia" id="id_famiglia" placeholder="ID Famiglia"></center>
+			</div>
+		
+		</div>		
+		<div class="form-row">
+			<div class="form-group col-lg">
+					<input type="radio" name="tipo" value="DEP" id="tipo">DEP - <input type="radio" name="tipo" value="EST" id="tipo">EST - <input type="radio" name="tipo" value="CQ" id="tipo">CQ			
+			</div>
+		
+		</div>
+		
+		
+		
+		
+		
+  <div class="row"> 
+    <div class="col-lg">
+<center><h3>Probando</h3></center>
+ <div class="form-row">
+    <div class="form-group col-sm-6">
+      <label for="nome_d">Nome</label>
+      <input type="text" class="form-control" name="nome_d" id="nome_d" placeholder="Nome">
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="cognome_d">Cognome</label>
+      <input type="text" class="form-control" name="cognome_d" id="cognome_d" placeholder="Cognome">
+    </div>
+  
+  <div class="form-group col-sm-6">
+    <label for="barcode_d">Barcode</label>
+    <input type="text" class="form-control" name="barcode_d" id="barcode_d" placeholder="Barcode">
+  </div> 
+    <div class="form-group col-md-6">
+      <label for="nascita_d">Nascita</label>
+      <input type="date" class="form-control" name="nascita_d" id="nascita_d">
+    </div>
+  <div class="form-group col-sm-6">
+    <label for="inputAddress2">Telefono</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="333 33 33 333">
+  </div>
+ 
+
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+
+</div>
+
+
+</div></div></div>
+
+
+
+
+
+	</div>
+	
+	<?php
+	break;
+	
+	case 'familiare':
+		?>
+
+<div id="principale">
 				
 				<center><input type="radio" name="tipo" value="DEP" id="tipo">DEP - <input type="radio" name="tipo" value="EST" id="tipo">EST - <input type="radio" name="tipo" value="CQ" id="tipo">CQ</center>
 						<tr>
@@ -156,36 +245,6 @@ background-color: white;
 
 
 
-		
-<div id="probando">
-
-<table>
-
-		<tr  align="center">
-		<td colspan="2" align="center"><center><h3>Probando</h3></center></td>
-		
-
-		<tr>
-		<td><strong>BarCode</strong><input type="text" name="barcode_d"></td>
-
-		</tr>
-		
-		<tr>
-		<td><strong>Nome</strong><input type="text" name="nome_d"></td>
-
-		<td><strong>Cognome</strong><input type="text" name="cognome_d"></td>
-		</tr>
-
-		<tr>
-		<td><strong>Nascita</strong><input type="date" name="nascita_d"></td>
-	
-	<td><strong>Telefono</strong><input type="text" name="telefono"></td></tr>
-
-
-
-</table>
-
-</div>
 
 
 <div id="famiglia" >
@@ -230,18 +289,14 @@ background-color: white;
 
 </div>
 
+<?php
+	break;
+	
+}
+	?>
+	<input type="submit" name="send" value="Inserisci">
 
-
-
-
-
-
-<input type="submit" name="send" value="Inserisci">
-
-	</div>
 	</form>
-</body>
-
-
-
-</html>
+<?php
+	include($navigazione_http."foot.php");
+?>
