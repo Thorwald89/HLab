@@ -27,7 +27,7 @@ $dbhost = "localhost";
 
 $dbuname = "root";
 
-$dbpass = "";
+$dbpass = "c4n4r1n0";
 
 $dbname = "hlab";
 

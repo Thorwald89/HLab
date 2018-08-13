@@ -30,53 +30,19 @@ $pos=$_GET['pos'];
 
 $send = $_POST['send'];
 
-
+$navigazione_http="../";
 
 if($send =="inserisci"){
 	
 	$s=$link->query("insert into esami (id_campione, locus_a, locus_b, locus_c, locus_dr, locus_dqa, locus_dqb, locus_dp, operatore, data_test) values ('".$_POST['id_campione']."', '".$_POST['locus_a']."', '".$_POST['locus_b']."', '".$_POST['locus_c']."', '".$_POST['locus_dr']."', '".$_POST['locus_dqa']."', '".$_POST['locus_dqb']."', '".$_POST['locus_dp']."', '".$_POST['operatore']."',NOW()) ") or die(mysqli_error($link)); 
 	echo "inserimento effettuato";
 }
-?>
-
-
-<html>
-<head>
-<title><?=$titolo?></title>
-<link rel="stylesheet" href="../stile.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
-<script type="text/javascript">
-	jQuery( function($) {
-		$('tbody tr[data-href]').addClass('clickable').click( function() {
-			window.location = $(this).attr('data-href');
-		}).find('a').hover( function() {
-			$(this).parents('tr').unbind('click');
-		}, function() {
-			$(this).parents('tr').click( function() {
-				window.location = $(this).attr('data-href');
-			});
-		});
-	});
-</script>
-<style type="text/css">
-	<!--
-body {
-background-color: white;
-
-    }
-        tbody tr.clickable:hover td {
- cursor: pointer;
-}
--->
-</style>
-</head>
 
 
 
-<body>
 
+	include($navigazione_http."head.php");
 
-<?php
 switch($pos){
 	
 	default:
@@ -167,11 +133,5 @@ switch($pos){
 }
 
 
-?>
-
-</body>
-
-
-
-
-</html>
+	include($navigazione_http."foot.php");
+	?>
