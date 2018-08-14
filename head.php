@@ -88,7 +88,14 @@ table#tabella {
     background-color: #fff;
 
 }
+#familiare .container{
+    background-color: #fff;
 
+}
+#generico .container{
+    background-color: #fff;
+
+}
 -->
 </style>
 
@@ -106,7 +113,7 @@ table#tabella {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="<?=$navigazione_http?>home.php" target="centro">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?=$navigazione_http?>home.php" >Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accettazione</a>
@@ -114,28 +121,29 @@ table#tabella {
 		<a class="dropdown-item" href="<?=$navigazione_http?>pazienti/inserisci.php?pos=probando" >Inserisci Probando</a>
 		<a class="dropdown-item" href="<?=$navigazione_http?>pazienti/inserisci.php?pos=familiare" >Inserisci Familiare</a>
 		</div>
+      </li>  
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Esami
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/inserisci.php?user=<?=$login?>" >Prenota Esame</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?pos=inserisci&user=<?=$login?>" >-</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?user=<?=$login?>" >-</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Pazienti
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?=$navigazione_http?>schede/scheda.php?user=<?=$login?>" target="centro">Scheda Paziente</a>
-          <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?pos=inserisci&user=<?=$login?>" target="centro">Inserisci Risultati</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>schede/scheda.php?user=<?=$login?>" >Scheda Paziente</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?pos=inserisci&user=<?=$login?>" >Inserisci Risultati</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?user=<?=$login?>" >Refertazione</a>
         </div>
       </li>
-            <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Esami
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/scheda.php?user=<?=$login?>" target="centro">Scheda Paziente</a>
-          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?pos=inserisci&user=<?=$login?>" target="centro">Inserisci Risultati</a>
-          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?user=<?=$login?>" >Refertazione</a>
-        </div>
-      </li>
+          
       <?php
    if($admin =='admin'){
    ?>
@@ -144,10 +152,10 @@ table#tabella {
           Amministrazione
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?=$navigazione_http?>registra.php?user=<?=$login?>" target="centro">Nuovo Utente</a>
-          <a class="dropdown-item" href="<?=$navigazione_http?>sversion.php" target="centro">Versione Software</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>registra.php?user=<?=$login?>" >Nuovo Utente</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>sversion.php" >Versione Software</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<?=$navigazione_http?>update.php" target="centro">Update</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>update.php" >Update</a>
         </div>
       </li>
          <?php
@@ -163,7 +171,7 @@ table#tabella {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b><?= $login?></b> <span class="caret"></span></a>
 			  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				<a class="dropdown-item" href="<?=$navigazione_http?>logout.php" target="centro">LogOut</a>
+				<a class="dropdown-item" href="<?=$navigazione_http?>logout.php" >LogOut</a>
 			</div>
        </li>
   </div>
