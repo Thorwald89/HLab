@@ -21,8 +21,17 @@
  */
 
 
+<<<<<<< HEAD
 include($navigazione_http."setup/setup.php");
 	 session_start();
+=======
+<<<<<<< HEAD
+include($navigazione_http."setup/setup.php");
+=======
+include('setup/setup.php');
+>>>>>>> HLab
+	 
+>>>>>>> HLab
 
 	$admin=$_SESSION['admin'];
 	$login=$_SESSION['login'];
@@ -94,7 +103,7 @@ table#tabella {
 }
 #generico .container{
     background-color: #fff;
-
+ 
 }
 -->
 </style>
