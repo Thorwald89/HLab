@@ -74,28 +74,26 @@ if($send =="Inserisci"){
 		$f_cd34= mysqli_query("insert INTO log_prodotti (lotto, quota, data, valore) VALUES ('".$_POST['lotto_cd34']."','$var_cd34','".$_POST['data_congelamento']."','Scarico Congelamento Sacca')") or die(mysqli_error());
 */
 		
-		// inserisco i dati nel db schede per il probando
+		// inserisco i dati nel db fogli_lavoro per il probando
 
 
-		if($_POST['tipologia'] == 'probando'){
-		$s= $link->query("INSERT INTO schede (`nome_d`, `cognome_d`, `nascita_d`, `telefono`, `id_famiglia`, `patologia`, `barcode`) values ('".$_POST['nome_d']."', '".$_POST['cognome_d']."','".$_POST['nascita_d']."','".$_POST['telefono']."','".$_POST['id_famiglia']."','".$_POST['patologia']."','".$_POST['barcode_d']."') ") or die('1');		
+		
+			
+			$locus = array($_POST['a_lr'],$_POST['b_lr'],$_POST['c_lr'],$_POST['dr_lr'],$_POST['dq_lr'],"A".$_POST['a1_hr'],"A".$_POST['a2_hr'],"B".$_POST['b1_hr'],"B".$_POST['b2_hr'],"C".$_POST['c1_hr'],"C".$_POST['c2_hr'],"DR".$_POST['dr1_hr'],"DR".$_POST['dr2_hr'],"DQA".$_POST['dqa1_hr'],"DQA".$_POST['dqa2_hr'],"DQB".$_POST['dqb1_hr'],"DQB".$_POST['dqb2_hr'],"DP".$_POST['dp1_hr'],"DP".$_POST['dp2_hr']);
+			$locus = implode(',', $locus);
+
+			$metodica = array($_POST['ssp_lr'], $_POST['ssp_hr'], $_POST['sso'], $_POST['sbt']);
+			$metodica = implode(',', $metodica);
+			
+			
+		$s= $link->query("INSERT INTO fogli_lavoro (`id_campione`, `locus`, `metodica`) values ('".$_POST['id_campione']."', '$locus','$metodica') ") or die(mysqli_error($link));		
 		?>
 <script language="javascript">
-alert("Inserimento "<?=$_POST['tipologia']?>" effettuato.");
+alert("Inserimento effettuato.");
 </script>
 <?php
-	}
-		// inserisco i dati nel db schede per i familiari
-		if($_POST['tipologia'] == 'familiare'){
-
-
-		$s= $link->query("INSERT INTO famiglie (`nome`, `cognome`, `nascita`, `id_famiglia`, `grado`, `prelievo`, `arrivo`, `barcode`) values ('".$_POST['nome_f']."', '".$_POST['cognome_f']."','".$_POST['nascita_f']."','".$_POST['id_famiglia']."','".$_POST['grado']."','".$_POST['prelievo_f']."',NOW(), '".$_POST['barcode_f']."') ") or die(mysqli_error($link));
-?>
-<script language="javascript">
-alert("Inserimento "<?=$_POST['tipologia']?>" effettuato.");
-</script>
-<?php
-	}
+	
+	
 
 		
 
@@ -121,7 +119,7 @@ switch($pos){
 	<table id="tabella" class="table table-sm table-hover">
 		
 		<thead>
-		<tr><td colspan="15" align="center"><h2><center>Campioni SENZA Esami	</h2></td></tr>
+		<tr><td colspan="15" align="center"><h2><center>Campioni NON Refertati	</h2></td></tr>
 		
 	<tr>	
 	<th scope="col"><strong>ID Campione</strong></th>
@@ -193,24 +191,37 @@ switch($pos){
   <div class="row"> 
     <div class="col-md">
 		<h3 class="text-center">Bassa Risoluzione</h3>
+		<div class="form-row">
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" name="ssp_lr" id="ssp_lr" value="ssp_lr">
+				<label for="ssp_lr" class="form-check-label">SSP</label>
+			</div>
+		</div>
+		<hr>
 		 <div class="form-row">
 			<div class="form-check">
-				<input type="checkbox" class="form-check-input" name="a_lr" id="a_lr">
+				<input type="checkbox" class="form-check-input" name="a_lr" id="a_lr" value="a_lr">
 				<label for="a_lr" class="form-check-label">Locus A</label>
 			</div>
 			<div class="form-check">
-				<input type="checkbox" class="form-check-input"  name="b_lr" id="b_lr">
+				<input type="checkbox" class="form-check-input"  name="b_lr" id="b_lr" value="b_lr">
 				<label for="b_lr" class="form-check-label">Locus B</label>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-check">
-				<input type="checkbox" class="form-check-input"  name="c_lr" id="c_lr">
+				<input type="checkbox" class="form-check-input"  name="c_lr" id="c_lr" value="c_lr">
 				<label for="c_lr" class="form-check-label">Locus C</label>
 			</div>
 			<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dr_lr" id="dr_lr">
+				<input type="checkbox" class="form-check-input"  name="dr_lr" id="dr_lr" value="dr_lr">
 				<label for="dr_lr">Locus DRB</label>
+			</div>			
+		</div>
+		<div class="form-row">
+			<div class="form-check" class="form-check-label">
+				<input type="checkbox" class="form-check-input"  name="dq_lr" id="dq_lr" value="dq_lr">
+				<label for="dq_lr">Locus DQB</label>
 			</div>			
 		</div>
 	</div>
@@ -218,115 +229,89 @@ switch($pos){
 	
     <div class="col-md">
 		<h3  class="text-center">Alta Risoluzione</h3>
+		<div class="form-row">
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" name="ssp_hr" id="ssp_hr" value="ssp_hr">
+				<label for="ssp_hr" class="form-check-label">SSP</label>
+			</div>			
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" name="sso" id="sso" value="sso">
+				<label for="sso" class="form-check-label">SSO</label>
+			</div>			
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" name="sbt" id="sbt" value="sbt">
+				<label for="sbt" class="form-check-label">SBT</label>
+			</div>
+		</div>
+		<hr>
 		 <div class="form-row">
 			<div class="form-group">
-				<div class="form-check">
-				<input type="checkbox" class="form-check-input" name="a_hr" id="a_hr">
-				<label for="a_hr" class="form-check-label">Locus A<sup>1</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="a_hr" id="a_hr">
+				<label for="a1_hr">Locus A<sup>1</sup></label>
+				<input class="form-control form-control-sm" type="number" name="a1_hr" id="a_hr">
 			</div>
 			<div class="form-group">
-				<div class="form-check">
-				<input type="checkbox" class="form-check-input" name="a_hr" id="a_hr">
-				<label for="a_hr" class="form-check-label">Locus A<sup>2</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="a_hr" id="a_hr">
+				<label for="a2_hr">Locus A<sup>2</sup></label>
+				<input class="form-control form-control-sm" type="number" name="a2_hr" id="a_hr">
 			</div>
 		</div>
 		<div class="form-row">			
 			<div class="form-group">
-				<div class="form-check">
-				<input type="checkbox" class="form-check-input"  name="b_hr" id="b_hr">
-				<label for="b_hr" class="form-check-label">Locus B<sup>1</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="b_hr" id="b_hr">
+				<label for="b1_hr">Locus B<sup>1</sup></label>
+				<input class="form-control form-control-sm" type="number" name="b1_hr" id="b_hr">
 			</div>			
 			<div class="form-group">
-				<div class="form-check">
-				<input type="checkbox" class="form-check-input"  name="b_hr" id="b_hr">
-				<label for="b_hr" class="form-check-label">Locus B<sup>2</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="b_hr" id="b_hr">
+				<label for="b_2hr">Locus B<sup>2</sup></label>
+				<input class="form-control form-control-sm" type="number" name="b2_hr" id="b_hr">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group">
-				<div class="form-check">
-				<input type="checkbox" class="form-check-input"  name="c_hr" id="c_hr">
-				<label for="c_hr" class="form-check-label">Locus C<sup>1</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="c_hr" id="c_hr">
+				<label for="c1_hr">Locus C<sup>1</sup></label>
+				<input class="form-control form-control-sm" type="number" name="c1_hr" id="c_hr">
 			</div>			
 			<div class="form-group">
-				<div class="form-check">
-				<input type="checkbox" class="form-check-input"  name="c_hr" id="c_hr">
-				<label for="c_hr" class="form-check-label">Locus C<sup>2</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="c_hr" id="c_hr">
+				<label for="c2_hr">Locus C<sup>2</sup></label>
+				<input class="form-control form-control-sm" type="number" name="c2_hr" id="c_hr">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group">
-				<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dr_hr" id="dr_hr">
-				<label for="dr_hr">Locus DRB<sup>1</sup></label>
+				<label for="dr1_hr">Locus DRB<sup>1</sup></label>
+				<input class="form-control form-control-sm" type="number" name="dr1_hr" id="dr_hr">
 				</div>
-				<input class="form-control form-control-sm" type="number" name="dr_hr" id="dr_hr">
-			</div>			
 			<div class="form-group">
-				<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dr_hr" id="dr_hr">
-				<label for="dr_hr">Locus DRB<sup>2</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="dr_hr" id="dr_hr">
+				<label for="dr2_hr">Locus DRB<sup>2</sup></label>
+				<input class="form-control form-control-sm" type="number" name="dr2_hr" id="dr_hr">
 			</div>		
 		</div>
 		<div class="form-row">
 			<div class="form-group">
-				<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dqa_hr" id="dqa_hr">
-				<label for="dqa_hr">Locus DQA<sup>1</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="dqa_hr" id="dqa_hr">
+				<label for="dqa1_hr">Locus DQA<sup>1</sup></label>
+				<input class="form-control form-control-sm" type="number" name="dqa1_hr" id="dqa_hr">
 			</div>			
 			<div class="form-group">
-				<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dqa_hr" id="dqa_hr">
-				<label for="dqa_hr">Locus DQA<sup>2</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="dqa_hr" id="dqa_hr">
+				<label for="dqa2_hr">Locus DQA<sup>2</sup></label>
+				<input class="form-control form-control-sm" type="number" name="dqa2_hr" id="dqa_hr">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group">
-				<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dqb_hr" id="dqb_hr">
-				<label for="dqb_hr">Locus DQB<sup>1</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="dqb_hr" id="dqb_hr">
-			</div>			<div class="form-group">
-				<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dqb_hr" id="dqb_hr">
-				<label for="dqb_hr">Locus DQB<sup>2</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="dqb_hr" id="dqb_hr">
+				<label for="dqb1_hr">Locus DQB<sup>1</sup></label>
+				<input class="form-control form-control-sm" type="number" name="dqb1_hr" id="dqb_hr">
+			</div>			
+			<div class="form-group">
+				<label for="dqb2_hr">Locus DQB<sup>2</sup></label>
+				<input class="form-control form-control-sm" type="number" name="dqb2_hr" id="dqb_hr">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group">
-				<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dp_hr" id="dp_hr">
-				<label for="dp_hr">Locus DP<sup>1</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="dp_hr" id="dp_hr">
+				<label for="dp1_hr">Locus DP<sup>1</sup></label>
+				<input class="form-control form-control-sm" type="number" name="dp1_hr" id="dp_hr">
 			</div>				
 			<div class="form-group">
-				<div class="form-check" class="form-check-label">
-				<input type="checkbox" class="form-check-input"  name="dp_hr" id="dp_hr">
-				<label for="dp_hr">Locus DP<sup>2</sup></label>
-				</div>
-				<input class="form-control form-control-sm" type="number" name="dp_hr" id="dp_hr">
+				<label for="dp2_hr">Locus DP<sup>2</sup></label>
+				<input class="form-control form-control-sm" type="number" name="dp2_hr" id="dp_hr">
 			</div>		
 		</div>
 	</div>

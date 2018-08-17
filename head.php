@@ -21,17 +21,12 @@
  */
 
 
-<<<<<<< HEAD
 include($navigazione_http."setup/setup.php");
 	 session_start();
-=======
-<<<<<<< HEAD
+
 include($navigazione_http."setup/setup.php");
-=======
 include('setup/setup.php');
->>>>>>> HLab
-	 
->>>>>>> HLab
+
 
 	$admin=$_SESSION['admin'];
 	$login=$_SESSION['login'];
@@ -52,6 +47,9 @@ include('setup/setup.php');
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
 
 
+<!-- datatoggle-->
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
 <script>
 $(document).ready(function() {
@@ -62,6 +60,9 @@ $(document).ready(function() {
             window.location = href;
         }
     });
+
+
+ 
 
 });
 </script>
@@ -137,7 +138,7 @@ table#tabella {
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/inserisci.php?user=<?=$login?>" >Prenota Esame</a>
-          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?pos=inserisci&user=<?=$login?>" >-</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/fogli_lavoro.php?pos=inserisci&user=<?=$login?>" >Fogli di Lavoro</a>
           <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?user=<?=$login?>" >-</a>
         </div>
       </li>
