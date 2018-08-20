@@ -76,10 +76,29 @@ if($send =="Inserisci"){
 		
 		// inserisco i dati nel db fogli_lavoro per il probando
 
+			$a_lr = $_POST['a_lr'];
+			$b_lr = $_POST['b_lr'];
+			$c_lr = $_POST['c_lr'];
+			$dr_lr = $_POST['dr_lr'];
+			$dq_lr = $_POST['dq_lr'];
+			if($_POST['a1_hr'] != '0')$a1_hr = "A".$_POST['a1_hr'];
+			if($_POST['a2_hr'] != '0')$a2_hr = "A".$_POST['a2_hr'];
+			if($_POST['b1_hr'] != '0')$b1_hr = "B".$_POST['b1_hr'];
+			if($_POST['b2_hr'] != '0')$b2_hr = "B".$_POST['b2_hr'];
+			if($_POST['c1_hr'] != '0')$c1_hr = "C".$_POST['c1_hr'];
+			if($_POST['c2_hr'] != '0')$c2_hr = "C".$_POST['c2_hr'];
+			if($_POST['dr1_hr'] != '0')$dr1_hr = "DR".$_POST['dr1_hr'];
+			if($_POST['dr2_hr'] != '0')$dr2_hr = "DR".$_POST['dr2_hr'];
+			if($_POST['dqa1_hr'] != '0')$dqa1_hr = "DQA".$_POST['dqa1_hr'];
+			if($_POST['dqa2_hr'] != '0')$dqa2_hr = "DQA".$_POST['dqa2_hr'];
+			if($_POST['dqb1_hr'] != '0')$dqb1_hr = "DQB".$_POST['dqb1_hr'];
+			if($_POST['dqb2_hr'] != '0')$dqb2_hr = "DQB".$_POST['dqb2_hr'];
+			if($_POST['dp1_hr'] != '0')$dp1_hr = "DP".$_POST['dp1_hr'];
+			if($_POST['dp2_hr'] != '0')$dp2_hr = "DP".$_POST['dp2_hr'];
 
 		
 			
-			$locus = array($_POST['a_lr'],$_POST['b_lr'],$_POST['c_lr'],$_POST['dr_lr'],$_POST['dq_lr'],"A".$_POST['a1_hr'],"A".$_POST['a2_hr'],"B".$_POST['b1_hr'],"B".$_POST['b2_hr'],"C".$_POST['c1_hr'],"C".$_POST['c2_hr'],"DR".$_POST['dr1_hr'],"DR".$_POST['dr2_hr'],"DQA".$_POST['dqa1_hr'],"DQA".$_POST['dqa2_hr'],"DQB".$_POST['dqb1_hr'],"DQB".$_POST['dqb2_hr'],"DP".$_POST['dp1_hr'],"DP".$_POST['dp2_hr']);
+			$locus = array($a_lr,$b_lr,$c_lr,$dr_lr,$dq_lr,$a1_hr,$a2_hr,$b1_hr,$b2_hr,$c1_hr,$c2_hr,$dr1_hr,$dr2_hr,$dqa1_hr,$dqa2_hr,$dqb1_hr,$dqb2_hr,$dp1_hr,$dp2_hr);
 			$locus = implode(',', $locus);
 
 			$metodica = array($_POST['ssp_lr'], $_POST['ssp_hr'], $_POST['sso'], $_POST['sbt']);
@@ -247,71 +266,71 @@ switch($pos){
 		 <div class="form-row">
 			<div class="form-group">
 				<label for="a1_hr">Locus A<sup>1</sup></label>
-				<input class="form-control form-control-sm" type="number" name="a1_hr" id="a_hr">
+				<input class="form-control form-control-sm" type="number" name="a1_hr" value="0" id="a_hr">
 			</div>
 			<div class="form-group">
 				<label for="a2_hr">Locus A<sup>2</sup></label>
-				<input class="form-control form-control-sm" type="number" name="a2_hr" id="a_hr">
+				<input class="form-control form-control-sm" type="number" name="a2_hr" value="0"id="a_hr">
 			</div>
 		</div>
 		<div class="form-row">			
 			<div class="form-group">
 				<label for="b1_hr">Locus B<sup>1</sup></label>
-				<input class="form-control form-control-sm" type="number" name="b1_hr" id="b_hr">
+				<input class="form-control form-control-sm" type="number" name="b1_hr"value="0" id="b_hr">
 			</div>			
 			<div class="form-group">
 				<label for="b_2hr">Locus B<sup>2</sup></label>
-				<input class="form-control form-control-sm" type="number" name="b2_hr" id="b_hr">
+				<input class="form-control form-control-sm" type="number" name="b2_hr"value="0" id="b_hr">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group">
 				<label for="c1_hr">Locus C<sup>1</sup></label>
-				<input class="form-control form-control-sm" type="number" name="c1_hr" id="c_hr">
+				<input class="form-control form-control-sm" type="number" name="c1_hr" value="0"id="c_hr">
 			</div>			
 			<div class="form-group">
 				<label for="c2_hr">Locus C<sup>2</sup></label>
-				<input class="form-control form-control-sm" type="number" name="c2_hr" id="c_hr">
+				<input class="form-control form-control-sm" type="number" name="c2_hr"value="0" id="c_hr">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group">
 				<label for="dr1_hr">Locus DRB<sup>1</sup></label>
-				<input class="form-control form-control-sm" type="number" name="dr1_hr" id="dr_hr">
+				<input class="form-control form-control-sm" type="number" name="dr1_hr"value="0" id="dr_hr">
 				</div>
 			<div class="form-group">
 				<label for="dr2_hr">Locus DRB<sup>2</sup></label>
-				<input class="form-control form-control-sm" type="number" name="dr2_hr" id="dr_hr">
+				<input class="form-control form-control-sm" type="number" name="dr2_hr" value="0"id="dr_hr">
 			</div>		
 		</div>
 		<div class="form-row">
 			<div class="form-group">
 				<label for="dqa1_hr">Locus DQA<sup>1</sup></label>
-				<input class="form-control form-control-sm" type="number" name="dqa1_hr" id="dqa_hr">
+				<input class="form-control form-control-sm" type="number" name="dqa1_hr" value="0"id="dqa_hr">
 			</div>			
 			<div class="form-group">
 				<label for="dqa2_hr">Locus DQA<sup>2</sup></label>
-				<input class="form-control form-control-sm" type="number" name="dqa2_hr" id="dqa_hr">
+				<input class="form-control form-control-sm" type="number" name="dqa2_hr"value="0" id="dqa_hr">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group">
 				<label for="dqb1_hr">Locus DQB<sup>1</sup></label>
-				<input class="form-control form-control-sm" type="number" name="dqb1_hr" id="dqb_hr">
+				<input class="form-control form-control-sm" type="number" name="dqb1_hr" value="0"id="dqb_hr">
 			</div>			
 			<div class="form-group">
 				<label for="dqb2_hr">Locus DQB<sup>2</sup></label>
-				<input class="form-control form-control-sm" type="number" name="dqb2_hr" id="dqb_hr">
+				<input class="form-control form-control-sm" type="number" name="dqb2_hr" value="0"id="dqb_hr">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group">
 				<label for="dp1_hr">Locus DP<sup>1</sup></label>
-				<input class="form-control form-control-sm" type="number" name="dp1_hr" id="dp_hr">
+				<input class="form-control form-control-sm" type="number" name="dp1_hr"value="0" id="dp_hr">
 			</div>				
 			<div class="form-group">
 				<label for="dp2_hr">Locus DP<sup>2</sup></label>
-				<input class="form-control form-control-sm" type="number" name="dp2_hr" id="dp_hr">
+				<input class="form-control form-control-sm" type="number" name="dp2_hr"value="0" id="dp_hr">
 			</div>		
 		</div>
 	</div>
