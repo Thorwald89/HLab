@@ -76,32 +76,40 @@ if($send =="Inserisci"){
 		
 		// inserisco i dati nel db fogli_lavoro per il probando
 
-			$a_lr = $_POST['a_lr'];
-			$b_lr = $_POST['b_lr'];
-			$c_lr = $_POST['c_lr'];
-			$dr_lr = $_POST['dr_lr'];
-			$dq_lr = $_POST['dq_lr'];
-			if($_POST['a1_hr'] != '0')$a1_hr = "A".$_POST['a1_hr'];
-			if($_POST['a2_hr'] != '0')$a2_hr = "A".$_POST['a2_hr'];
-			if($_POST['b1_hr'] != '0')$b1_hr = "B".$_POST['b1_hr'];
-			if($_POST['b2_hr'] != '0')$b2_hr = "B".$_POST['b2_hr'];
-			if($_POST['c1_hr'] != '0')$c1_hr = "C".$_POST['c1_hr'];
-			if($_POST['c2_hr'] != '0')$c2_hr = "C".$_POST['c2_hr'];
-			if($_POST['dr1_hr'] != '0')$dr1_hr = "DR".$_POST['dr1_hr'];
-			if($_POST['dr2_hr'] != '0')$dr2_hr = "DR".$_POST['dr2_hr'];
-			if($_POST['dqa1_hr'] != '0')$dqa1_hr = "DQA".$_POST['dqa1_hr'];
-			if($_POST['dqa2_hr'] != '0')$dqa2_hr = "DQA".$_POST['dqa2_hr'];
-			if($_POST['dqb1_hr'] != '0')$dqb1_hr = "DQB".$_POST['dqb1_hr'];
-			if($_POST['dqb2_hr'] != '0')$dqb2_hr = "DQB".$_POST['dqb2_hr'];
-			if($_POST['dp1_hr'] != '0')$dp1_hr = "DP".$_POST['dp1_hr'];
+			if($_POST['a_lr'] != '0')$a_lr = $_POST['a_lr'].",";
+			if($_POST['b_lr'] != '0')$b_lr = $_POST['b_lr'].",";
+			if($_POST['c_lr'] != '0')$c_lr = $_POST['c_lr'].",";
+			if($_POST['dr_lr'] != '0')$dr_lr = $_POST['dr_lr'].",";
+			if($_POST['dq_lr'] != '0')$dq_lr = $_POST['dq_lr'].",";
+			if($_POST['a1_hr'] != '0')$a1_hr = "A".$_POST['a1_hr'].","; 
+			if($_POST['a2_hr'] != '0')$a2_hr = "A".$_POST['a2_hr'].",";
+			if($_POST['b1_hr'] != '0')$b1_hr = "B".$_POST['b1_hr'].",";
+			if($_POST['b2_hr'] != '0')$b2_hr = "B".$_POST['b2_hr'].",";
+			if($_POST['c1_hr'] != '0')$c1_hr = "C".$_POST['c1_hr'].",";
+			if($_POST['c2_hr'] != '0')$c2_hr = "C".$_POST['c2_hr'].",";
+			if($_POST['dr1_hr'] != '0')$dr1_hr = "DR".$_POST['dr1_hr'].",";
+			if($_POST['dr2_hr'] != '0')$dr2_hr = "DR".$_POST['dr2_hr'].",";
+			if($_POST['dqa1_hr'] != '0')$dqa1_hr = "DQA".$_POST['dqa1_hr'].",";
+			if($_POST['dqa2_hr'] != '0')$dqa2_hr = "DQA".$_POST['dqa2_hr'].",";
+			if($_POST['dqb1_hr'] != '0')$dqb1_hr = "DQB".$_POST['dqb1_hr'].",";
+			if($_POST['dqb2_hr'] != '0')$dqb2_hr = "DQB".$_POST['dqb2_hr'].",";
+			if($_POST['dp1_hr'] != '0')$dp1_hr = "DP".$_POST['dp1_hr'].",";
 			if($_POST['dp2_hr'] != '0')$dp2_hr = "DP".$_POST['dp2_hr'];
 
-		
+				$array_locus = $a_lr."".$b_lr."".$c_lr."".$dr_lr."".$dq_lr."".$a1_hr."".$a2_hr."".$b1_hr."".$b2_hr."".$c1_hr."".$c2_hr."".$dr1_hr."".$dr2_hr."".$dqa1_hr."".$dqa2_hr."".$dqb1_hr."".$dqb2_hr."".$dp1_hr."".$dp2_hr;
 			
-			$locus = array($a_lr,$b_lr,$c_lr,$dr_lr,$dq_lr,$a1_hr,$a2_hr,$b1_hr,$b2_hr,$c1_hr,$c2_hr,$dr1_hr,$dr2_hr,$dqa1_hr,$dqa2_hr,$dqb1_hr,$dqb2_hr,$dp1_hr,$dp2_hr);
+			$locus = array($array_locus);
 			$locus = implode(',', $locus);
 
-			$metodica = array($_POST['ssp_lr'], $_POST['ssp_hr'], $_POST['sso'], $_POST['sbt']);
+
+			if($_POST['ssp_lr'] != '0')$ssp_lr = $_POST['ssp_lr'].",";
+			if($_POST['ssp_hr'] != '0')$ssp_hr = $_POST['ssp_hr'].",";
+			if($_POST['sso'] != '0')$sso = $_POST['sso'].",";
+			if($_POST['sbt'] != '0')$sbt = $_POST['sbt'];
+
+				$array_metodica= $ssp_lr."".$ssp_hr."".$sso."".$sbt;
+
+			$metodica = array($array_metodica);
 			$metodica = implode(',', $metodica);
 			
 			

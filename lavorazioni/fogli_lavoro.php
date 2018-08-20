@@ -194,13 +194,14 @@ switch($pos){
 				</tr>			
 				<?php
 					$locus = explode(',',$locus);
-					$metodica = explode(',',$locus);
+				//	$metodica = explode(',',$metodica);
 						foreach($locus as $locus ) {
         
 				?>
 				<tr>
 					<td></td>	
 					<td scope="col"><strong><?= $locus ?></strong></td>
+					<td scope="col"><strong><?= $metodica ?></strong></td>
 				</tr>			
 				<?php
 					}
