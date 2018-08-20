@@ -138,7 +138,7 @@ switch($pos){
 	<table id="tabella" class="table table-sm table-hover">
 		
 		<thead>
-		<tr><td colspan="15" align="center"><h2><center>Campioni NON Refertati	</h2></td></tr>
+		<tr><td colspan="15" align="center"><h2><center>Campioni NON Lavorati</h2></td></tr>
 		
 	<tr>	
 	<th scope="col"><strong>ID Campione</strong></th>
@@ -200,6 +200,10 @@ switch($pos){
 			<div class="form-group col-lg-3" >
 						<center><label for="id_campione"><h3>Codice</h3></label>
 						<input type="text" class="form-control" name="id_campione" id="id_campione" placeholder="ID Campione" value="<?= $id ?>" readonly></center>
+			</div>	
+			<div class="form-group col-lg-3" >
+						<center><label for="dna"><h3>Lettura DNA</h3></label>
+						<input type="text" class="form-control" name="dna" id="dna" placeholder="ng/&micro;l" >ng/&micro;l</center>
 			</div>		
 		</div>			
 	

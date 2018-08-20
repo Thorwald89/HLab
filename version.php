@@ -23,7 +23,12 @@ include('setup/setup.php');
 
 session_start();
 
-$login = $_SESSION['login'];
+	$admin=$_SESSION['admin'];
+	$login=$_SESSION['login'];
+	
+	
+
+
 
 $id = $_GET['id'];
 
@@ -37,7 +42,7 @@ $send = $_POST['send'];
 
 <html>
 <head>
-<title>Laboratorio di Manipolazione Cellulare - Version</title>
+<title><?= $titolo?> - Version</title>
 <link rel="stylesheet" href="stile.css" />
 
 <style type="text/css">
@@ -53,10 +58,20 @@ background-color: white;
 
 
 <body>
-Laboratorio di Manipolazione Cellulare - Version
+<?= $titolo?>
 
 <br><br>
+<hr>
+<h4>0.10.0 Beta</h4>
+<ul>
+<li>Migrazione a Progetto di HLA e Immunogenetica</li>
+<li>Modifica Layout</li>
+<li>Modificati UI</li>
+<li>Modifica DB</li>
+<li>aggiornato il file sql</li>
+<li>Migrazione a bootstrap</li>
 
+</ul>
 <hr>
 <h4>0.9.1 Beta</h4>
 <ul>

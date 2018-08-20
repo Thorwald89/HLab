@@ -119,7 +119,7 @@ switch($pos){
 	<table id="tabella" class="table table-sm table-hover">
 		
 		<thead>
-		<tr><td colspan="15" align="center"><h2><center>Campioni SENZA Esami	</h2></td></tr>
+		<tr><td colspan="15" align="center"><h2><center>Flussi di Lavoro</h2></td></tr>
 		
 	<tr>	
 	<th scope="col"><strong>ID Campione</strong></th>

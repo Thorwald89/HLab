@@ -39,7 +39,7 @@ session_start();
    
     <div class="col">
 		<div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="indice.php" id="centro" name="centro"></iframe>
+  <iframe class="embed-responsive-item" src="version.php" id="centro" name="centro"></iframe>
 </div>
     </div>
  
