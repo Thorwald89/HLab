@@ -139,7 +139,7 @@ table#tabella {
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/inserisci.php?user=<?=$login?>" >Prenota Esame</a>
           <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/fogli_lavoro.php?pos=inserisci&user=<?=$login?>" >Fogli di Lavoro</a>
-          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?user=<?=$login?>" >-</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?user=<?=$login?>" >Inserisci Risultati</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -148,7 +148,6 @@ table#tabella {
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?=$navigazione_http?>schede/scheda.php?user=<?=$login?>" >Scheda Paziente</a>
-          <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?pos=inserisci&user=<?=$login?>" >Inserisci Risultati</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<?=$navigazione_http?>schede/hla_risultati.php?user=<?=$login?>" >Refertazione</a>
         </div>

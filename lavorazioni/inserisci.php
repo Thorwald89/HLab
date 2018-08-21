@@ -76,11 +76,11 @@ if($send =="Inserisci"){
 		
 		// inserisco i dati nel db fogli_lavoro per il probando
 
-			if($_POST['a_lr'] != '0')$a_lr = $_POST['a_lr'].",";
-			if($_POST['b_lr'] != '0')$b_lr = $_POST['b_lr'].",";
-			if($_POST['c_lr'] != '0')$c_lr = $_POST['c_lr'].",";
-			if($_POST['dr_lr'] != '0')$dr_lr = $_POST['dr_lr'].",";
-			if($_POST['dq_lr'] != '0')$dq_lr = $_POST['dq_lr'].",";
+			if($_POST['a_lr'] != '')$a_lr = $_POST['a_lr'].",";
+			if($_POST['b_lr'] != '')$b_lr = $_POST['b_lr'].",";
+			if($_POST['c_lr'] != '')$c_lr = $_POST['c_lr'].",";
+			if($_POST['dr_lr'] != '')$dr_lr = $_POST['dr_lr'].",";
+			if($_POST['dq_lr'] != '')$dq_lr = $_POST['dq_lr'].",";
 			if($_POST['a1_hr'] != '0')$a1_hr = "A".$_POST['a1_hr'].","; 
 			if($_POST['a2_hr'] != '0')$a2_hr = "A".$_POST['a2_hr'].",";
 			if($_POST['b1_hr'] != '0')$b1_hr = "B".$_POST['b1_hr'].",";
@@ -102,10 +102,10 @@ if($send =="Inserisci"){
 			$locus = implode(',', $locus);
 
 
-			if($_POST['ssp_lr'] != '0')$ssp_lr = $_POST['ssp_lr'].",";
-			if($_POST['ssp_hr'] != '0')$ssp_hr = $_POST['ssp_hr'].",";
-			if($_POST['sso'] != '0')$sso = $_POST['sso'].",";
-			if($_POST['sbt'] != '0')$sbt = $_POST['sbt'];
+			if($_POST['ssp_lr'] != '')$ssp_lr = $_POST['ssp_lr'].",";
+			if($_POST['ssp_hr'] != '')$ssp_hr = $_POST['ssp_hr'].",";
+			if($_POST['sso'] != '')$sso = $_POST['sso'].",";
+			if($_POST['sbt'] != '')$sbt = $_POST['sbt'];
 
 				$array_metodica= $ssp_lr."".$ssp_hr."".$sso."".$sbt;
 
