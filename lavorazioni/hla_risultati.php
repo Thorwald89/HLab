@@ -38,15 +38,26 @@ if($send =="inserisci"){
 	
 
 		$id_campione = $_POST['id_campione'];
-	
-	//inserisco barcode e risultati in esami
+	//controllo l'esistenza di un vecchio inserimento
+	if($c = $link ->query("select * from esami where id_campione like '$id_campione'") or die(mysqli_error($link)))
+	{
+		
+		//inserisco barcode e risultati in esami
+		
+			
+			$s=$link->query("update esami set locus_a ='".$_POST['locus_a']."', locus_b ='".$_POST['locus_b']."', locus_c = '".$_POST['locus_c']."', locus_dr = '".$_POST['locus_dr']."', locus_dqa = '".$_POST['locus_dqa']."', locus_dqb = '".$_POST['locus_dqb']."', locus_dp = '".$_POST['locus_dp']."', operatore = '".$_POST['operatore']."', data_test = NOW() where id_campione = '$id_campione' ") or die(mysqli_error($link)); 
+
+	}else{
+		//inserisco barcode e risultati in esami
 		
 			
 			$s=$link->query("insert into esami (id_campione, locus_a, locus_b, locus_c, locus_dr, locus_dqa, locus_dqb, locus_dp, operatore, data_test) values ('".$_POST['id_campione']."', '".$_POST['locus_a']."', '".$_POST['locus_b']."', '".$_POST['locus_c']."', '".$_POST['locus_dr']."', '".$_POST['locus_dqa']."', '".$_POST['locus_dqb']."', '".$_POST['locus_dp']."', '".$_POST['operatore']."',NOW()) ") or die(mysqli_error($link)); 
 
+	}
+	
 ?>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Inserimento Effettuato!</strong> You should check in on some of those fields below.
+  <strong>Inserimento Effettuato!</strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -123,34 +134,77 @@ switch($pos){
 	<table id="tabella" class="table table-sm table-hover">		
 		<tr><td colspan="5"><h2>Inserisci Risultati Test</h2></td></tr>
 		<form method="post" action="hla_risultati.php?user=<?=$login?>">
-		
-		
-			<?php
-	$s= $link->query("select fogli_lavoro.* from fogli_lavoro where id_campione ='$id'") or die('1');
-	$r =mysqli_fetch_array($s);
-		
-				$locus = $r['locus'];
-				$locus = explode(',',$locus);
-				//	$metodica = explode(',',$metodica);
-				
-		?>
-	<tr>
+			<tr>
 	<td>Data Test</td><td>Autoimpostato</td>
 	</tr>
 	<tr>
 	<td>ID Campione</td><td><input type="text" name="id_campione"readonly value="<?=$id?>"></td>
 	</tr>
+		
+			<?php
+	$s= $link->query("select fogli_lavoro.*, esami.locus_a,esami.locus_b,esami.locus_c,esami.locus_dr,esami.locus_dqa,esami.locus_dqb,esami.locus_dp from fogli_lavoro right join esami on fogli_lavoro.id_campione=esami.id_campione where fogli_lavoro.id_campione ='$id'") or die('1');
+	while($r =mysqli_fetch_array($s))
+		{
+				$locus = $r['locus'];
+				$locus = explode(',',$locus);
+				//	$metodica = explode(',',$metodica);
+				
+		?>
+
 	<?php
-			foreach($locus as $locus ) {
+			foreach($locus as &$value )
+        {
         
-        
-        $loci =  controllo_loci($locus);
+
+
+				$value2 = substr(strtolower($value), 0, 1);
+				if($value2 == 'd')
+				{
+					$value2 = substr(strtolower($value), 0, 2);
+						
+						if($value2 == 'dq')
+						{
+							$value2 = substr(strtolower($value), 0, 3);
+								if($value2 == 'dq_')
+								{
+									$value2 ='dqb';
+								}
+						}	
+				}
+				
+			switch($value2)
+			{
+				default:
+				$temp_locus ='';
+				break;
+				case 'a':
+				$temp_locus = $r['locus_a'];
+				break;				
+				case 'b':
+				$temp_locus = $r['locus_b'];
+				break;				
+				case 'c':
+				$temp_locus = $r['locus_c'];
+				break;				
+				case 'dr':
+				$temp_locus = $r['locus_dr'];
+				break;				
+				case 'dqa':
+				$temp_locus = $r['locus_dqa'];
+				break;				
+				case 'dqb':
+				$temp_locus = $r['locus_dqb'];
+				break;				
+				case 'dp':
+				$temp_locus = $r['locus_dp'];
+				break;
+			}
 				?>
 				<tr>
-					<td scope="col"><strong><?= $loci ?></strong></td><td><input type="text" name="<?= $loci ?>"></td>
+					<td scope="col"><strong><?= $value2 ?></strong></td><td><input type="text" name="locus_<?= $value2 ?>"value="<?= $temp_locus ?>"></td>
 				</tr>			
 				<?php
-					}
+				}	}
 
 			?>
 	<tr><td align="center" colspan="6">

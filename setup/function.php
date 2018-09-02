@@ -27,21 +27,5 @@ include('setup.php');
 
 
 
-function controllo_loci($locus){
-	
-	
-	if($locus = 'a_lr'){ $locus_return ='locus_a';}
-	if($locus = 'b_lr') {$locus_return ='locus_b';}
-	if($locus = 'c_lr') {$locus_return ='locus_c';}
-	if($locus = 'dr_lr') {$locus_return ='locus_dr';}
-	if($locus = 'dq_lr'){ $locus_return ='locus_dqb';}
-	if($locus = 'dqa_lr') {$locus_return ='locus_dqa';}
-	if($locus = 'dp_lr') {$locus_return ='locus_dp';}
-	
-	
-	return $locus_return;
-	
-}
-
 
 ?>

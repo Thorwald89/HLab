@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Ago 07, 2018 alle 14:59
--- Versione del server: 10.1.34-MariaDB
--- Versione PHP: 7.2.7
+-- Host: localhost:3306
+-- Creato il: Set 02, 2018 alle 15:37
+-- Versione del server: 5.7.23-0ubuntu0.18.04.1
+-- Versione PHP: 7.0.30-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -57,8 +55,6 @@ CREATE TABLE `criotank_sacche` (
 CREATE TABLE `esami` (
   `id` int(11) NOT NULL,
   `id_campione` varchar(11) NOT NULL,
-  `nome` varchar(99) NOT NULL,
-  `cognome` varchar(99) NOT NULL,
   `data_test` date NOT NULL,
   `operatore` varchar(98) NOT NULL,
   `locus_a` varchar(20) NOT NULL,
@@ -67,16 +63,18 @@ CREATE TABLE `esami` (
   `locus_dr` varchar(20) NOT NULL,
   `locus_dqa` varchar(20) NOT NULL,
   `locus_dqb` varchar(20) NOT NULL,
-  `locus_dp` varchar(20) NOT NULL
+  `locus_dp` varchar(20) NOT NULL,
+  `referto` varchar(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `esami`
 --
 
-INSERT INTO `esami` (`id`, `id_campione`, `nome`, `cognome`, `data_test`, `operatore`, `locus_a`, `locus_b`, `locus_c`, `locus_dr`, `locus_dqa`, `locus_dqb`, `locus_dp`) VALUES
-(5, 'DEP310prob', '', '', '2018-08-07', 'Thorwald', '1', '1', '', '1', '1', '51', '5'),
-(6, 'DEP310M', '', '', '2018-08-07', 'Thorwald', '1:02', '2:02', '', '01:02', '01:02', '01:02', '01:02');
+INSERT INTO `esami` (`id`, `id_campione`, `data_test`, `operatore`, `locus_a`, `locus_b`, `locus_c`, `locus_dr`, `locus_dqa`, `locus_dqb`, `locus_dp`, `referto`) VALUES
+(5, 'DEP310prob', '2018-08-07', 'Thorwald', '1', '1', '', '1', '1', '51', '5', ''),
+(6, 'DEP310M', '2018-08-07', 'Thorwald', '1:02', '2:02', '', '01:02', '01:02', '01:02', '01:02', ''),
+(9, 'DEP320prob', '2018-09-02', 'Thorwald', '1:4', '2:2', '', '8', '', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,7 +99,31 @@ CREATE TABLE `famiglie` (
 --
 
 INSERT INTO `famiglie` (`id`, `nome`, `cognome`, `nascita`, `id_famiglia`, `grado`, `prelievo`, `arrivo`, `barcode`) VALUES
-(2, 'pinca', 'pruasa', '0000-00-00', 'DEP310', 'madre', 'SIT', '2018-08-02', 'DEP310M');
+(2, 'pinca', 'pruasa', '0000-00-00', 'DEP310', 'madre', 'SIT', '2018-08-02', 'DEP310M'),
+(3, 'Prova3', 'Prova2', '2018-08-08', 'DEP320', 'madre', 'SIT', '2018-08-13', 'DEP320M'),
+(4, 'Prova3', 'Prova2', '2018-08-08', 'DEP320', 'madre', 'SIT', '2018-08-13', 'DEP320M'),
+(5, 'Prova3', 'Prova2', '2018-08-03', 'DEP320', 'f2', 'SIT', '2018-08-13', 'DEP320P'),
+(6, 'Prova3', 'Prova2', '2018-08-03', 'DEP320', 'f2', 'SIT', '2018-08-13', 'DEP320P');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `fogli_lavoro`
+--
+
+CREATE TABLE `fogli_lavoro` (
+  `id` int(11) NOT NULL,
+  `id_campione` varchar(99) NOT NULL,
+  `locus` varchar(99) NOT NULL,
+  `metodica` varchar(99) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `fogli_lavoro`
+--
+
+INSERT INTO `fogli_lavoro` (`id`, `id_campione`, `locus`, `metodica`) VALUES
+(8, 'DEP320prob', 'a_lr,b_lr,dr_lr,', 'ssp_lr,');
 
 -- --------------------------------------------------------
 
@@ -178,7 +200,8 @@ CREATE TABLE `schede` (
 --
 
 INSERT INTO `schede` (`id`, `nome_d`, `cognome_d`, `nascita_d`, `telefono`, `id_famiglia`, `patologia`, `barcode`) VALUES
-(21, 'Prova', 'oriva', '2018-08-08', '333 33 33 3', 'DEP310', 'TINU', 'DEP310prob');
+(21, 'Prova', 'oriva', '2018-08-08', '333 33 33 3', 'DEP310', 'TINU', 'DEP310prob'),
+(22, 'Prova2', 'prova2', '2018-08-02', '', 'DEP320', 'UVEITE', 'DEP320prob');
 
 -- --------------------------------------------------------
 
@@ -229,6 +252,12 @@ ALTER TABLE `famiglie`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `fogli_lavoro`
+--
+ALTER TABLE `fogli_lavoro`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `linfociti`
 --
 ALTER TABLE `linfociti`
@@ -266,57 +295,52 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT per la tabella `criotank`
 --
 ALTER TABLE `criotank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `criotank_sacche`
 --
 ALTER TABLE `criotank_sacche`
-  MODIFY `id_sacca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
+  MODIFY `id_sacca` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `esami`
 --
 ALTER TABLE `esami`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT per la tabella `famiglie`
 --
 ALTER TABLE `famiglie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT per la tabella `fogli_lavoro`
+--
+ALTER TABLE `fogli_lavoro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT per la tabella `linfociti`
 --
 ALTER TABLE `linfociti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `log_prodotti`
 --
 ALTER TABLE `log_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `schede`
 --
 ALTER TABLE `schede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
