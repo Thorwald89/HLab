@@ -67,8 +67,8 @@ $dbpass = "'. $_POST["password"]. '";
 $dbname = "'. $_POST["database"]. '";
 
 
-$link = mysql_connect($dbhost,$dbuname,$dbpass);
-mysql_select_db($dbname, $link);
+$link = mysqli_connect($dbhost,$dbuname,$dbpass);
+mysqli_select_db($dbname, $link);
 
 
 //rimuove i Notice: Error Index 

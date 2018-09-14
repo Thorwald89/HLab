@@ -41,13 +41,28 @@ $send = $_POST['send'];
 <head>
 <title>Laboratorio di Manipolazione Cellulare - Scheda</title>
 <link rel="stylesheet" href="../stile.css" />
-
-<style type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript">
+	jQuery( function($) {
+		$('tbody tr[data-href]').addClass('clickable').click( function() {
+			window.location = $(this).attr('data-href');
+		}).find('a').hover( function() {
+			$(this).parents('tr').unbind('click');
+		}, function() {
+			$(this).parents('tr').click( function() {
+				window.location = $(this).attr('data-href');
+			});
+		});
+	});
+</script><style type="text/css">
 	<!--
 body {
 background-color: white;
 
     }
+    tbody tr.clickable:hover td {
+ cursor: pointer;
+}
 -->
 </style>
 
@@ -68,15 +83,14 @@ switch($pos){
 	<table>
 		<tr><td colspan="8" style="text-align: center;"><h2><center>Cerca Paziente</h2></td></tr>
 		<form method="post" action="scheda.php?pos=scheda&user=<?=$login?>">
-	<tr><td>Nome Donatore</td>
+	<tr><td>Nome </td>
 	<td><input type="text" name="nome_d"></td>
-	<td>Cognome Donatore</td>
+	<td>Cognome </td>
 	<td><input type="text" name="cognome_d"></td>
 	</tr>
-	<tr><td>Nome Ricevente</td>
-	<td><input type="text" name="nome_r"></td>
-	<td>Cognome Ricevente</td>
-	<td><input type="text" name="cognome_r"></td>
+	<tr><td>Codice Famiglia</td>
+	<td><input type="text" name="id_famiglia"></td>
+	</td>
 	</tr><tr>
 	<td colspan="2">Inserisci Nome/Cognome del Paziente da trovare.<br> N.B.:<i> puoi cercare una scheda scrivendo %nome% nel caso si conosca parte del nome </i></td></tr>
 	<tr><td style="text-align: center;" colspan="8">
@@ -97,25 +111,27 @@ switch($pos){
 
 
 	?>
+
 		<table>
+			<tbody>
 	<tr>
-	<td>Nome Ricevente</td>
-	<td>Cognome Ricevente</td>
-	<td>Data di Nascita Ricevente</td>
+	<td>Nome </td>
+	<td>Cognome </td>
+	<td>Data di Nascita</td>
 
 	</tr>
 
 	<?php
-	$s=mysql_query("select * from schede where nome_d like '".$_POST['nome_d']."' or cognome_d like '".$_POST['cognome_d']."' or nome_r like '".$_POST['nome_r']."' or cognome_r like '".$_POST['cognome_r']."' order by cognome_d") or die(mysql_error());
-	while($b=mysql_fetch_array($s)){
+	$s= mysqli_query($link,"select * from schede where nome_d like '".$_POST['nome_d']."' or cognome_d like '".$_POST['cognome_d']."' or id_famiglia like '".$_POST['id_famiglia']."' order by cognome_d") or die('1');
+	while($b= mysqli_fetch_array($s)){
 
 	?>
 
-	<tr>
+    <tr data-href="scheda.php?pos=scheda&id=<?=$b['id'];?>">
 
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['nome_r'];?></a></td>
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['cognome_r'];?></a></td>
-	<td><a href="scheda.php?pos=scheda&id=<?=$b['id'];?>"><?=$b['nascita_r'];?></a></td>
+	<td><?=$b['nome_d'];?></td>
+	<td><?=$b['cognome_d'];?></td>
+	<td><?=$b['nascita_d'];?></td>
 
 	</tr>
 
@@ -124,15 +140,14 @@ switch($pos){
 
 }
 
-	?></table>
+	?></tbody></table>
 
 	<?php
 	if($_GET['id'] !=0){
-	$s=mysql_query("select * from schede where id = '".$_GET['id']."'") or die(mysql_error());
-	$b=mysql_fetch_array($s);
+	$s=$link->query("select * from schede where id = '".$_GET['id']."'") or die('2');
+	$b=mysqli_fetch_array($s);
 
 	$n_d = date_create($b['nascita_d']);
-	$n_r = date_create($b['nascita_r']);
 		?>
 
 
@@ -141,192 +156,31 @@ switch($pos){
 
 		<form method="POST" action="../setup/pdf2/create_result_CSE.php">
 
-		<tr><td colspan="8" style="text-align: center;"><h2>Scheda Paziente</h2></td></tr>
+		<tr><td colspan="8" style="text-align: center;"><h2>Probando</h2></td></tr>
 
 		<tr  style="text-align: center;">
-			<td colspan="2" style="text-align: center;"><center><h3>Donatore</h3></center></td>
-			<td colspan="2" style="text-align: center;"><center><h3>Ricevente</h3></center></td>
 
 		</tr>
 
-	<tr><td>Nome Donatore</td>
-	<td><?=$b['nome_d'];?></td>
-	<td>Nome Ricevente</td>
-	<td><?=$b['nome_r'];?></td>
-	</tr>
+	<tr><td>Nome: <?=$b['nome_d'];?></td>
 
-	<tr><td>Cognome Donatore</td>
-	<td><?=$b['cognome_d'];?></td>
-	<td>Cognome Ricevente</td>
-	<td><?=$b['cognome_r'];?></td>
+	<td>Cognome: <?=$b['cognome_d'];?></td>
+
 
 		</tr>
 
-	<tr><td>Nascita Donatore</td>
-	<td><?=date_format($n_d, 'd/m/Y')?></td>
-	<td>Nascita Ricevente</td>
-	<td><?=date_format($n_r, 'd/m/Y')?></td>
+	<tr><td>Codice Famiglia: <?=$b['id_famiglia'];?></td>
+	<td>Nascita: <?=date_format($n_d, 'd/m/Y')?></td>
+	
 	</tr>
 
 
-	<tr><td>Telefono</td>
-	<td><?=$b['telefono'];?></td>
-	<td>Peso</td>
-	<td><?=$b['peso'];?> Kg</td></tr>
-
-
-	<tr  style="text-align: center;">
-	<td colspan="2" style="text-align: center;"><h3>Parametri</h3></td>
-	<td colspan="2" style="text-align: center;"><h3>Aliquote</h3></td>
-
-		</tr>
-
-	<tr>
-	<td>Deplasmazione</td>
-	<td><?=$b['deplasmazione']?></td>
-	<td>Aliquota 1</td>
-	<td><?=$b['al1']?>mL</td>
-	</tr><tr>
-	<td>Procedura</td>
-	<td><?=$b['procedura']?></td>
-	<td>Aliquota 2</td>
-	<td><?=$b['al2']?>mL</td>
-	</tr><tr>
-	<td>Vol. Raccolta</td>
-	<td><?=$b['vol']?>mL</td>
-	<td>Aliquota 3</td>
-	<td><?=$b['al3']?>mL</td>
-	</tr><tr>
-	<td>Vol. Scarto</td>
-	<td><?=$b['scarto']?>mL</td>
-	<td>Aliquota 4</td>
-	<td><?=$b['al4']?>mL</td>
-	</tr><tr>
-	<td>Vol. Finale</td>
-	<td><?=$b['finale']?>mL</td>
-	<td>Aliquota 5</td>
-	<td><?=$b['al5']?>mL</td>
-	</tr><tr>
-	<td>Data Congelamento</td>
-	<td><?=$b['data_congelamento']?></td>
-	<td>Aliquota 6</td>
-	<td><?=$b['al6']?>mL</td>
-	</tr><tr>
-	<td>Data Raccolta</td>
-	<td><?=$b['data_raccolta']?></td>
+	<tr><td>Telefono: <?=$b['telefono'];?></td>
+		<td>Patologia: <?=$b['patologia'];?></td>
 	</tr>
 
 
-
-	<tr  align="center">
-			<td colspan="4" align="center"><center><h3>Dati Pre-Raccolta</h3></center></td>
-		</tr>
-	<tr>
-	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-pre']?>&mu;L</td>
-	<td><strong>CD34 %</strong>  <?=$b['cd34_pre_perc']?>%</td>
-	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34_pre_micro']?>&mu;L</td>
-
-</tr>
-	<tr  align="center">
-			<td colspan="4" align="center"><center><h3>Dati Raccolta</h3></center></td>
-		</tr>
-	<tr>
-	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-racc']?>&mu;L</td>
-	<td><strong>CD34 %</strong>  <?=$b['cd34_racc_perc']?>%</td>
-	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34_racc_micro']?>&mu;L</td>
-
-</tr>
-
-	<tr  align="center">
-			<td colspan="4" align="center"><center><h3>Dati Post-Raccolta</h3></center></td>
-		</tr>
-	<tr>
-	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-post']?>&mu;L</td>
-	<td><strong>CD34 %</strong>  <?=$b['cd34_post_perc']?>%</td>
-	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34_post_micro']?>&mu;L</td>
-
-</tr>
-
-	<tr  align="center">
-			<td colspan="4" align="center"><center><h3>Dati Deplasmazione</h3></center></td>
-		</tr>
-	<tr>
-	<td><strong>WBC/&mu;L</strong> <?=$b['wbc-depl']?>&mu;L</td>
-	<td><strong>CD34 %</strong>  <?=$b['cd34_depl_perc']?>%</td>
-	<td><strong>CD34/&mu;L</strong>  <?=$b['cd34_depl_micro']?>&mu;L</td>
-
-</tr>
-
-<tr  align="center">
-			<td colspan="4" align="center"><center><h3>Monitoraggio CD34</h3></center></td>
-		</tr>
-
-	<tr>
-				<td><b></b></td>
-
-		<td><strong>Data</strong></td>
-		<td><strong>WBC</strong></td>
-		<td><strong>CD34 %</strong></td>
-		<td><strong>CD34/&mu;L</strong></td>
-
-		</tr>
-<tr>
-	<?php
-	$m1 =date_create($b['data_monitoraggio1']);
-	$m2 =date_create($b['data_monitoraggio2']);
-	$m3 =date_create($b['data_monitoraggio3']);
-	$m4 =date_create($b['data_monitoraggio4']);
-
-
-	?>
-	<td><b>1</b></td>
-	<td><?=date_format($m1, 'd/m/Y')?></td>
-	<td><?=$b['wbc_monitoraggio1']?></td>
-	<td><?=$b['cd34_perc_monitoraggio1']?></td>
-	<td><?=$b['cd34_micro_monitoraggio1']?></td>
-
-	</tr>
-<tr>
-	<td><b>2</b></td>
-	<td><?=date_format($m2, 'd/m/Y')?></td>
-	<td><?=$b['wbc_monitoraggio2']?></td>
-	<td><?=$b['cd34_perc_monitoraggio2']?></td>
-	<td><?=$b['cd34_micro_monitoraggio2']?></td>
-
-	</tr>
-<tr>
-	<td><b>3</b></td>
-	<td><?=date_format($m3, 'd/m/Y')?></td>
-	<td><?=$b['wbc_monitoraggio3']?></td>
-	<td><?=$b['cd34_perc_monitoraggio3']?></td>
-	<td><?=$b['cd34_micro_monitoraggio3']?></td>
-
-	</tr>
-<tr>
-	<td><b>4</b></td>
-	<td><?=date_format($m4, 'd/m/Y')?></td>
-	<td><?=$b['wbc_monitoraggio4']?></td>
-	<td><?=$b['cd34_perc_monitoraggio4']?></td>
-	<td><?=$b['cd34_micro_monitoraggio4']?></td>
-
-	</tr>
-<tr  align="center">
-			<td colspan="4" align="center"><center><h3>Prodotti</h3></center></td>
-		</tr>
-	<tr><td></td><td colspan="4" style="align: center;"><strong>Lotto Sacche</strong>: <?=$b['lotto_sacche']?></td></tr>
-
-	<tr><td></td><td><strong>Lotto Albumina</strong>: <?=$b['lotto_albumina']?></td>
-	<td><strong>Lotto DMSO</strong>: <?=$b['lotto_DMSO']?></td></tr>
-
-	<tr><td></td><td><strong>Lotto Siringhe</strong>: <?=$b['lotto_siringhe']?></td>
-	<td><strong>Lotto Rubinetti</strong>: <?=$b['lotto_rubinetti']?></td></tr>
-
-	<tr><td></td><td><strong>Lotto Anti &gamma;&gamma;</strong>: <?=$b['lotto_antigamma']?></td>
-	<td><strong>Lotto Anti CD34</strong>: <?=$b['lotto_cd34']?></td></tr>
-
-	<input type="hidden" name ="id" value="<?=$b['id'];?>">
-
-	<tr><td colspan="8" style="text-align: center;"><input type="submit" name="send" value="Esporta"></td></tr>
+	
 	</form>
 	</table>
 	<?php
