@@ -82,7 +82,7 @@ table#tabella {
 #tabella tbody tr:hover {
     background-color: #ccc;
 }
-#tabella th {
+#tabella th, .row {
     background-color: #fff;
 }
 #tabella th, #tabella td {

@@ -49,13 +49,14 @@ $send = $_POST['send'];
 		?>
 
 
-	<table class="table">
 
-
-		<form method="POST" action="referto.php">
-		<thead>
-		<tr><th colspan="8" style="text-align: center;"><h2>Probando</h2></th></tr>
-		</thead>
+<div class="container">
+	<div class="row"> 
+		<div class="col-lg">
+			<table id="tabella" class="table table-sm table-hover">		
+				<tr><td colspan="5"><h2>Refertazione di <i><?=$barcode?></i></h2></td></tr>
+				<form method="POST" action="referto.php">
+	
 		<tr  style="text-align: center;">
 
 		</tr>
@@ -81,6 +82,32 @@ $send = $_POST['send'];
 	<input type="submit" name="send" value="referta">
 	</form>
 	</table>
+	
+    
+	</div> 
+	
+	
+
+</div>
+
+ <div class="row">
+	 <div class="col-xl-12">Loci
+		<div class="row">
+			<div class="col-md-2">Locus A</div>
+			<div class="col-md-2">Locus B</div>
+			<div class="col-md-2">Locus C</div>
+			<div class="col-md-2">Locus DR</div>
+			<div class="col-md-2">Locus DQ</div>
+			<div class="col-md-2">Locus DP</div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+
+	
 
 
 

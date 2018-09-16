@@ -70,7 +70,7 @@ $dbname = "'. $_POST["database"]. '";
 $link = mysqli_connect($dbhost,$dbuname,$dbpass);
 mysqli_select_db($dbname, $link);
 
-
+$titolo = "'. $_POST["titolo"]. '";
 //rimuove i Notice: Error Index 
 error_reporting(E_ERROR | E_PARSE);
 ?>
@@ -129,12 +129,12 @@ box-shadow: 6px 6px 50px 3px #030303;
 
 
 <body>
-Laboratorio di Manipolazione Cellulare - Installazione
+Installazione
 
 <div class="contenitore">
 
 <!-- content start here -->
-<center><h2 class="pagetitle"><font color="black">Installazione LabMan</font></h2></center>
+<center><h2 class="pagetitle"><font color="black">Installazione HLab</font></h2></center>
 
 <form method="post" action="install.php">
   <input type="hidden" name="page" value="home" />
@@ -152,7 +152,10 @@ Laboratorio di Manipolazione Cellulare - Installazione
 	<tr><td><span class="general"><font  size="13"><strong>Password Utente :</strong></font></span></td></tr>
     <tr><td><input type="text" name="password" placeholder="password" value="" size="30"  autofocus="autofocus" /></td></tr>
    
-       <tr><td><input class="submit" type="submit" name="send" value="Installa" /></td></tr>  </table>
+	<tr><td><span class="general"><font  size="13"><strong>Laboratorio:</strong></font></span></td></tr>
+    <tr><td><input type="text" name="titolo" placeholder="Nome del Laboratorio" value="" size="30"  autofocus="autofocus" /></td></tr>
+    
+    <tr><td><input class="submit" type="submit" name="send" value="Installa" /></td></tr>  </table>
     </form>
    
     </div> 

@@ -43,64 +43,116 @@ if(isset($_GET['result'])){
 
 	}
 
-	
 ?>
 
 
+<!DOCTYPE html> 
 <html>
 <head>
-<link rel="shortcut icon" href="img/favicon.ico" >
-<title>Laboratorio di Manipolazione Cellulare - Login</title>
-<link rel="stylesheet" href="stile.css" />
+	<title><?= $titolo?></title>
+   <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Latest compiled and minified CSS table-bootstrap-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+
+<!-- datatoggle-->
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+<script>
+$(document).ready(function() {
+
+    $('#tabella').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+
+ 
+
+});
+</script>
 <style>
 <!--
-body{
 
-background-image: url('img/sfondo.png');
-
+html,
+body {
+  height: 100%;
 
 }
-.contenitore{
 
-position:absolute;
-top:60%;
-left:65%;
-margin-top:-250px;
-margin-left:-450px;
-align: center;
-border: 1px;
-width: 600px;
--webkit-box-shadow: 6px 6px 50px 3px #030303;
-box-shadow: 6px 6px 50px 3px #030303;
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
 }
 
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 
 -->
 </style>
+
+
 </head>
 
 
 
-<body>
-Laboratorio di Manipolazione Cellulare - Login
+<body class="text-center">
 
-<div class="contenitore">
 
-<!-- content start here -->
-<h2 class="pagetitle">pagina di amministrazione</h2>
 
-<form method="post" action="home.php">
+<form method="post" action="home.php" class="form-signin">
+	        <img class="mb-4" src="hlab.png" alt="" width="92" height="92">
+ <h1 class="h3 mb-3 font-weight-normal">Accesso Utenti</h1>
+
   <input type="hidden" name="page" value="home" />
-  <table class="loginPassUpdate" width="100%" border="0" cellpadding="2" cellspacing="0">
-    <tr><td><span class="general"><font  size="13"><strong>Nome:</strong></font></span></td></tr>
-    <tr><td><input type="text" name="user" placeholder="username" value="" size="30"  autofocus="autofocus" /></td></tr>
-    <tr><td><span class="general"><font  size="13"><strong>Password:</strong></font></span></td></tr>    
-    <tr><td><input type="password" placeholder="password" name="pass" value="" size="30" /></td></tr>    
-    <tr><td><input class="submit" type="submit" name="send" value="login" /></td></tr>  </table>
-    </form>
-   
-    </div> 
+	        <label for="inputEmail" class="sr-only">Utente</label>
+      <input type="text" id="inputEmail" class="form-control" name="user" placeholder="Nome Utente" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" name="pass" placeholder="Password" required>   
+  <input class="btn btn-lg btn-primary btn-block" type="submit" name="send" value="login" />
+         <p class="mt-5 mb-3 text-muted"><center><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licenza Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">HLab</span> di <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/Thorwald89/LabMan" property="cc:attributionName" rel="cc:attributionURL">https://github.com/Thorwald89/LabMan</a> &eacute; distribuito con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.
+</p>
 </body>
 
 
