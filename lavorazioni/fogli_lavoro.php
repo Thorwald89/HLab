@@ -119,6 +119,69 @@ switch($pos){
 	<table id="tabella" class="table table-sm table-hover">
 		
 		<thead>
+		<tr><td colspan="15" align="center"><h2><center>Fogli di Lavoro</h2></td></tr>
+		
+	<tr>	
+	<th scope="col"><strong>ID Campione</strong></th>
+	<th scope="col"><strong>Locus</strong></th>
+	<th scope="col"><strong>Lotto</strong></th>
+	<th scope="col"><strong>Amplificatore</strong></th>
+
+
+	</tr>
+	</thead>
+	<tbody>
+		
+	<tr>	
+		<td>
+			<select >
+									<option disabled selected><i>ID Campione</i></option>
+
+				<?php
+	$s= $link->query("select fogli_lavoro.* from fogli_lavoro order by id") or die('1');
+	while($r =mysqli_fetch_array($s)){
+		
+
+
+		?>
+			
+					<option><?=ucfirst($r['id_campione'])?></option>
+
+		<?php
+	}
+	?>
+				
+			</select>
+		</td>
+
+
+	</tr>
+	
+	</tbody>
+	
+	</table>
+	
+		</div>
+	</div>
+</div>
+
+
+
+	</div>
+	<?php
+	break;
+	
+	case 'pendenti':
+	
+	
+	?>	
+	
+<div class="container">
+  <div class="row"> 
+    <div class="col-lg">
+	<table id="tabella" class="table table-sm table-hover">
+		
+		<thead>
 		<tr><td colspan="15" align="center"><h2><center>Flussi di Lavoro</h2></td></tr>
 		
 	<tr>	

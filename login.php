@@ -27,11 +27,26 @@ session_start();
 
 	$result= "";
 
-if(isset($_GET['result'])){
-	$result= $_GET['result'];
-}
+if($_POST['send'] == 'login'){
+$user = $_POST['user'];	
+$pass = $_POST['pass'];	
+	$s= $link->query("SELECT * FROM user WHERE user like '$user' and pass = '$pass'") or die(mysqli_error($link));
+	$row = $s->num_rows;
+	$rr = mysqli_fetch_array($s);
 	
-	if($result =='errore'){
+	if($row >0){
+?>
+			<script language="javascript">
+			alert("ok!");
+			</script>
+			
+			<?php
+	session_start();
+		$_SESSION['login'] = $user;
+		$admin=$_SESSION['admin'];
+		$login=$_SESSION['login'];
+	header('location: home.php');
+}else{
 		
 		
 			?>
@@ -42,6 +57,10 @@ if(isset($_GET['result'])){
 			<?php
 
 	}
+	
+}
+	
+	
 
 ?>
 
@@ -141,7 +160,7 @@ body {
 
 
 
-<form method="post" action="home.php" class="form-signin">
+<form method="post" action="login.php" class="form-signin">
 	        <img class="mb-4" src="hlab.png" alt="" width="92" height="92">
  <h1 class="h3 mb-3 font-weight-normal">Accesso Utenti</h1>
 
