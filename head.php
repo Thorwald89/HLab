@@ -46,6 +46,14 @@ include('setup/setup.php');
 <!-- Latest compiled and minified CSS table-bootstrap-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
 
 <!-- datatoggle-->
 
@@ -139,6 +147,7 @@ table#tabella {
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/inserisci.php?user=<?=$login?>" >Prenota Esame</a>
           <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/fogli_lavoro.php?pos=inserisci&user=<?=$login?>" >Fogli di Lavoro</a>
+          <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/fogli_lavoro.php?pos=pendenti&user=<?=$login?>" >Esami Pendenti</a>
           <a class="dropdown-item" href="<?=$navigazione_http?>lavorazioni/hla_risultati.php?user=<?=$login?>" >Inserisci Risultati</a>
         </div>
       </li>
