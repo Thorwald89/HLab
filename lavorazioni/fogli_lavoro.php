@@ -134,7 +134,7 @@ switch($pos){
 		
 	<tr>	
 		<td>
-			<select >
+			<select  id="sample" name="sample" >
 									<option disabled selected><i>ID Campione</i></option>
 
 				<?php
@@ -145,7 +145,7 @@ switch($pos){
 
 		?>
 			
-					<option><?=ucfirst($r['id_campione'])?></option>
+					<option value="<?=ucfirst($r['id_campione'])?>"><?=ucfirst($r['id_campione'])?></option>
 
 		<?php
 	}
@@ -179,7 +179,7 @@ switch($pos){
 <div class="container">
   <div class="row"> 
     <div class="col-lg">
-	<table id="tabella" class="table table-sm table-hover">
+	<table id="tabella" data-toggle="table">
 		
 		<thead>
 		<tr><td colspan="15" align="center"><h2><center>Flussi di Lavoro</h2></td></tr>

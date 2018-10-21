@@ -49,18 +49,19 @@ include('setup/setup.php');
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
+
 
 <!-- datatoggle-->
 
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
+
 <script>
 $(document).ready(function() {
+	
+
 
     $('#tabella').click(function() {
         var href = $(this).find("a").attr("href");
@@ -70,7 +71,22 @@ $(document).ready(function() {
     });
 
 
- 
+ $("select#sample").on("change",function(){  
+        var campione = $("#sample").val();  
+        $.ajax({  
+          type: "GET",
+          url: "/fogli_lavoro.php",  
+          data: "campione=" + campione + ,
+          dataType: "html",
+          success: function(risposta) {  
+				alert("ok"); 
+				         },
+          error: function(){
+            alert("Chiamata fallita!!!");
+          } 
+        }); 
+        return false;  
+      });
 
 });
 </script>
