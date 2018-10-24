@@ -134,7 +134,11 @@ switch($pos){
 		
 	<tr>	
 		<td>
+<<<<<<< HEAD
 			<select >
+=======
+			<select  id="sample" name="sample" >
+>>>>>>> HLab
 									<option disabled selected><i>ID Campione</i></option>
 
 				<?php
@@ -145,7 +149,11 @@ switch($pos){
 
 		?>
 			
+<<<<<<< HEAD
 					<option><?=ucfirst($r['id_campione'])?></option>
+=======
+					<option value="<?=ucfirst($r['id_campione'])?>"><?=ucfirst($r['id_campione'])?></option>
+>>>>>>> HLab
 
 		<?php
 	}
@@ -179,7 +187,11 @@ switch($pos){
 <div class="container">
   <div class="row"> 
     <div class="col-lg">
+<<<<<<< HEAD
 	<table id="tabella" class="table table-sm table-hover">
+=======
+	<table id="tabella" data-toggle="table">
+>>>>>>> HLab
 		
 		<thead>
 		<tr><td colspan="15" align="center"><h2><center>Flussi di Lavoro</h2></td></tr>
