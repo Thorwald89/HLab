@@ -134,11 +134,8 @@ switch($pos){
 		
 	<tr>	
 		<td>
-<<<<<<< HEAD
-			<select >
-=======
+
 			<select  id="sample" name="sample" >
->>>>>>> HLab
 									<option disabled selected><i>ID Campione</i></option>
 
 				<?php
@@ -149,11 +146,7 @@ switch($pos){
 
 		?>
 			
-<<<<<<< HEAD
-					<option><?=ucfirst($r['id_campione'])?></option>
-=======
 					<option value="<?=ucfirst($r['id_campione'])?>"><?=ucfirst($r['id_campione'])?></option>
->>>>>>> HLab
 
 		<?php
 	}
@@ -162,7 +155,61 @@ switch($pos){
 			</select>
 		</td>
 
+		<td>
 
+			<select  id="sample" name="sample" >
+									<option disabled selected><i>Locus</i></option>
+
+				<?php
+	$s= $link->query("select fogli_lavoro.* from fogli_lavoro order by id") or die('1');
+	while($r =mysqli_fetch_array($s)){
+		
+
+
+		?>
+			
+					<option value="<?=ucfirst($r['locus'])?>"><?=ucfirst($r['locus'])?></option>
+
+		<?php
+	}
+	?>
+				
+			</select>
+		</td>
+		<td>
+
+			<select  id="sample" name="sample" >
+									<option disabled selected><i>Lotto</i></option>
+
+				<?php
+	$s= $link->query("select fogli_lavoro.* from fogli_lavoro order by id") or die('1');
+	while($r =mysqli_fetch_array($s)){
+		
+
+
+		?>
+			
+					<option value="<?=ucfirst($r['locus'])?>">Lotto</option>
+
+		<?php
+	}
+	?>
+				
+			</select>
+		</td>
+		<td>
+
+			<select  id="sample" name="sample" >
+									<option disabled selected><i>Amplificatore</i></option>
+
+		
+			
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+	
+			</select>
+		</td>
 	</tr>
 	
 	</tbody>
@@ -187,11 +234,9 @@ switch($pos){
 <div class="container">
   <div class="row"> 
     <div class="col-lg">
-<<<<<<< HEAD
 	<table id="tabella" class="table table-sm table-hover">
-=======
+
 	<table id="tabella" data-toggle="table">
->>>>>>> HLab
 		
 		<thead>
 		<tr><td colspan="15" align="center"><h2><center>Flussi di Lavoro</h2></td></tr>
